@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Method Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-file-alt icon"></i>
+                Template Method Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Template Method מגדירה את השלד של אלגוריתם במחלקת בסיס ומאפשרת למחלקות יורשות להחליף חלקים מהאלגוריתם מבלי לשנות את המבנה הכללי.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר יש מספר אלגוריתמים דומים עם הבדלים קטנים</li>
+                <li>כאשר רוצים למנוע כפילות קוד</li>
+                <li>כאשר רוצים לאפשר הרחבה של אלגוריתמים קיימים</li>
+                <li>כאשר רוצים לשלוט על נקודות הרחבה באלגוריתם</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+
+class AbstractClass(ABC):
+    def template_method(self) -> None:
+        self.base_operation1()
+        self.required_operations1()
+        self.base_operation2()
+        self.hook1()
+        self.required_operations2()
+        self.base_operation3()
+        self.hook2()
+
+    def base_operation1(self) -> None:
+        print("AbstractClass: ביצוע פעולה בסיסית 1")
+
+    def base_operation2(self) -> None:
+        print("AbstractClass: ביצוע פעולה בסיסית 2")
+
+    def base_operation3(self) -> None:
+        print("AbstractClass: ביצוע פעולה בסיסית 3")
+
+    @abstractmethod
+    def required_operations1(self) -> None:
+        pass
+
+    @abstractmethod
+    def required_operations2(self) -> None:
+        pass
+
+    def hook1(self) -> None:
+        pass
+
+    def hook2(self) -> None:
+        pass
+
+class ConcreteClass1(AbstractClass):
+    def required_operations1(self) -> None:
+        print("ConcreteClass1: ביצוע פעולה נדרשת 1")
+
+    def required_operations2(self) -> None:
+        print("ConcreteClass1: ביצוע פעולה נדרשת 2")
+
+class ConcreteClass2(AbstractClass):
+    def required_operations1(self) -> None:
+        print("ConcreteClass2: ביצוע פעולה נדרשת 1")
+
+    def required_operations2(self) -> None:
+        print("ConcreteClass2: ביצוע פעולה נדרשת 2")
+
+    def hook1(self) -> None:
+        print("ConcreteClass2: ביצוע hook 1")
+
+# שימוש
+if __name__ == "__main__":
+    concrete1 = ConcreteClass1()
+    concrete1.template_method()
+
+    print("\n")
+
+    concrete2 = ConcreteClass2()
+    concrete2.template_method()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת שימוש חוזר בקוד</li>
+                <li>מאפשרת הרחבה קלה של אלגוריתמים</li>
+                <li>מאפשרת שליטה על נקודות הרחבה</li>
+                <li>מפחיתה כפילות קוד</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור היררכיה מורכבת</li>
+                <li>עלולה להגביל את הגמישות</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות חזקה בין המחלקות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>משתמשת בהרכבה, בעוד Template Method משתמשת בירושה</td>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת אובייקטים, בעוד Template Method מתמקדת באלגוריתמים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Template Method במקרים הבאים:</p>
+            <ol>
+                <li>מערכת עיבוד מסמכים</li>
+                <li>מערכת הכנת משקאות</li>
+                <li>מערכת בניית דוחות</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-chess icon"></i>Strategy</a></li>
+                <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

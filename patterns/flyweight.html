@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flyweight Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-feather icon"></i>
+                Flyweight Pattern
+            </h1>
+            <a href="index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Flyweight מאפשרת שימוש חוזר באובייקטים דומים על ידי שיתוף החלקים המשותפים ביניהם, ובכך חוסכת בזיכרון.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר יש מספר רב של אובייקטים דומים</li>
+                <li>כאשר רוצים לחסוך בזיכרון</li>
+                <li>כאשר רוצים לשתף נתונים בין אובייקטים</li>
+                <li>כאשר רוצים להפריד בין נתונים פנימיים וחיצוניים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from typing import Dict
+
+# נתונים פנימיים (משותפים)
+class Flyweight:
+    def __init__(self, shared_state: str):
+        self.shared_state = shared_state
+
+    def operation(self, unique_state: str) -> str:
+        return f"נתונים משותפים: {self.shared_state}, נתונים ייחודיים: {unique_state}"
+
+# מפעל Flyweight
+class FlyweightFactory:
+    _flyweights: Dict[str, Flyweight] = {}
+
+    def get_flyweight(self, shared_state: str) -> Flyweight:
+        if shared_state not in self._flyweights:
+            self._flyweights[shared_state] = Flyweight(shared_state)
+        return self._flyweights[shared_state]
+
+    def list_flyweights(self) -> int:
+        return len(self._flyweights)
+
+# שימוש
+def client_code(factory: FlyweightFactory, shared_state: str, unique_state: str):
+    flyweight = factory.get_flyweight(shared_state)
+    print(flyweight.operation(unique_state))
+
+# יצירת אובייקטים
+factory = FlyweightFactory()
+
+# שימוש
+client_code(factory, "נתונים משותפים 1", "נתונים ייחודיים 1")
+client_code(factory, "נתונים משותפים 1", "נתונים ייחודיים 2")
+client_code(factory, "נתונים משותפים 2", "נתונים ייחודיים 3")
+
+print(f"מספר אובייקטים Flyweight: {factory.list_flyweights()}")  # 2</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>חוסך בזיכרון</li>
+                <li>מאפשר שימוש חוזר באובייקטים</li>
+                <li>מפריד בין נתונים פנימיים וחיצוניים</li>
+                <li>מפחית את מספר האובייקטים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלול להקשות על הבנת הקוד</li>
+                <li>עלול ליצור ביצועים פחות טובים</li>
+                <li>עלול להקשות על ניהול המצב</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Singleton</td>
+                    <td>מבטיח מופע אחד, בעוד Flyweight מאפשר מספר מופעים</td>
+                </tr>
+                <tr>
+                    <td>Composite</td>
+                    <td>משלב אובייקטים, בעוד Flyweight משתף נתונים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Flyweight במקרים הבאים:</p>
+            <ol>
+                <li>מערכת טקסט (שיתוף פונטים)</li>
+                <li>מערכת משחק (שיתוף דמויות)</li>
+                <li>מערכת גרפיקה (שיתוף טקסטורות)</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="singleton.html" class="flex-center"><i class="fas fa-cube icon"></i>Singleton</a></li>
+                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
+                <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

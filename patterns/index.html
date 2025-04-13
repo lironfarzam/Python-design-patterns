@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תבניות עיצוב בפייתון - Design Patterns</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="side-nav">
+        <div class="search-box">
+            <input type="text" placeholder="חיפוש תבניות...">
+        </div>
+        
+        <div class="pattern-group">
+            <h3><i class="fas fa-puzzle-piece"></i> תבניות יצירה</h3>
+            <ul>
+                <li><a href="abstract-factory.html"><i class="fas fa-industry"></i> Abstract Factory</a></li>
+                <li><a href="builder.html"><i class="fas fa-hammer"></i> Builder</a></li>
+                <li><a href="factory-method.html"><i class="fas fa-industry"></i> Factory Method</a></li>
+                <li><a href="prototype.html"><i class="fas fa-clone"></i> Prototype</a></li>
+                <li><a href="singleton.html"><i class="fas fa-cube"></i> Singleton</a></li>
+            </ul>
+        </div>
+        
+        <div class="pattern-group">
+            <h3><i class="fas fa-sitemap"></i> תבניות מבנה</h3>
+            <ul>
+                <li><a href="adapter.html"><i class="fas fa-plug"></i> Adapter</a></li>
+                <li><a href="bridge.html"><i class="fas fa-link"></i> Bridge</a></li>
+                <li><a href="composite.html"><i class="fas fa-sitemap"></i> Composite</a></li>
+                <li><a href="decorator.html"><i class="fas fa-gift"></i> Decorator</a></li>
+                <li><a href="facade.html"><i class="fas fa-building"></i> Facade</a></li>
+                <li><a href="flyweight.html"><i class="fas fa-feather"></i> Flyweight</a></li>
+                <li><a href="proxy.html"><i class="fas fa-shield-alt"></i> Proxy</a></li>
+            </ul>
+        </div>
+        
+        <div class="pattern-group">
+            <h3><i class="fas fa-exchange-alt"></i> תבניות התנהגות</h3>
+            <ul>
+                <li><a href="chain-of-responsibility.html"><i class="fas fa-link"></i> Chain of Responsibility</a></li>
+                <li><a href="command.html"><i class="fas fa-terminal"></i> Command</a></li>
+                <li><a href="interpreter.html"><i class="fas fa-code"></i> Interpreter</a></li>
+                <li><a href="iterator.html"><i class="fas fa-sync"></i> Iterator</a></li>
+                <li><a href="mediator.html"><i class="fas fa-comments"></i> Mediator</a></li>
+                <li><a href="memento.html"><i class="fas fa-history"></i> Memento</a></li>
+                <li><a href="observer.html"><i class="fas fa-eye"></i> Observer</a></li>
+                <li><a href="state.html"><i class="fas fa-toggle-on"></i> State</a></li>
+                <li><a href="strategy.html"><i class="fas fa-chess"></i> Strategy</a></li>
+                <li><a href="template-method.html"><i class="fas fa-file-alt"></i> Template Method</a></li>
+                <li><a href="visitor.html"><i class="fas fa-user-check"></i> Visitor</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                תבניות עיצוב בפייתון
+            </h1>
+            <p>מדריך מקיף לתבניות עיצוב נפוצות בפייתון, עם דוגמאות קוד והסברים מפורטים.</p>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מה הן תבניות עיצוב?
+            </h2>
+            <p>תבניות עיצוב הן פתרונות מוכנים לבעיות נפוצות בתכנות מונחה עצמים. הן מספקות תבניות מוכנות לשימוש חוזר, המסייעות בפיתוח קוד נקי, גמיש וקל לתחזוקה.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-puzzle-piece icon"></i>
+                תבניות יצירה
+            </h2>
+            <p>תבניות יצירה עוסקות בתהליך יצירת אובייקטים:</p>
+            <ul>
+                <li><strong>Abstract Factory</strong> - יצירת משפחות של אובייקטים קשורים</li>
+                <li><strong>Builder</strong> - בניית אובייקטים מורכבים צעד אחר צעד</li>
+                <li><strong>Factory Method</strong> - יצירת אובייקטים ללא צורך לציין את המחלקה המדויקת</li>
+                <li><strong>Prototype</strong> - יצירת אובייקטים חדשים על ידי העתקת אובייקטים קיימים</li>
+                <li><strong>Singleton</strong> - הבטחה שקיים רק מופע אחד של מחלקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                תבניות מבנה
+            </h2>
+            <p>תבניות מבנה עוסקות בהרכבה של מחלקות ואובייקטים:</p>
+            <ul>
+                <li><strong>Adapter</strong> - התאמת ממשק של מחלקה לממשק אחר</li>
+                <li><strong>Bridge</strong> - הפרדה בין הפשטה למימוש</li>
+                <li><strong>Composite</strong> - טיפול באובייקטים בודדים וקבוצות באופן אחיד</li>
+                <li><strong>Decorator</strong> - הוספת אחריות לאובייקט באופן דינמי</li>
+                <li><strong>Facade</strong> - ממשק פשוט למערכת מורכבת</li>
+                <li><strong>Flyweight</strong> - שיתוף אובייקטים קטנים</li>
+                <li><strong>Proxy</strong> - שליטה בגישה לאובייקט</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exchange-alt icon"></i>
+                תבניות התנהגות
+            </h2>
+            <p>תבניות התנהגות עוסקות באינטראקציה בין אובייקטים:</p>
+            <ul>
+                <li><strong>Chain of Responsibility</strong> - העברת בקשות דרך שרשרת מטפלים</li>
+                <li><strong>Command</strong> - עטיפת בקשות כאובייקטים</li>
+                <li><strong>Interpreter</strong> - פירוש שפה</li>
+                <li><strong>Iterator</strong> - גישה רציפה לאלמנטים של אוסף</li>
+                <li><strong>Mediator</strong> - הפחתת תלויות בין מחלקות</li>
+                <li><strong>Memento</strong> - שמירת מצב של אובייקט</li>
+                <li><strong>Observer</strong> - עדכון אובייקטים תלויים</li>
+                <li><strong>State</strong> - שינוי התנהגות בהתאם למצב</li>
+                <li><strong>Strategy</strong> - הגדרת משפחה של אלגוריתמים</li>
+                <li><strong>Template Method</strong> - הגדרת שלד של אלגוריתם</li>
+                <li><strong>Visitor</strong> - הפרדת אלגוריתם מאובייקט</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים לשימוש
+            </h2>
+            <ul>
+                <li>בחר את התבנית המתאימה לבעיה הספציפית</li>
+                <li>אל תשתמש בתבניות רק כי הן קיימות</li>
+                <li>התאם את התבנית לצרכים שלך</li>
+                <li>שמור על פשטות הקוד</li>
+                <li>תעד את השימוש בתבניות</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>

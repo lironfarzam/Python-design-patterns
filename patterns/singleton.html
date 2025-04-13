@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singleton Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-cube icon"></i>
+                Singleton Pattern
+            </h1>
+            <a href="index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Singleton מבטיחה שקיים רק מופע אחד של מחלקה, ומספקת נקודת גישה גלובלית אליו.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים לוודא שקיים רק מופע אחד של מחלקה</li>
+                <li>כאשר רוצים לספק נקודת גישה גלובלית</li>
+                <li>כאשר רוצים לשלוט בגישה למשאב משותף</li>
+                <li>כאשר רוצים לנהל מצב גלובלי</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>class Singleton:
+    _instance = None
+
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __init__(self):
+        if not hasattr(self, 'initialized'):
+            self.initialized = True
+            self.value = "ערך ראשוני"
+
+# שימוש
+singleton1 = Singleton()
+singleton2 = Singleton()
+
+print(singleton1 is singleton2)  # True
+print(singleton1.value)          # ערך ראשוני
+print(singleton2.value)          # ערך ראשוני
+
+singleton1.value = "ערך חדש"
+print(singleton2.value)          # ערך חדש</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מבטיח שקיים רק מופע אחד</li>
+                <li>מספק נקודת גישה גלובלית</li>
+                <li>מאפשר שליטה בגישה למשאבים</li>
+                <li>מאפשר ניהול מצב גלובלי</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלול להקשות על בדיקות</li>
+                <li>עלול ליצור תלות חזקה</li>
+                <li>עלול להפר את עקרון היחידות</li>
+                <li>עלול ליצור קוד קשה לתחזוקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקד ביצירת אובייקטים, בעוד Singleton מתמקד במופע יחיד</td>
+                </tr>
+                <tr>
+                    <td>Prototype</td>
+                    <td>מתמקד בהעתקת אובייקטים, בעוד Singleton מתמקד במופע יחיד</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Singleton במקרים הבאים:</p>
+            <ol>
+                <li>מנהל התחברות למערכת</li>
+                <li>מנהל קבצי לוג</li>
+                <li>מנהל הגדרות מערכת</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
+                <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+                <li><a href="flyweight.html" class="flex-center"><i class="fas fa-feather icon"></i>Flyweight</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

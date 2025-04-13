@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory Method Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-industry icon"></i>
+                Factory Method Pattern
+            </h1>
+            <a href="index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Factory Method מגדירה ממשק ליצירת אובייקט, אך מאפשרת למחלקות היורשות להחליט איזה מחלקה ליצור.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר המחלקה לא יודעת מראש איזה סוג של אובייקטים היא צריכה ליצור</li>
+                <li>כאשר המחלקה רוצה שתחלקות היורשות שלה יקבעו איזה אובייקט ליצור</li>
+                <li>כאשר רוצים להפריד בין יצירת האובייקט לשימוש בו</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+
+# ממשק המוצר
+class Document(ABC):
+    @abstractmethod
+    def create_page(self):
+        pass
+
+# מימושים קונקרטיים
+class Resume(Document):
+    def create_page(self):
+        return "יצירת דף קורות חיים"
+
+class Report(Document):
+    def create_page(self):
+        return "יצירת דף דוח"
+
+# ממשק היוצר
+class DocumentCreator(ABC):
+    @abstractmethod
+    def create_document(self) -> Document:
+        pass
+
+    def render_document(self):
+        document = self.create_document()
+        return document.create_page()
+
+# יוצרים קונקרטיים
+class ResumeCreator(DocumentCreator):
+    def create_document(self) -> Document:
+        return Resume()
+
+class ReportCreator(DocumentCreator):
+    def create_document(self) -> Document:
+        return Report()
+
+# שימוש
+def create_document(creator: DocumentCreator):
+    return creator.render_document()
+
+# יצירת מסמך לפי סוג
+resume = create_document(ResumeCreator())
+report = create_document(ReportCreator())
+
+print(resume)  # יצירת דף קורות חיים
+print(report)  # יצירת דף דוח</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשר הרחבה קלה של סוגי המוצרים</li>
+                <li>מפריד בין יצירת האובייקט לשימוש בו</li>
+                <li>מאפשר למחלקות היורשות להחליט איזה אובייקט ליצור</li>
+                <li>מקדם עקרון היחידות (Single Responsibility)</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>מגדיל את מספר המחלקות בקוד</li>
+                <li>עלול להיות מורכב מדי עבור מקרים פשוטים</li>
+                <li>דורש יצירת מחלקה נפרדת לכל סוג מוצר</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקד ביצירת משפחות של אובייקטים, בעוד Factory Method מתמקד ביצירת אובייקט בודד</td>
+                </tr>
+                <tr>
+                    <td>Builder</td>
+                    <td>מתמקד בבניית אובייקט מורכב צעד אחר צעד, בעוד Factory Method מתמקד ביצירת אובייקט בודד</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Factory Method במקרים הבאים:</p>
+            <ol>
+                <li>יצירת סוגים שונים של כלי רכב (מכונית, אופנוע, משאית)</li>
+                <li>יצירת סוגים שונים של מסמכים (PDF, Word, Excel)</li>
+                <li>יצירת סוגים שונים של משתמשים (מנהל, עובד, לקוח)</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
+                <li><a href="builder.html" class="flex-center"><i class="fas fa-hammer icon"></i>Builder</a></li>
+                <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

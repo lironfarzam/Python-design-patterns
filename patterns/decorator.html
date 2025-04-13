@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decorator Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-gift icon"></i>
+                Decorator Pattern
+            </h1>
+            <a href="index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Decorator מאפשרת להוסיף אחריות לאובייקט באופן דינמי, מבלי להשפיע על התנהגותם של אובייקטים אחרים מאותה מחלקה.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים להוסיף אחריות לאובייקט באופן דינמי</li>
+                <li>כאשר רוצים להימנע מיצירת מחלקות רבות</li>
+                <li>כאשר רוצים להוסיף תכונות לאובייקטים קיימים</li>
+                <li>כאשר רוצים לשלב תכונות שונות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+
+# ממשק משותף
+class Component(ABC):
+    @abstractmethod
+    def operation(self) -> str:
+        pass
+
+# רכיב בסיסי
+class ConcreteComponent(Component):
+    def operation(self) -> str:
+        return "רכיב בסיסי"
+
+# מחלקת בסיס למעטרים
+class Decorator(Component):
+    def __init__(self, component: Component):
+        self.component = component
+
+    def operation(self) -> str:
+        return self.component.operation()
+
+# מעטרים קונקרטיים
+class ConcreteDecoratorA(Decorator):
+    def operation(self) -> str:
+        return f"מעטר A: {super().operation()}"
+
+class ConcreteDecoratorB(Decorator):
+    def operation(self) -> str:
+        return f"מעטר B: {super().operation()}"
+
+# שימוש
+def client_code(component: Component):
+    print(component.operation())
+
+# יצירת אובייקטים
+simple = ConcreteComponent()
+decorated1 = ConcreteDecoratorA(simple)
+decorated2 = ConcreteDecoratorB(decorated1)
+
+# שימוש
+client_code(simple)      # רכיב בסיסי
+client_code(decorated1)  # מעטר A: רכיב בסיסי
+client_code(decorated2)  # מעטר B: מעטר A: רכיב בסיסי</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשר הוספת אחריות באופן דינמי</li>
+                <li>מאפשר שילוב של תכונות שונות</li>
+                <li>מפחית את מספר המחלקות</li>
+                <li>מאפשר הרחבה של פונקציונליות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלול ליצור אובייקטים מורכבים</li>
+                <li>עלול להקשות על הבנת הקוד</li>
+                <li>עלול ליצור ביצועים פחות טובים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Adapter</td>
+                    <td>מתאים ממשקים לא תואמים, בעוד Decorator מוסיף אחריות</td>
+                </tr>
+                <tr>
+                    <td>Composite</td>
+                    <td>משלב אובייקטים למבנה היררכי, בעוד Decorator מוסיף אחריות</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Decorator במקרים הבאים:</p>
+            <ol>
+                <li>הוספת תכונות לממשק משתמש</li>
+                <li>הוספת פונקציונליות לקבצים</li>
+                <li>הוספת תכונות למוצרים</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="adapter.html" class="flex-center"><i class="fas fa-plug icon"></i>Adapter</a></li>
+                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-chess icon"></i>Strategy</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

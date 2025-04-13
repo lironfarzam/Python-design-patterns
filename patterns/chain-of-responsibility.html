@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chain of Responsibility Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                Chain of Responsibility Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Chain of Responsibility מאפשרת להעביר בקשות דרך שרשרת של מטפלים, כאשר כל מטפל מחליט האם לטפל בבקשה או להעביר אותה למטפל הבא בשרשרת.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר יש מספר מטפלים פוטנציאליים לבקשה</li>
+                <li>כאשר רוצים להפריד בין השולח למקבל</li>
+                <li>כאשר רוצים לאפשר למטפלים שונים לטפל בבקשות שונות</li>
+                <li>כאשר רוצים להוסיף או לשנות מטפלים באופן דינמי</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Optional
+
+class Handler(ABC):
+    def __init__(self) -> None:
+        self._next_handler: Optional['Handler'] = None
+
+    def set_next(self, handler: 'Handler') -> 'Handler':
+        self._next_handler = handler
+        return handler
+
+    @abstractmethod
+    def handle(self, request: str) -> Optional[str]:
+        pass
+
+    def _handle_next(self, request: str) -> Optional[str]:
+        if self._next_handler:
+            return self._next_handler.handle(request)
+        return None
+
+class ConcreteHandlerA(Handler):
+    def handle(self, request: str) -> Optional[str]:
+        if request == "A":
+            return f"ConcreteHandlerA טיפל בבקשה {request}"
+        return self._handle_next(request)
+
+class ConcreteHandlerB(Handler):
+    def handle(self, request: str) -> Optional[str]:
+        if request == "B":
+            return f"ConcreteHandlerB טיפל בבקשה {request}"
+        return self._handle_next(request)
+
+class ConcreteHandlerC(Handler):
+    def handle(self, request: str) -> Optional[str]:
+        if request == "C":
+            return f"ConcreteHandlerC טיפל בבקשה {request}"
+        return self._handle_next(request)
+
+# שימוש
+def client_code(handler: Handler) -> None:
+    for request in ["A", "B", "C", "D"]:
+        result = handler.handle(request)
+        if result:
+            print(result)
+        else:
+            print(f"אף מטפל לא יכול לטפל בבקשה {request}")
+
+# דוגמה לשימוש
+if __name__ == "__main__":
+    handler_a = ConcreteHandlerA()
+    handler_b = ConcreteHandlerB()
+    handler_c = ConcreteHandlerC()
+
+    handler_a.set_next(handler_b).set_next(handler_c)
+    client_code(handler_a)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מפחיתה את הצימוד בין השולח למקבל</li>
+                <li>מאפשרת הוספה או שינוי של מטפלים באופן דינמי</li>
+                <li>מאפשרת למטפלים שונים לטפל בבקשות שונות</li>
+                <li>מקלה על הרחבת המערכת</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להאט את הביצועים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בהקפצת בקשות, בעוד Chain of Responsibility מתמקדת בטיפול בבקשות</td>
+                </tr>
+                <tr>
+                    <td>Mediator</td>
+                    <td>מתמקדת בתיווך בין אובייקטים, בעוד Chain of Responsibility מתמקדת בשרשרת של מטפלים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Chain of Responsibility במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול בקשות תמיכה</li>
+                <li>מערכת ניהול הרשאות</li>
+                <li>מערכת ניהול שגיאות</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+                <li><a href="mediator.html" class="flex-center"><i class="fas fa-comments icon"></i>Mediator</a></li>
+                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

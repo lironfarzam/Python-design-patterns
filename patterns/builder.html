@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Builder Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-hammer icon"></i>
+                Builder Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Builder מאפשרת בנייה של אובייקטים מורכבים בשלבים, ומפרידה בין תהליך הבנייה לייצוג הסופי של האובייקט.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר האובייקט שיש לבנות הוא מורכב ודורש מספר שלבים</li>
+                <li>כאשר רוצים ליצור גרסאות שונות של אותו אובייקט</li>
+                <li>כאשר רוצים להפריד בין תהליך הבנייה לייצוג הסופי</li>
+                <li>כאשר רוצים לספק API נוח לבניית אובייקטים מורכבים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Any
+
+class Product:
+    def __init__(self) -> None:
+        self.parts: list[str] = []
+
+    def add_part(self, part: str) -> None:
+        self.parts.append(part)
+
+    def show_parts(self) -> None:
+        print("חלקי המוצר:", ", ".join(self.parts))
+
+class Builder(ABC):
+    @abstractmethod
+    def build_part_a(self) -> None:
+        pass
+
+    @abstractmethod
+    def build_part_b(self) -> None:
+        pass
+
+    @abstractmethod
+    def get_result(self) -> Product:
+        pass
+
+class ConcreteBuilder(Builder):
+    def __init__(self) -> None:
+        self._product = Product()
+
+    def build_part_a(self) -> None:
+        self._product.add_part("חלק A")
+
+    def build_part_b(self) -> None:
+        self._product.add_part("חלק B")
+
+    def get_result(self) -> Product:
+        return self._product
+
+class Director:
+    def __init__(self, builder: Builder) -> None:
+        self._builder = builder
+
+    def construct(self) -> Product:
+        self._builder.build_part_a()
+        self._builder.build_part_b()
+        return self._builder.get_result()
+
+# שימוש
+def client_code() -> None:
+    builder = ConcreteBuilder()
+    director = Director(builder)
+    product = director.construct()
+    product.show_parts()
+
+# דוגמה לשימוש
+if __name__ == "__main__":
+    client_code()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת בנייה של אובייקטים מורכבים בשלבים</li>
+                <li>מפרידה בין תהליך הבנייה לייצוג הסופי</li>
+                <li>מאפשרת יצירת גרסאות שונות של אותו אובייקט</li>
+                <li>מספקת API נוח לבניית אובייקטים מורכבים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להאט את הביצועים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקדת ביצירת משפחות של אובייקטים, בעוד Builder מתמקדת בבניית אובייקט מורכב</td>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת אובייקט בודד, בעוד Builder מתמקדת בבניית אובייקט מורכב</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Builder במקרים הבאים:</p>
+            <ol>
+                <li>מערכת בניית מסמכים (HTML, PDF, DOCX)</li>
+                <li>מערכת בניית שאלונים</li>
+                <li>מערכת בניית תפריטים</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
+                <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
+                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observer Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-eye icon"></i>
+                Observer Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Observer מגדירה יחס תלות בין אובייקטים, כך שכאשר אובייקט אחד משנה את מצבו, כל התלויים בו מקבלים הודעה ומתעדכנים.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר שינוי באובייקט אחד דורש שינוי באובייקטים אחרים</li>
+                <li>כאשר רוצים להפחית את הצימוד בין אובייקטים</li>
+                <li>כאשר רוצים לאפשר לאובייקטים להירשם ולהסיר את עצמם</li>
+                <li>כאשר רוצים לספק עדכונים בזמן אמת</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List
+
+class Subject(ABC):
+    @abstractmethod
+    def attach(self, observer) -> None:
+        pass
+
+    @abstractmethod
+    def detach(self, observer) -> None:
+        pass
+
+    @abstractmethod
+    def notify(self) -> None:
+        pass
+
+class ConcreteSubject(Subject):
+    _state: int = None
+    _observers: List = []
+
+    def attach(self, observer) -> None:
+        self._observers.append(observer)
+
+    def detach(self, observer) -> None:
+        self._observers.remove(observer)
+
+    def notify(self) -> None:
+        for observer in self._observers:
+            observer.update(self)
+
+    def some_business_logic(self) -> None:
+        self._state = 1
+        self.notify()
+
+class Observer(ABC):
+    @abstractmethod
+    def update(self, subject: Subject) -> None:
+        pass
+
+class ConcreteObserverA(Observer):
+    def update(self, subject: Subject) -> None:
+        print("ConcreteObserverA: עדכון")
+
+class ConcreteObserverB(Observer):
+    def update(self, subject: Subject) -> None:
+        print("ConcreteObserverB: עדכון")
+
+# שימוש
+if __name__ == "__main__":
+    subject = ConcreteSubject()
+
+    observer_a = ConcreteObserverA()
+    subject.attach(observer_a)
+
+    observer_b = ConcreteObserverB()
+    subject.attach(observer_b)
+
+    subject.some_business_logic()
+
+    subject.detach(observer_a)
+    subject.some_business_logic()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת הפחתת צימוד בין אובייקטים</li>
+                <li>מאפשרת הוספה והסרה של משקיפים</li>
+                <li>מאפשרת עדכונים בזמן אמת</li>
+                <li>מאפשרת הפרדה בין נושא למשקיף</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור קוד מורכב</li>
+                <li>עלולה ליצור קוד קשה לתחזוקה</li>
+                <li>עלולה ליצור קוד קשה להבנה</li>
+                <li>עלולה ליצור קוד קשה לבדיקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Mediator</td>
+                    <td>מתמקדת בתיאום בין אובייקטים, בעוד Observer מתמקדת בעדכון אובייקטים</td>
+                </tr>
+                <tr>
+                    <td>Chain of Responsibility</td>
+                    <td>מתמקדת בטיפול בבקשות, בעוד Observer מתמקדת בעדכון אובייקטים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Observer במקרים הבאים:</p>
+            <ol>
+                <li>מערכת התראות</li>
+                <li>מערכת ניהול אירועים</li>
+                <li>מערכת ניהול מצב</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="mediator.html" class="flex-center"><i class="fas fa-comments icon"></i>Mediator</a></li>
+                <li><a href="chain-of-responsibility.html" class="flex-center"><i class="fas fa-link icon"></i>Chain of Responsibility</a></li>
+                <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

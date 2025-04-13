@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abstract Factory Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-industry icon"></i>
+                Abstract Factory Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Abstract Factory מאפשרת יצירת משפחות של אובייקטים קשורים מבלי לציין את המחלקות הקונקרטיות שלהם, ומספקת ממשק ליצירת אובייקטים מכל משפחה.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר המערכת צריכה להיות עצמאית מאופן יצירת האובייקטים</li>
+                <li>כאשר יש מספר משפחות של מוצרים קשורים</li>
+                <li>כאשר רוצים להבטיח שרק מוצרים מאותה משפחה ייצרו יחד</li>
+                <li>כאשר רוצים להסתיר את המימוש של המוצרים מהלקוח</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Type
+
+class AbstractFactory(ABC):
+    @abstractmethod
+    def create_product_a(self) -> 'AbstractProductA':
+        pass
+    
+    @abstractmethod
+    def create_product_b(self) -> 'AbstractProductB':
+        pass
+
+class AbstractProductA(ABC):
+    @abstractmethod
+    def operation_a(self) -> str:
+        pass
+
+class AbstractProductB(ABC):
+    @abstractmethod
+    def operation_b(self) -> str:
+        pass
+
+class ConcreteFactory1(AbstractFactory):
+    def create_product_a(self) -> 'ConcreteProductA1':
+        return ConcreteProductA1()
+    
+    def create_product_b(self) -> 'ConcreteProductB1':
+        return ConcreteProductB1()
+
+class ConcreteFactory2(AbstractFactory):
+    def create_product_a(self) -> 'ConcreteProductA2':
+        return ConcreteProductA2()
+    
+    def create_product_b(self) -> 'ConcreteProductB2':
+        return ConcreteProductB2()
+
+class ConcreteProductA1(AbstractProductA):
+    def operation_a(self) -> str:
+        return "תוצאה של מוצר A1"
+
+class ConcreteProductB1(AbstractProductB):
+    def operation_b(self) -> str:
+        return "תוצאה של מוצר B1"
+
+class ConcreteProductA2(AbstractProductA):
+    def operation_a(self) -> str:
+        return "תוצאה של מוצר A2"
+
+class ConcreteProductB2(AbstractProductB):
+    def operation_b(self) -> str:
+        return "תוצאה של מוצר B2"
+
+# שימוש
+def client_code(factory: AbstractFactory) -> None:
+    product_a = factory.create_product_a()
+    product_b = factory.create_product_b()
+    
+    print(product_a.operation_a())
+    print(product_b.operation_b())
+
+# דוגמה לשימוש
+if __name__ == "__main__":
+    factory1 = ConcreteFactory1()
+    client_code(factory1)
+    
+    factory2 = ConcreteFactory2()
+    client_code(factory2)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת החלפה קלה של משפחות מוצרים</li>
+                <li>מבטיחה התאמה בין מוצרים מאותה משפחה</li>
+                <li>מפרידה בין יצירת המוצרים לשימוש בהם</li>
+                <li>מקלה על הוספת משפחות מוצרים חדשות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה להקשות על הרחבת הממשק</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להיות מורכבת מדי עבור מקרים פשוטים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת מוצר בודד, בעוד Abstract Factory מתמקדת ביצירת משפחות של מוצרים</td>
+                </tr>
+                <tr>
+                    <td>Builder</td>
+                    <td>מתמקדת בבניית אובייקט מורכב, בעוד Abstract Factory מתמקדת ביצירת משפחות של אובייקטים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Abstract Factory במקרים הבאים:</p>
+            <ol>
+                <li>מערכת UI עם סקינים שונים (כהה, בהיר, מותאם)</li>
+                <li>מערכת ניהול בסיסי נתונים עם תמיכה במנועים שונים (MySQL, PostgreSQL, SQLite)</li>
+                <li>מערכת עיבוד מסמכים עם פורמטים שונים (PDF, DOCX, TXT)</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
+                <li><a href="builder.html" class="flex-center"><i class="fas fa-hammer icon"></i>Builder</a></li>
+                <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

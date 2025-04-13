@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-terminal icon"></i>
+                Command Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Command הופכת בקשות לאובייקטים, ומאפשרת הפרדה בין השולח למקבל, תוך מתן אפשרות לפרמטריזציה, תור, ביטול וחזרה על פעולות.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים להפריד בין השולח למקבל</li>
+                <li>כאשר רוצים לתמוך בביטול וחזרה על פעולות</li>
+                <li>כאשר רוצים ליצור תור של בקשות</li>
+                <li>כאשר רוצים לתמוך בפעולות מורכבות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Any
+
+class Command(ABC):
+    @abstractmethod
+    def execute(self) -> None:
+        pass
+
+    @abstractmethod
+    def undo(self) -> None:
+        pass
+
+class Receiver:
+    def action(self, data: str) -> None:
+        print(f"ביצוע פעולה עם הנתונים: {data}")
+
+    def reverse_action(self, data: str) -> None:
+        print(f"ביטול פעולה עם הנתונים: {data}")
+
+class ConcreteCommand(Command):
+    def __init__(self, receiver: Receiver, data: str) -> None:
+        self._receiver = receiver
+        self._data = data
+
+    def execute(self) -> None:
+        self._receiver.action(self._data)
+
+    def undo(self) -> None:
+        self._receiver.reverse_action(self._data)
+
+class Invoker:
+    def __init__(self) -> None:
+        self._commands: list[Command] = []
+        self._current = -1
+
+    def execute_command(self, command: Command) -> None:
+        command.execute()
+        self._commands = self._commands[:self._current + 1]
+        self._commands.append(command)
+        self._current = len(self._commands) - 1
+
+    def undo(self) -> None:
+        if self._current >= 0:
+            self._commands[self._current].undo()
+            self._current -= 1
+
+    def redo(self) -> None:
+        if self._current < len(self._commands) - 1:
+            self._current += 1
+            self._commands[self._current].execute()
+
+# שימוש
+def client_code() -> None:
+    receiver = Receiver()
+    invoker = Invoker()
+
+    command1 = ConcreteCommand(receiver, "נתונים 1")
+    command2 = ConcreteCommand(receiver, "נתונים 2")
+
+    invoker.execute_command(command1)
+    invoker.execute_command(command2)
+
+    print("\nביטול פעולות:")
+    invoker.undo()
+    invoker.undo()
+
+    print("\nחזרה על פעולות:")
+    invoker.redo()
+    invoker.redo()
+
+# דוגמה לשימוש
+if __name__ == "__main__":
+    client_code()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מפרידה בין השולח למקבל</li>
+                <li>מאפשרת ביטול וחזרה על פעולות</li>
+                <li>מאפשרת יצירת תור של בקשות</li>
+                <li>מאפשרת הרחבה קלה של המערכת</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה להאט את הביצועים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Chain of Responsibility</td>
+                    <td>מתמקדת בטיפול בבקשות, בעוד Command מתמקדת בהקפצת בקשות</td>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Command מתמקדת בפעולות</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Command במקרים הבאים:</p>
+            <ol>
+                <li>מערכת עריכת טקסט עם ביטול וחזרה</li>
+                <li>מערכת ניהול משימות עם היסטוריה</li>
+                <li>מערכת בקרת מכשירים חכמים</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="chain-of-responsibility.html" class="flex-center"><i class="fas fa-link icon"></i>Chain of Responsibility</a></li>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-chess icon"></i>Strategy</a></li>
+                <li><a href="memento.html" class="flex-center"><i class="fas fa-history icon"></i>Memento</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

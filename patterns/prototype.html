@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prototype Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-clone icon"></i>
+                Prototype Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Prototype מאפשרת יצירת אובייקטים חדשים על ידי העתקת אובייקט קיים, במקום ליצור אותם מאפס.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים להימנע מיצירת אובייקטים חדשים מאפס</li>
+                <li>כאשר רוצים ליצור אובייקטים דומים לאובייקטים קיימים</li>
+                <li>כאשר רוצים להפחית את מספר המחלקות במערכת</li>
+                <li>כאשר רוצים להימנע משימוש ב-inheritance</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+from copy import deepcopy
+
+class Prototype(ABC):
+    @abstractmethod
+    def clone(self):
+        pass
+
+class ConcretePrototype1(Prototype):
+    def __init__(self, value: str):
+        self.value = value
+
+    def clone(self):
+        return deepcopy(self)
+
+class ConcretePrototype2(Prototype):
+    def __init__(self, value: str):
+        self.value = value
+
+    def clone(self):
+        return deepcopy(self)
+
+# שימוש
+def client_code(prototype: Prototype) -> None:
+    clone = prototype.clone()
+    print(f"Original: {prototype.value}")
+    print(f"Clone: {clone.value}")
+
+if __name__ == "__main__":
+    prototype1 = ConcretePrototype1("ערך 1")
+    client_code(prototype1)
+
+    prototype2 = ConcretePrototype2("ערך 2")
+    client_code(prototype2)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת יצירת אובייקטים חדשים ללא תלות במחלקות</li>
+                <li>מאפשרת יצירת אובייקטים חדשים ללא תלות בקונסטרוקטור</li>
+                <li>מאפשרת יצירת אובייקטים חדשים ללא תלות בממשק</li>
+                <li>מאפשרת יצירת אובייקטים חדשים ללא תלות במימוש</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור קוד מורכב</li>
+                <li>עלולה ליצור קוד קשה לתחזוקה</li>
+                <li>עלולה ליצור קוד קשה להבנה</li>
+                <li>עלולה ליצור קוד קשה לבדיקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת אובייקטים חדשים, בעוד Prototype מתמקדת בהעתקת אובייקטים קיימים</td>
+                </tr>
+                <tr>
+                    <td>Singleton</td>
+                    <td>מתמקדת במופע יחיד, בעוד Prototype מתמקדת בהעתקת אובייקטים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Prototype במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול מסמכים עם תבניות</li>
+                <li>מערכת ניהול משתמשים עם פרופילים</li>
+                <li>מערכת ניהול מוצרים עם קטגוריות</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
+                <li><a href="singleton.html" class="flex-center"><i class="fas fa-cube icon"></i>Singleton</a></li>
+                <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

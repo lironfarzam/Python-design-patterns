@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facade Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-building icon"></i>
+                Facade Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Facade מספקת ממשק פשוט למערכת מורכבת, ומסתירה את המורכבות שלה מהלקוח.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים לספק ממשק פשוט למערכת מורכבת</li>
+                <li>כאשר רוצים להסתיר את המורכבות של המערכת מהלקוח</li>
+                <li>כאשר רוצים להפחית את התלות בין הלקוח למערכת</li>
+                <li>כאשר רוצים לספק נקודת כניסה אחת למערכת</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>class Subsystem1:
+    def operation1(self) -> str:
+        return "Subsystem1: Ready!"
+
+    def operation_n(self) -> str:
+        return "Subsystem1: Go!"
+
+class Subsystem2:
+    def operation1(self) -> str:
+        return "Subsystem2: Get ready!"
+
+    def operation_z(self) -> str:
+        return "Subsystem2: Fire!"
+
+class Facade:
+    def __init__(self, subsystem1: Subsystem1, subsystem2: Subsystem2):
+        self._subsystem1 = subsystem1
+        self._subsystem2 = subsystem2
+
+    def operation(self) -> str:
+        results = []
+        results.append("Facade initializes subsystems:")
+        results.append(self._subsystem1.operation1())
+        results.append(self._subsystem2.operation1())
+        results.append("Facade orders subsystems to perform the action:")
+        results.append(self._subsystem1.operation_n())
+        results.append(self._subsystem2.operation_z())
+        return "\n".join(results)
+
+# שימוש
+def client_code(facade: Facade) -> None:
+    print(facade.operation())
+
+if __name__ == "__main__":
+    subsystem1 = Subsystem1()
+    subsystem2 = Subsystem2()
+    facade = Facade(subsystem1, subsystem2)
+    client_code(facade)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מספקת ממשק פשוט למערכת מורכבת</li>
+                <li>מסתירה את המורכבות של המערכת מהלקוח</li>
+                <li>מפחיתה את התלות בין הלקוח למערכת</li>
+                <li>מספקת נקודת כניסה אחת למערכת</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור קוד מורכב</li>
+                <li>עלולה ליצור קוד קשה לתחזוקה</li>
+                <li>עלולה ליצור קוד קשה להבנה</li>
+                <li>עלולה ליצור קוד קשה לבדיקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Adapter</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Facade מתמקדת בהפשטת מערכת מורכבת</td>
+                </tr>
+                <tr>
+                    <td>Mediator</td>
+                    <td>מתמקדת בתיאום בין אובייקטים, בעוד Facade מתמקדת בהפשטת מערכת מורכבת</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Facade במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול קבצים עם תמיכה בפורמטים שונים</li>
+                <li>מערכת תקשורת עם פרוטוקולים שונים</li>
+                <li>מערכת ניהול בסיסי נתונים עם תמיכה במנועים שונים</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="adapter.html" class="flex-center"><i class="fas fa-plug icon"></i>Adapter</a></li>
+                <li><a href="mediator.html" class="flex-center"><i class="fas fa-comments icon"></i>Mediator</a></li>
+                <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

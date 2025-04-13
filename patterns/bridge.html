@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bridge Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                Bridge Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Bridge מפרידה בין ממשק למימוש, ומאפשרת לשניהם להתפתח באופן עצמאי.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים למנוע קשר קבוע בין ממשק למימוש</li>
+                <li>כאשר רוצים לאפשר לממשק ולמימוש להתפתח באופן עצמאי</li>
+                <li>כאשר רוצים להסתיר את המימוש מהלקוח</li>
+                <li>כאשר רוצים לשתף מימוש בין מספר ממשקים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>class Implementation:
+    def operation_implementation(self) -> str:
+        return "מימוש בסיסי"
+
+class ConcreteImplementationA(Implementation):
+    def operation_implementation(self) -> str:
+        return "מימוש A"
+
+class ConcreteImplementationB(Implementation):
+    def operation_implementation(self) -> str:
+        return "מימוש B"
+
+class Abstraction:
+    def __init__(self, implementation: Implementation):
+        self.implementation = implementation
+
+    def operation(self) -> str:
+        return f"Abstraction: {self.implementation.operation_implementation()}"
+
+class ExtendedAbstraction(Abstraction):
+    def operation(self) -> str:
+        return f"ExtendedAbstraction: {self.implementation.operation_implementation()}"
+
+# שימוש
+def client_code(abstraction: Abstraction) -> None:
+    print(abstraction.operation())
+
+if __name__ == "__main__":
+    implementation = ConcreteImplementationA()
+    abstraction = Abstraction(implementation)
+    client_code(abstraction)
+
+    implementation = ConcreteImplementationB()
+    abstraction = ExtendedAbstraction(implementation)
+    client_code(abstraction)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מפרידה בין ממשק למימוש</li>
+                <li>מאפשרת לממשק ולמימוש להתפתח באופן עצמאי</li>
+                <li>מאפשרת שיתוף מימוש בין מספר ממשקים</li>
+                <li>מאפשרת החלפה קלה של מימוש</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור קוד מורכב</li>
+                <li>עלולה ליצור קוד קשה לתחזוקה</li>
+                <li>עלולה ליצור קוד קשה להבנה</li>
+                <li>עלולה ליצור קוד קשה לבדיקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Adapter</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Bridge מפרידה בין ממשק למימוש</td>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת בהחלפת אלגוריתמים, בעוד Bridge מתמקדת בהפרדת ממשק ומימוש</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Bridge במקרים הבאים:</p>
+            <ol>
+                <li>מערכת UI עם תמיכה בפלטפורמות שונות</li>
+                <li>מערכת ניהול בסיסי נתונים עם תמיכה במנועים שונים</li>
+                <li>מערכת עיבוד מסמכים עם פורמטים שונים</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="adapter.html" class="flex-center"><i class="fas fa-plug icon"></i>Adapter</a></li>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-chess icon"></i>Strategy</a></li>
+                <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

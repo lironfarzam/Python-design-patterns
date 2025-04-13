@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adapter Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-plug icon"></i>
+                Adapter Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Adapter מאפשרת לממשקים לא תואמים לעבוד יחד על ידי המרת הממשק של מחלקה אחת לממשק שהלקוח מצפה לו.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים להשתמש במחלקה קיימת אך הממשק שלה לא תואם לצרכים</li>
+                <li>כאשר רוצים ליצור מחלקה שניתן לעבוד איתה עם מחלקות אחרות</li>
+                <li>כאשר רוצים לספק ממשק אחיד למספר ממשקים קיימים</li>
+                <li>כאשר רוצים להסתיר את המימוש של מחלקה קיימת</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>class Target:
+    def request(self) -> str:
+        return "תוצאה של Target"
+
+class Adaptee:
+    def specific_request(self) -> str:
+        return "תוצאה של Adaptee"
+
+class Adapter(Target):
+    def __init__(self, adaptee: Adaptee):
+        self.adaptee = adaptee
+
+    def request(self) -> str:
+        return f"Adapter: {self.adaptee.specific_request()}"
+
+# שימוש
+def client_code(target: Target) -> None:
+    print(target.request())
+
+if __name__ == "__main__":
+    target = Target()
+    client_code(target)
+
+    adaptee = Adaptee()
+    adapter = Adapter(adaptee)
+    client_code(adapter)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת שימוש במחלקות קיימות</li>
+                <li>מאפשרת שימוש במחלקות ממקורות שונים</li>
+                <li>מאפשרת שימוש במחלקות עם ממשקים שונים</li>
+                <li>מאפשרת שימוש במחלקות ללא שינוי הקוד שלהן</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור קוד מורכב</li>
+                <li>עלולה ליצור קוד קשה לתחזוקה</li>
+                <li>עלולה ליצור קוד קשה להבנה</li>
+                <li>עלולה ליצור קוד קשה לבדיקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Bridge</td>
+                    <td>מפרידה בין ממשק למימוש, בעוד Adapter מתמקדת בהתאמת ממשקים</td>
+                </tr>
+                <tr>
+                    <td>Decorator</td>
+                    <td>מוסיפה תפקוד לאובייקט, בעוד Adapter מתמקדת בהתאמת ממשקים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Adapter במקרים הבאים:</p>
+            <ol>
+                <li>התאמת ממשק של ספרייה חיצונית</li>
+                <li>התאמת ממשק של מערכת ישנה</li>
+                <li>התאמת ממשק של שירות חיצוני</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="bridge.html" class="flex-center"><i class="fas fa-link icon"></i>Bridge</a></li>
+                <li><a href="decorator.html" class="flex-center"><i class="fas fa-gift icon"></i>Decorator</a></li>
+                <li><a href="facade.html" class="flex-center"><i class="fas fa-building icon"></i>Facade</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

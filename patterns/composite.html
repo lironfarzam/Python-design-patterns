@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Composite Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                Composite Pattern
+            </h1>
+            <a href="index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Composite מאפשרת לטפל באובייקטים בודדים ובקבוצות של אובייקטים באופן אחיד. היא מאפשרת ליצור מבנים היררכיים של אובייקטים.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים לייצג מבנים היררכיים של אובייקטים</li>
+                <li>כאשר רוצים לטפל באובייקטים בודדים ובקבוצות באופן אחיד</li>
+                <li>כאשר רוצים להוסיף או להסיר רכיבים באופן דינמי</li>
+                <li>כאשר רוצים לבצע פעולות על כל הרכיבים במבנה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List
+
+# ממשק משותף
+class Component(ABC):
+    @abstractmethod
+    def operation(self) -> str:
+        pass
+
+# רכיב פשוט
+class Leaf(Component):
+    def __init__(self, name: str):
+        self.name = name
+
+    def operation(self) -> str:
+        return f"Leaf {self.name}"
+
+# רכיב מורכב
+class Composite(Component):
+    def __init__(self, name: str):
+        self.name = name
+        self.children: List[Component] = []
+
+    def add(self, component: Component) -> None:
+        self.children.append(component)
+
+    def remove(self, component: Component) -> None:
+        self.children.remove(component)
+
+    def operation(self) -> str:
+        results = [f"Composite {self.name}"]
+        for child in self.children:
+            results.append(child.operation())
+        return "\n".join(results)
+
+# שימוש
+def client_code(component: Component):
+    print(component.operation())
+
+# יצירת אובייקטים
+leaf1 = Leaf("1")
+leaf2 = Leaf("2")
+leaf3 = Leaf("3")
+
+composite1 = Composite("A")
+composite2 = Composite("B")
+
+# בניית המבנה
+composite1.add(leaf1)
+composite1.add(leaf2)
+composite2.add(leaf3)
+composite1.add(composite2)
+
+# שימוש
+client_code(composite1)
+# פלט:
+# Composite A
+# Leaf 1
+# Leaf 2
+# Composite B
+# Leaf 3</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשר טיפול אחיד באובייקטים בודדים ובקבוצות</li>
+                <li>מאפשר הוספה והסרה דינמית של רכיבים</li>
+                <li>מאפשר ביצוע פעולות על כל הרכיבים במבנה</li>
+                <li>מפשט את הקוד על ידי הסתרת המורכבות של המבנה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלול להקשות על הגבלת סוגי הרכיבים שניתן להוסיף</li>
+                <li>עלול ליצור מבנה מורכב מדי</li>
+                <li>עלול להקשות על הבנת הקוד</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Decorator</td>
+                    <td>מוסיף תכונות לאובייקט, בעוד Composite משלב אובייקטים למבנה היררכי</td>
+                </tr>
+                <tr>
+                    <td>Iterator</td>
+                    <td>מאפשר מעבר על אוסף, בעוד Composite מגדיר את המבנה של האוסף</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Composite במקרים הבאים:</p>
+            <ol>
+                <li>מערכת קבצים ותיקיות</li>
+                <li>מבנה ארגוני של חברה</li>
+                <li>מערכת תפריטים</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="decorator.html" class="flex-center"><i class="fas fa-gift icon"></i>Decorator</a></li>
+                <li><a href="iterator.html" class="flex-center"><i class="fas fa-sync icon"></i>Iterator</a></li>
+                <li><a href="visitor.html" class="flex-center"><i class="fas fa-user-check icon"></i>Visitor</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

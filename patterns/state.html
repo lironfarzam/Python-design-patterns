@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-toggle-on icon"></i>
+                State Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית State מאפשרת לאובייקט לשנות את התנהגותו כאשר מצבו הפנימי משתנה.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר אובייקט משנה את התנהגותו בהתאם למצבו</li>
+                <li>כאשר יש מספר רב של תנאים שמשפיעים על ההתנהגות</li>
+                <li>כאשר רוצים להימנע משימוש בתנאים מורכבים</li>
+                <li>כאשר רוצים להפריד בין מצבים שונים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+
+class State(ABC):
+    @abstractmethod
+    def handle(self, context) -> None:
+        pass
+
+class ConcreteStateA(State):
+    def handle(self, context) -> None:
+        print("ConcreteStateA: טיפול")
+        context.state = ConcreteStateB()
+
+class ConcreteStateB(State):
+    def handle(self, context) -> None:
+        print("ConcreteStateB: טיפול")
+        context.state = ConcreteStateA()
+
+class Context:
+    def __init__(self) -> None:
+        self._state = ConcreteStateA()
+
+    @property
+    def state(self) -> State:
+        return self._state
+
+    @state.setter
+    def state(self, state: State) -> None:
+        self._state = state
+
+    def request(self) -> None:
+        self._state.handle(this)
+
+# שימוש
+if __name__ == "__main__":
+    context = Context()
+    context.request()
+    context.request()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת הפרדה בין מצבים שונים</li>
+                <li>מפחיתה את הצורך בתנאים מורכבים</li>
+                <li>מאפשרת הוספה קלה של מצבים חדשים</li>
+                <li>מאפשרת שינוי התנהגות בזמן ריצה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור קוד מורכב</li>
+                <li>עלולה ליצור קוד קשה לתחזוקה</li>
+                <li>עלולה ליצור קוד קשה להבנה</li>
+                <li>עלולה ליצור קוד קשה לבדיקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת בביצוע אלגוריתמים, בעוד State מתמקדת במצבים</td>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בביצוע פעולות, בעוד State מתמקדת במצבים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית State במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול הזמנות</li>
+                <li>מערכת ניהול משימות</li>
+                <li>מערכת ניהול משתמשים</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
+                <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

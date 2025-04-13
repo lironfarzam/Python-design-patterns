@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strategy Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-chess icon"></i>
+                Strategy Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Strategy מאפשרת להגדיר משפחה של אלגוריתמים, להפוך אותם להחלפים, ולהשתמש בהם באופן דינמי.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר יש מספר אלגוריתמים שונים לביצוע אותה משימה</li>
+                <li>כאשר רוצים לאפשר החלפה דינמית של אלגוריתמים</li>
+                <li>כאשר רוצים להפריד בין האלגוריתם לבין הקוד שמשתמש בו</li>
+                <li>כאשר רוצים להימנע משימוש בתנאים מורכבים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+
+class Strategy(ABC):
+    @abstractmethod
+    def execute(self, data) -> None:
+        pass
+
+class ConcreteStrategyA(Strategy):
+    def execute(self, data) -> None:
+        print("ConcreteStrategyA: טיפול בנתונים")
+        # טיפול בנתונים לפי אסטרטגיה A
+
+class ConcreteStrategyB(Strategy):
+    def execute(self, data) -> None:
+        print("ConcreteStrategyB: טיפול בנתונים")
+        # טיפול בנתונים לפי אסטרטגיה B
+
+class Context:
+    def __init__(self, strategy: Strategy) -> None:
+        self._strategy = strategy
+
+    @property
+    def strategy(self) -> Strategy:
+        return self._strategy
+
+    @strategy.setter
+    def strategy(self, strategy: Strategy) -> None:
+        self._strategy = strategy
+
+    def execute_strategy(self, data) -> None:
+        self._strategy.execute(data)
+
+# שימוש
+if __name__ == "__main__":
+    context = Context(ConcreteStrategyA())
+    context.execute_strategy("נתונים")
+    
+    context.strategy = ConcreteStrategyB()
+    context.execute_strategy("נתונים")</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת החלפה דינמית של אלגוריתמים</li>
+                <li>מפחיתה את הצורך בתנאים מורכבים</li>
+                <li>מאפשרת הוספה קלה של אלגוריתמים חדשים</li>
+                <li>מאפשרת הפרדה בין האלגוריתם לבין הקוד שמשתמש בו</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה לגרום לביצועים נמוכים</li>
+                <li>עלולה ליצור קוד קשה לתחזוקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>מתמקדת במצבים, בעוד Strategy מתמקדת באלגוריתמים</td>
+                </tr>
+                <tr>
+                    <td>Template Method</td>
+                    <td>משתמשת בירושה, בעוד Strategy משתמשת בהרכבה</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Strategy במקרים הבאים:</p>
+            <ol>
+                <li>מערכת מיון נתונים</li>
+                <li>מערכת חישוב מחירים</li>
+                <li>מערכת עיבוד תמונות</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="state.html" class="flex-center"><i class="fas fa-toggle-on icon"></i>State</a></li>
+                <li><a href="template-method.html" class="flex-center"><i class="fas fa-file-alt icon"></i>Template Method</a></li>
+                <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

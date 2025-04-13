@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memento Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-history icon"></i>
+                Memento Pattern
+            </h1>
+            <a href="index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Memento מאפשרת לשמור ולשחזר את המצב הפנימי של אובייקט מבלי לחשוף את פרטי המימוש שלו.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר רוצים לשמור מצבים קודמים של אובייקט</li>
+                <li>כאשר רוצים לאפשר ביטול פעולות</li>
+                <li>כאשר רוצים לשמור על קפסולציה של האובייקט</li>
+                <li>כאשר רוצים ליצור מנגנון גיבוי ושחזור</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from dataclasses import dataclass
+from typing import Optional
+
+@dataclass
+class Memento:
+    state: str
+
+class Originator:
+    def __init__(self, state: str):
+        self._state = state
+
+    def create_memento(self) -> Memento:
+        return Memento(self._state)
+
+    def restore_from_memento(self, memento: Memento) -> None:
+        self._state = memento.state
+
+    def set_state(self, state: str) -> None:
+        self._state = state
+
+    def get_state(self) -> str:
+        return self._state
+
+class Caretaker:
+    def __init__(self):
+        self._mementos: list[Memento] = []
+
+    def add_memento(self, memento: Memento) -> None:
+        self._mementos.append(memento)
+
+    def get_memento(self, index: int) -> Optional[Memento]:
+        if 0 <= index < len(self._mementos):
+            return self._mementos[index]
+        return None
+
+# שימוש
+def client_code() -> None:
+    originator = Originator("מצב ראשוני")
+    caretaker = Caretaker()
+
+    # שמירת מצב
+    caretaker.add_memento(originator.create_memento())
+    print(f"מצב נוכחי: {originator.get_state()}")
+
+    # שינוי מצב
+    originator.set_state("מצב שני")
+    caretaker.add_memento(originator.create_memento())
+    print(f"מצב נוכחי: {originator.get_state()}")
+
+    # שינוי מצב נוסף
+    originator.set_state("מצב שלישי")
+    print(f"מצב נוכחי: {originator.get_state()}")
+
+    # שחזור למצב קודם
+    memento = caretaker.get_memento(1)
+    if memento:
+        originator.restore_from_memento(memento)
+        print(f"מצב משוחזר: {originator.get_state()}")</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת שמירה ושחזור של מצבים</li>
+                <li>שומרת על קפסולציה</li>
+                <li>מאפשרת ביטול פעולות</li>
+                <li>מאפשרת גיבוי ושחזור</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה לצרוך זיכרון רב</li>
+                <li>עלולה להאט את הביצועים</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקד בביצוע פעולות, בעוד Memento מתמקד בשמירת מצבים</td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>מתמקד בשינוי התנהגות, בעוד Memento מתמקד בשמירת מצבים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Memento במקרים הבאים:</p>
+            <ol>
+                <li>עורך טקסט עם אפשרות ביטול</li>
+                <li>משחק עם אפשרות שמירת מצב</li>
+                <li>מערכת ניהול מסמכים עם גיבוי</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+                <li><a href="state.html" class="flex-center"><i class="fas fa-toggle-on icon"></i>State</a></li>
+                <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

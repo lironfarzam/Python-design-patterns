@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="side-nav">
+        <div class="search-box">
+            <input type="text" placeholder="חיפוש תבניות...">
+        </div>
+        
+        <div class="pattern-group">
+            <h3><i class="fas fa-puzzle-piece"></i> תבניות יצירה</h3>
+            <ul>
+                <li><a href="abstract-factory.html"><i class="fas fa-industry"></i> Abstract Factory</a></li>
+                <li><a href="builder.html"><i class="fas fa-hammer"></i> Builder</a></li>
+                <li><a href="factory-method.html"><i class="fas fa-industry"></i> Factory Method</a></li>
+                <li><a href="prototype.html"><i class="fas fa-clone"></i> Prototype</a></li>
+                <li><a href="singleton.html"><i class="fas fa-cube"></i> Singleton</a></li>
+            </ul>
+        </div>
+        
+        <div class="pattern-group">
+            <h3><i class="fas fa-sitemap"></i> תבניות מבנה</h3>
+            <ul>
+                <li><a href="adapter.html"><i class="fas fa-plug"></i> Adapter</a></li>
+                <li><a href="bridge.html"><i class="fas fa-link"></i> Bridge</a></li>
+                <li><a href="composite.html"><i class="fas fa-sitemap"></i> Composite</a></li>
+                <li><a href="decorator.html"><i class="fas fa-gift"></i> Decorator</a></li>
+                <li><a href="facade.html"><i class="fas fa-building"></i> Facade</a></li>
+                <li><a href="flyweight.html"><i class="fas fa-feather"></i> Flyweight</a></li>
+                <li><a href="proxy.html"><i class="fas fa-shield-alt"></i> Proxy</a></li>
+            </ul>
+        </div>
+        
+        <div class="pattern-group">
+            <h3><i class="fas fa-exchange-alt"></i> תבניות התנהגות</h3>
+            <ul>
+                <li><a href="chain-of-responsibility.html"><i class="fas fa-link"></i> Chain of Responsibility</a></li>
+                <li><a href="command.html"><i class="fas fa-terminal"></i> Command</a></li>
+                <li><a href="interpreter.html"><i class="fas fa-code"></i> Interpreter</a></li>
+                <li><a href="iterator.html"><i class="fas fa-sync"></i> Iterator</a></li>
+                <li><a href="mediator.html"><i class="fas fa-comments"></i> Mediator</a></li>
+                <li><a href="memento.html"><i class="fas fa-history"></i> Memento</a></li>
+                <li><a href="observer.html"><i class="fas fa-eye"></i> Observer</a></li>
+                <li><a href="state.html"><i class="fas fa-toggle-on"></i> State</a></li>
+                <li><a href="strategy.html"><i class="fas fa-chess"></i> Strategy</a></li>
+                <li><a href="template-method.html"><i class="fas fa-file-alt"></i> Template Method</a></li>
+                <li><a href="visitor.html" class="active"><i class="fas fa-user-check"></i> Visitor</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-user-check icon"></i>
+                Visitor Pattern
+            </h1>
+            <a href="index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מטרת התבנית
+            </h2>
+            <p>תבנית Visitor מאפשרת להפריד אלגוריתם מהאובייקטים עליהם הוא פועל, ומאפשרת להוסיף פעולות חדשות לאובייקטים קיימים מבלי לשנות את המחלקות שלהם.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש?
+            </h2>
+            <ul>
+                <li>כאשר יש מבנה אובייקטים מורכב עם מחלקות רבות</li>
+                <li>כאשר רוצים להוסיף פעולות חדשות לאובייקטים קיימים</li>
+                <li>כאשר רוצים להפריד את הלוגיקה של הפעולות מהמחלקות</li>
+                <li>כאשר רוצים לאפשר הרחבה של הפעולות ללא שינוי במחלקות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List
+
+class Visitor(ABC):
+    @abstractmethod
+    def visit_element_a(self, element: 'ElementA') -> None:
+        pass
+    
+    @abstractmethod
+    def visit_element_b(self, element: 'ElementB') -> None:
+        pass
+
+class Element(ABC):
+    @abstractmethod
+    def accept(self, visitor: Visitor) -> None:
+        pass
+
+class ElementA(Element):
+    def accept(self, visitor: Visitor) -> None:
+        visitor.visit_element_a(this)
+    
+    def operation_a(self) -> str:
+        return "פעולה A"
+
+class ElementB(Element):
+    def accept(self, visitor: Visitor) -> None:
+        visitor.visit_element_b(this)
+    
+    def operation_b(self) -> str:
+        return "פעולה B"
+
+class ConcreteVisitor1(Visitor):
+    def visit_element_a(self, element: ElementA) -> None:
+        print(f"מבקר 1 מבצע פעולה על {element.operation_a()}")
+    
+    def visit_element_b(self, element: ElementB) -> None:
+        print(f"מבקר 1 מבצע פעולה על {element.operation_b()}")
+
+class ConcreteVisitor2(Visitor):
+    def visit_element_a(self, element: ElementA) -> None:
+        print(f"מבקר 2 מבצע פעולה על {element.operation_a()}")
+    
+    def visit_element_b(self, element: ElementB) -> None:
+        print(f"מבקר 2 מבצע פעולה על {element.operation_b()}")
+
+# שימוש
+def client_code() -> None:
+    elements: List[Element] = [ElementA(), ElementB()]
+    visitor1 = ConcreteVisitor1()
+    visitor2 = ConcreteVisitor2()
+    
+    for element in elements:
+        element.accept(visitor1)
+        element.accept(visitor2)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <ul>
+                <li>מאפשרת הוספת פעולות חדשות ללא שינוי במחלקות</li>
+                <li>מפרידה את הלוגיקה של הפעולות מהמחלקות</li>
+                <li>מאפשרת הרחבה קלה של הפעולות</li>
+                <li>מפחיתה את הצורך בשינוי המחלקות הקיימות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות חזקה בין המבקרים לאובייקטים</li>
+                <li>עלולה לגרום לביצועים נמוכים עם מספר רב של מבקרים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בביצוע פעולות, בעוד Visitor מתמקדת בפעולות על אובייקטים</td>
+                </tr>
+                <tr>
+                    <td>Composite</td>
+                    <td>מתמקדת במבנה היררכי, בעוד Visitor מתמקדת בפעולות על המבנה</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <p>נסה ליישם את תבנית Visitor במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניתוח קוד (בדיקת שגיאות, מדידת מורכבות, דיווח)</li>
+                <li>מערכת עיבוד מסמכים (המרה, דחיסה, הצפנה)</li>
+                <li>מערכת ניהול מלאי (ספירה, הערכת ערך, דיווח)</li>
+            </ol>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
+                <li><a href="iterator.html" class="flex-center"><i class="fas fa-sync icon"></i>Iterator</a></li>
+            </ul>
+        </div>
+    </main>
+</body>
+</html> 
