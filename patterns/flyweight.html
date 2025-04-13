@@ -20,7 +20,7 @@
                 <i class="fas fa-feather icon"></i>
                 Flyweight Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -29,21 +29,70 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Flyweight?
             </h2>
-            <p>תבנית Flyweight מאפשרת שימוש חוזר באובייקטים דומים על ידי שיתוף החלקים המשותפים ביניהם, ובכך חוסכת בזיכרון.</p>
+            <p>תבנית Flyweight היא תבנית עיצוב מבנית המאפשרת שימוש חוזר באובייקטים דומים כדי לחסוך בזיכרון. התבנית משמשת כאשר יש צורך ליצור מספר רב של אובייקטים דומים, והם משתפים חלק מהנתונים.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שאתם יוצרים משחק מחשב עם אלפי עצים. במקום ליצור אובייקט נפרד לכל עץ, אפשר ליצור אובייקט אחד שמכיל את המידע המשותף לכל העצים (כמו צורת העלים), ולהשתמש בו שוב ושוב. זה חוסך בזיכרון ומשפר את הביצועים.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Single Responsibility Principle על ידי הפרדת המידע המשותף מהמידע הייחודי. זה מאפשר שימוש חוזר באובייקטים דומים, ומאפשר חיסכון בזיכרון ובמשאבים.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר יש מספר רב של אובייקטים דומים</li>
-                <li>כאשר רוצים לחסוך בזיכרון</li>
-                <li>כאשר רוצים לשתף נתונים בין אובייקטים</li>
-                <li>כאשר רוצים להפריד בין נתונים פנימיים וחיצוניים</li>
+                <li>כאשר אתם צריכים ליצור מספר רב של אובייקטים דומים</li>
+                <li>כאשר אתם צריכים לחסוך בזיכרון</li>
+                <li>כאשר אתם צריכים לשפר את הביצועים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך ליצור מספר רב של אובייקטים דומים</li>
+                <li>כאשר יש צורך לחסוך בזיכרון</li>
+                <li>כאשר יש צורך לשפר את הביצועים</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Single Responsibility Principle</li>
+                <li>כאשר יש צורך לאפשר שימוש חוזר באובייקטים דומים</li>
+                <li>כאשר יש צורך לאפשר שינוי המידע המשותף מבלי להשפיע על המידע הייחודי</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Flyweight</strong> - הממשק שמגדיר את הפעולות על המידע המשותף</li>
+                <li><strong>ConcreteFlyweight</strong> - המימוש של הממשק</li>
+                <li><strong>FlyweightFactory</strong> - המחלקה שיוצרת ומנהלת את האובייקטים</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Flyweight</strong> - הממשק שמגדיר את הפעולות על המידע המשותף</li>
+                <li><strong>ConcreteFlyweight</strong> - המימוש של הממשק</li>
+                <li><strong>FlyweightFactory</strong> - המחלקה שיוצרת ומנהלת את האובייקטים</li>
+                <li><strong>Client</strong> - המשתמש שמשתמש ב-Flyweight</li>
+                <li><strong>UnsharedConcreteFlyweight</strong> - מימושים שלא משתפים את המידע</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Flyweight מגדיר את הממשק</li>
+                <li>ConcreteFlyweight מיישם את הממשק</li>
+                <li>FlyweightFactory יוצר ומנהל את האובייקטים</li>
+                <li>Client משתמש ב-Flyweight</li>
+                <li>UnsharedConcreteFlyweight מיישם את הממשק ללא שיתוף</li>
             </ul>
         </section>
 
@@ -52,42 +101,120 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
-            <pre><code>from typing import Dict
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול עצים במשחק מחשב. יש לנו עצים מסוגים שונים, ואנחנו משתמשים ב-Flyweight כדי לחסוך בזיכרון.</p>
 
-# נתונים פנימיים (משותפים)
-class Flyweight:
-    def __init__(self, shared_state: str):
-        self.shared_state = shared_state
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Flyweight Pattern לחיסכון בזיכרון. הממשק מגדיר את הפעולות על המידע המשותף, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
 
-    def operation(self, unique_state: str) -> str:
-        return f"נתונים משותפים: {self.shared_state}, נתונים ייחודיים: {unique_state}"
+            <pre><code>from abc import ABC, abstractmethod
 
-# מפעל Flyweight
-class FlyweightFactory:
-    _flyweights: Dict[str, Flyweight] = {}
+class TreeType(ABC):
+    @abstractmethod
+    def draw(self, x: int, y: int) -> None:
+        pass
 
-    def get_flyweight(self, shared_state: str) -> Flyweight:
-        if shared_state not in self._flyweights:
-            self._flyweights[shared_state] = Flyweight(shared_state)
-        return self._flyweights[shared_state]
+class ConcreteTreeType(TreeType):
+    def __init__(self, name: str, color: str, texture: str):
+        self._name = name
+        self._color = color
+        self._texture = texture
+    
+    def draw(self, x: int, y: int) -> None:
+        print(f"מצייר עץ מסוג {self._name} בצבע {self._color} עם טקסטורה {self._texture} במיקום ({x}, {y})")
 
-    def list_flyweights(self) -> int:
-        return len(self._flyweights)
+class TreeFactory:
+    _tree_types = {}
+    
+    @classmethod
+    def get_tree_type(cls, name: str, color: str, texture: str) -> TreeType:
+        key = f"{name}_{color}_{texture}"
+        if key not in cls._tree_types:
+            cls._tree_types[key] = ConcreteTreeType(name, color, texture)
+        return cls._tree_types[key]
+
+class Tree:
+    def __init__(self, x: int, y: int, tree_type: TreeType):
+        self._x = x
+        self._y = y
+        self._tree_type = tree_type
+    
+    def draw(self) -> None:
+        self._tree_type.draw(self._x, self._y)
 
 # שימוש
-def client_code(factory: FlyweightFactory, shared_state: str, unique_state: str):
-    flyweight = factory.get_flyweight(shared_state)
-    print(flyweight.operation(unique_state))
+if __name__ == "__main__":
+    # יצירת עצים
+    tree1 = Tree(1, 2, TreeFactory.get_tree_type("אורן", "ירוק", "מחטני"))
+    tree2 = Tree(3, 4, TreeFactory.get_tree_type("אורן", "ירוק", "מחטני"))
+    tree3 = Tree(5, 6, TreeFactory.get_tree_type("אלון", "חום", "עלים"))
+    
+    # ציור העצים
+    tree1.draw()
+    tree2.draw()
+    tree3.draw()</code></pre>
+        </section>
 
-# יצירת אובייקטים
-factory = FlyweightFactory()
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול טקסט
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת לניהול טקסט. יש לנו תווים מסוגים שונים, ואנחנו משתמשים ב-Flyweight כדי לחסוך בזיכרון.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Flyweight Pattern לחיסכון בזיכרון. הממשק מגדיר את הפעולות על המידע המשותף, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+
+class Character(ABC):
+    @abstractmethod
+    def display(self, x: int, y: int) -> None:
+        pass
+
+class ConcreteCharacter(Character):
+    def __init__(self, char: str, font: str, size: int):
+        self._char = char
+        self._font = font
+        self._size = size
+    
+    def display(self, x: int, y: int) -> None:
+        print(f"מציג תו {self._char} בפונט {self._font} בגודל {self._size} במיקום ({x}, {y})")
+
+class CharacterFactory:
+    _characters = {}
+    
+    @classmethod
+    def get_character(cls, char: str, font: str, size: int) -> Character:
+        key = f"{char}_{font}_{size}"
+        if key not in cls._characters:
+            cls._characters[key] = ConcreteCharacter(char, font, size)
+        return cls._characters[key]
+
+class Text:
+    def __init__(self):
+        self._characters = []
+    
+    def add_character(self, char: str, font: str, size: int, x: int, y: int) -> None:
+        character = CharacterFactory.get_character(char, font, size)
+        self._characters.append((character, x, y))
+    
+    def display(self) -> None:
+        for character, x, y in self._characters:
+            character.display(x, y)
 
 # שימוש
-client_code(factory, "נתונים משותפים 1", "נתונים ייחודיים 1")
-client_code(factory, "נתונים משותפים 1", "נתונים ייחודיים 2")
-client_code(factory, "נתונים משותפים 2", "נתונים ייחודיים 3")
-
-print(f"מספר אובייקטים Flyweight: {factory.list_flyweights()}")  # 2</code></pre>
+if __name__ == "__main__":
+    # יצירת טקסט
+    text = Text()
+    text.add_character("א", "Arial", 12, 0, 0)
+    text.add_character("ב", "Arial", 12, 10, 0)
+    text.add_character("ג", "Arial", 12, 20, 0)
+    text.add_character("א", "Arial", 12, 30, 0)  # שימוש חוזר באותו תו
+    
+    # הצגת הטקסט
+    text.display()</code></pre>
         </section>
 
         <section class="card">
@@ -95,11 +222,22 @@ print(f"מספר אובייקטים Flyweight: {factory.list_flyweights()}")  # 
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>חוסך בזיכרון</li>
-                <li>מאפשר שימוש חוזר באובייקטים</li>
-                <li>מפריד בין נתונים פנימיים וחיצוניים</li>
-                <li>מפחית את מספר האובייקטים</li>
+                <li>מאפשרת חיסכון בזיכרון</li>
+                <li>מאפשרת שיפור ביצועים</li>
+                <li>מאפשרת שימוש חוזר באובייקטים דומים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת חיסכון בזיכרון</li>
+                <li>מאפשרת שיפור ביצועים</li>
+                <li>מאפשרת שימוש חוזר באובייקטים דומים</li>
+                <li>מאפשרת שמירה על עקרון ה-Single Responsibility Principle</li>
+                <li>מאפשרת הפרדה בין המידע המשותף למידע הייחודי</li>
+                <li>מאפשרת שינוי המידע המשותף מבלי להשפיע על המידע הייחודי</li>
+                <li>מאפשרת הפחתת תלויות בין המרכיבים</li>
             </ul>
         </section>
 
@@ -108,10 +246,44 @@ print(f"מספר אובייקטים Flyweight: {factory.list_flyweights()}")  # 
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלול להקשות על הבנת הקוד</li>
-                <li>עלול ליצור ביצועים פחות טובים</li>
-                <li>עלול להקשות על ניהול המצב</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון ב-Flyweight</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון ב-Flyweight</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -120,6 +292,7 @@ print(f"מספר אובייקטים Flyweight: {factory.list_flyweights()}")  # 
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -127,11 +300,35 @@ print(f"מספר אובייקטים Flyweight: {factory.list_flyweights()}")  # 
                 </tr>
                 <tr>
                     <td>Singleton</td>
-                    <td>מבטיח מופע אחד, בעוד Flyweight מאפשר מספר מופעים</td>
+                    <td>מתמקדת ביצירת אובייקט יחיד, בעוד Flyweight מתמקדת בשימוש חוזר באובייקטים דומים</td>
+                </tr>
+                <tr>
+                    <td>Prototype</td>
+                    <td>מתמקדת ביצירת אובייקטים חדשים על ידי העתקה, בעוד Flyweight מתמקדת בשימוש חוזר באובייקטים דומים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Singleton</td>
+                    <td>מתמקדת ביצירת אובייקט יחיד, בעוד Flyweight מתמקדת בשימוש חוזר באובייקטים דומים</td>
+                </tr>
+                <tr>
+                    <td>Prototype</td>
+                    <td>מתמקדת ביצירת אובייקטים חדשים על ידי העתקה, בעוד Flyweight מתמקדת בשימוש חוזר באובייקטים דומים</td>
                 </tr>
                 <tr>
                     <td>Composite</td>
-                    <td>משלב אובייקטים, בעוד Flyweight משתף נתונים</td>
+                    <td>מתמקדת במבנה היררכי, בעוד Flyweight מתמקדת בשימוש חוזר באובייקטים דומים</td>
+                </tr>
+                <tr>
+                    <td>Decorator</td>
+                    <td>מתמקדת בהוספת תכונות, בעוד Flyweight מתמקדת בשימוש חוזר באובייקטים דומים</td>
                 </tr>
             </table>
         </section>
@@ -141,12 +338,67 @@ print(f"מספר אובייקטים Flyweight: {factory.list_flyweights()}")  # 
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Flyweight במקרים הבאים:</p>
             <ol>
-                <li>מערכת טקסט (שיתוף פונטים)</li>
-                <li>מערכת משחק (שיתוף דמויות)</li>
-                <li>מערכת גרפיקה (שיתוף טקסטורות)</li>
+                <li>מערכת ניהול עצים במשחק מחשב</li>
+                <li>מערכת ניהול טקסט</li>
+                <li>מערכת ניהול תמונות</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Flyweight במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול עצים במשחק מחשב</li>
+                <li>מערכת ניהול טקסט</li>
+                <li>מערכת ניהול תמונות</li>
+                <li>מערכת ניהול הרשאות</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שה-Flyweight מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שה-Flyweight מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול עצים במשחקי מחשב</li>
+                <li>מערכות ניהול טקסט</li>
+                <li>מערכות ניהול תמונות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות ניהול עצים במשחקי מחשב</li>
+                <li>מערכות ניהול טקסט</li>
+                <li>מערכות ניהול תמונות</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול תצוגה</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -156,8 +408,9 @@ print(f"מספר אובייקטים Flyweight: {factory.list_flyweights()}")  # 
             </h2>
             <ul>
                 <li><a href="singleton.html" class="flex-center"><i class="fas fa-cube icon"></i>Singleton</a></li>
-                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
                 <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
+                <li><a href="decorator.html" class="flex-center"><i class="fas fa-paint-brush icon"></i>Decorator</a></li>
             </ul>
         </div>
     </main>

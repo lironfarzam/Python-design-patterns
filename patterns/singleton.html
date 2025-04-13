@@ -20,7 +20,7 @@
                 <i class="fas fa-cube icon"></i>
                 Singleton Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -29,21 +29,67 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Singleton?
             </h2>
-            <p>תבנית Singleton מבטיחה שקיים רק מופע אחד של מחלקה, ומספקת נקודת גישה גלובלית אליו.</p>
+            <p>תבנית Singleton היא תבנית עיצוב יצירתית המבטיחה שקיים רק מופע אחד של מחלקה, ומספקת נקודת גישה גלובלית למופע זה. התבנית משמשת כאשר יש צורך במופע יחיד של מחלקה במערכת.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם מנהל מערכת אחד שמטפל בכל הבקשות. במקום ליצור מנהל מערכת חדש בכל פעם, אתם רוצים להשתמש באותו מנהל מערכת. תבנית Singleton עוזרת לכם להבטיח שיש רק מנהל מערכת אחד.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Singleton Pattern על ידי שימוש במנגנון של יצירת מופע יחיד (Lazy Initialization) והבטחת גישה בטוחה למופע זה. זה מאפשר שליטה מרכזית במשאבים משותפים וניהול מצב גלובלי.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים לוודא שקיים רק מופע אחד של מחלקה</li>
-                <li>כאשר רוצים לספק נקודת גישה גלובלית</li>
-                <li>כאשר רוצים לשלוט בגישה למשאב משותף</li>
-                <li>כאשר רוצים לנהל מצב גלובלי</li>
+                <li>כאשר אתם צריכים מופע יחיד של מחלקה</li>
+                <li>כאשר אתם צריכים גישה גלובלית למופע</li>
+                <li>כאשר אתם צריכים לשלוט בגישה למשאבים משותפים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך במופע יחיד של מחלקה</li>
+                <li>כאשר יש צורך בגישה גלובלית למופע</li>
+                <li>כאשר יש צורך בשליטה בגישה למשאבים משותפים</li>
+                <li>כאשר יש צורך בניהול מצב גלובלי</li>
+                <li>כאשר יש צורך בניהול משאבים יקרים</li>
+                <li>כאשר יש צורך בניהול קונפיגורציה</li>
+                <li>כאשר יש צורך בניהול לוגים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משני חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Singleton</strong> - המחלקה שיוצרת את המופע היחיד</li>
+                <li><strong>Client</strong> - המשתמש במופע היחיד</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Singleton</strong> - מחלקה שיוצרת את המופע היחיד</li>
+                <li><strong>Instance</strong> - המופע היחיד של המחלקה</li>
+                <li><strong>Constructor</strong> - פרטי, מונע יצירת מופעים נוספים</li>
+                <li><strong>GetInstance</strong> - מתודה סטטית שמחזירה את המופע היחיד</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Client משתמש ב-Singleton דרך GetInstance</li>
+                <li>Singleton יוצר את המופע היחיד</li>
+                <li>Instance הוא המופע היחיד של המחלקה</li>
             </ul>
         </section>
 
@@ -52,29 +98,140 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
-            <pre><code>class Singleton:
-    _instance = None
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מנהל מערכת. המחלקה מבטיחה שיש רק מופע אחד של מנהל המערכת, ומספקת גישה גלובלית למופע זה.</p>
 
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Singleton Pattern ליצירת מופע יחיד. המחלקה משתמשת ב-Lazy Initialization ליצירת המופע, ומספקת גישה בטוחה למופע זה.</p>
+
+            <pre><code>class SystemManager:
+    _instance = None
+    
     def __new__(cls):
         if cls._instance is None:
-            cls._instance = super().__new__(cls)
+            cls._instance = super(SystemManager, cls).__new__(cls)
+            cls._instance.initialized = False
         return cls._instance
-
+    
     def __init__(self):
-        if not hasattr(self, 'initialized'):
+        if not self.initialized:
             self.initialized = True
-            self.value = "ערך ראשוני"
+            self.config = {}
+            self.logs = []
+    
+    def set_config(self, key: str, value: any):
+        self.config[key] = value
+    
+    def get_config(self, key: str) -> any:
+        return self.config.get(key)
+    
+    def log(self, message: str):
+        self.logs.append(message)
+    
+    def get_logs(self) -> list:
+        return self.logs
 
 # שימוש
-singleton1 = Singleton()
-singleton2 = Singleton()
+if __name__ == "__main__":
+    # יצירת מופע ראשון
+    manager1 = SystemManager()
+    manager1.set_config("debug", True)
+    manager1.log("System started")
+    
+    # יצירת מופע שני - מקבל את אותו מופע
+    manager2 = SystemManager()
+    manager2.log("Another message")
+    
+    # בדיקה ששני המופעים זהים
+    print(f"Same instance: {manager1 is manager2}")
+    print(f"Config from manager2: {manager2.get_config('debug')}")
+    print(f"Logs from manager1: {manager1.get_logs()}")</code></pre>
+        </section>
 
-print(singleton1 is singleton2)  # True
-print(singleton1.value)          # ערך ראשוני
-print(singleton2.value)          # ערך ראשוני
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול לוגים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת ניהול לוגים. המערכת מבטיחה שיש רק מופע אחד של מנהל הלוגים, ומספקת גישה גלובלית למופע זה.</p>
 
-singleton1.value = "ערך חדש"
-print(singleton2.value)          # ערך חדש</code></pre>
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Singleton Pattern ליצירת מופע יחיד של מנהל לוגים. המחלקה משתמשת ב-Lazy Initialization ליצירת המופע, ומספקת גישה בטוחה למופע זה.</p>
+
+            <pre><code>from datetime import datetime
+from enum import Enum
+from typing import List, Optional
+
+class LogLevel(Enum):
+    DEBUG = "DEBUG"
+    INFO = "INFO"
+    WARNING = "WARNING"
+    ERROR = "ERROR"
+    CRITICAL = "CRITICAL"
+
+class LogEntry:
+    def __init__(self, level: LogLevel, message: str, timestamp: datetime = None):
+        self.level = level
+        self.message = message
+        self.timestamp = timestamp or datetime.now()
+    
+    def __str__(self):
+        return f"[{self.timestamp}] {self.level.value}: {self.message}"
+
+class Logger:
+    _instance = None
+    
+    def __new__(cls):
+        if cls._instance is None:
+            cls._instance = super(Logger, cls).__new__(cls)
+            cls._instance.initialized = False
+        return cls._instance
+    
+    def __init__(self):
+        if not self.initialized:
+            self.initialized = True
+            self.logs: List[LogEntry] = []
+            self.min_level = LogLevel.INFO
+    
+    def set_min_level(self, level: LogLevel):
+        self.min_level = level
+    
+    def log(self, level: LogLevel, message: str):
+        if level.value >= self.min_level.value:
+            entry = LogEntry(level, message)
+            self.logs.append(entry)
+            print(entry)
+    
+    def get_logs(self, level: Optional[LogLevel] = None) -> List[LogEntry]:
+        if level is None:
+            return self.logs
+        return [log for log in self.logs if log.level == level]
+    
+    def clear_logs(self):
+        self.logs = []
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת מופע ראשון
+    logger1 = Logger()
+    logger1.set_min_level(LogLevel.DEBUG)
+    logger1.log(LogLevel.INFO, "System started")
+    logger1.log(LogLevel.DEBUG, "Debug message")
+    
+    # יצירת מופע שני - מקבל את אותו מופע
+    logger2 = Logger()
+    logger2.log(LogLevel.WARNING, "Warning message")
+    
+    # בדיקה ששני המופעים זהים
+    print(f"Same instance: {logger1 is logger2}")
+    print("\nAll logs:")
+    for log in logger1.get_logs():
+        print(log)
+    
+    print("\nWarning logs:")
+    for log in logger2.get_logs(LogLevel.WARNING):
+        print(log)</code></pre>
         </section>
 
         <section class="card">
@@ -82,11 +239,22 @@ print(singleton2.value)          # ערך חדש</code></pre>
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מבטיח שקיים רק מופע אחד</li>
-                <li>מספק נקודת גישה גלובלית</li>
-                <li>מאפשר שליטה בגישה למשאבים</li>
-                <li>מאפשר ניהול מצב גלובלי</li>
+                <li>מבטיחה שיש רק מופע אחד של מחלקה</li>
+                <li>מספקת גישה גלובלית למופע</li>
+                <li>מאפשרת שליטה במשאבים משותפים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מבטיחה שיש רק מופע אחד של מחלקה</li>
+                <li>מספקת גישה גלובלית למופע</li>
+                <li>מאפשרת שליטה במשאבים משותפים</li>
+                <li>מאפשרת ניהול מצב גלובלי</li>
+                <li>מאפשרת ניהול משאבים יקרים</li>
+                <li>מאפשרת ניהול קונפיגורציה</li>
+                <li>מאפשרת ניהול לוגים</li>
             </ul>
         </section>
 
@@ -95,11 +263,44 @@ print(singleton2.value)          # ערך חדש</code></pre>
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלול להקשות על בדיקות</li>
-                <li>עלול ליצור תלות חזקה</li>
-                <li>עלול להפר את עקרון היחידות</li>
-                <li>עלול ליצור קוד קשה לתחזוקה</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה ליצור תלות גלובלית</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה ליצור תלות גלובלית</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול זיכרון</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת מופע יחיד</li>
+                <li>אי-הקפדה על גישה בטוחה למופע</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת מופע יחיד</li>
+                <li>אי-הקפדה על גישה בטוחה למופע</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
             </ul>
         </section>
 
@@ -108,6 +309,7 @@ print(singleton2.value)          # ערך חדש</code></pre>
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -115,11 +317,35 @@ print(singleton2.value)          # ערך חדש</code></pre>
                 </tr>
                 <tr>
                     <td>Factory Method</td>
-                    <td>מתמקד ביצירת אובייקטים, בעוד Singleton מתמקד במופע יחיד</td>
+                    <td>מתמקדת ביצירת אובייקטים</td>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקדת ביצירת משפחות של מוצרים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת אובייקטים, בעוד Singleton מתמקדת במופע יחיד</td>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקדת ביצירת משפחות של מוצרים, בעוד Singleton מתמקדת במופע יחיד</td>
+                </tr>
+                <tr>
+                    <td>Builder</td>
+                    <td>מתמקדת בבניית אובייקטים מורכבים, בעוד Singleton מתמקדת במופע יחיד</td>
                 </tr>
                 <tr>
                     <td>Prototype</td>
-                    <td>מתמקד בהעתקת אובייקטים, בעוד Singleton מתמקד במופע יחיד</td>
+                    <td>מתמקדת בשיבוט אובייקטים, בעוד Singleton מתמקדת במופע יחיד</td>
                 </tr>
             </table>
         </section>
@@ -129,12 +355,67 @@ print(singleton2.value)          # ערך חדש</code></pre>
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Singleton במקרים הבאים:</p>
             <ol>
-                <li>מנהל התחברות למערכת</li>
-                <li>מנהל קבצי לוג</li>
-                <li>מנהל הגדרות מערכת</li>
+                <li>מערכת ניהול לוגים</li>
+                <li>מערכת ניהול קונפיגורציה</li>
+                <li>מערכת ניהול משאבים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Singleton במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול קבצים</li>
+                <li>מערכת ניהול חיבורים</li>
+                <li>מערכת ניהול זיכרון מטמון</li>
+                <li>מערכת ניהול הרשאות</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש ב-__new__ ליצירת המופע היחיד</li>
+                <li>ודא שהקונסטרוקטור פרטי</li>
+                <li>הוסף בדיקות תקינות למופע</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש ב-__new__ ליצירת המופע היחיד</li>
+                <li>ודא שהקונסטרוקטור פרטי</li>
+                <li>הוסף בדיקות תקינות למופע</li>
+                <li>שקול שימוש ב-Metaclass</li>
+                <li>השתמש ב-Dependency Injection</li>
+                <li>הוסף תיעוד מפורט למחלקה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול לוגים</li>
+                <li>מערכות ניהול קונפיגורציה</li>
+                <li>מערכות ניהול משאבים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות ניהול קבצים</li>
+                <li>מערכות ניהול חיבורים</li>
+                <li>מערכות ניהול זיכרון מטמון</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול מצב</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -143,9 +424,10 @@ print(singleton2.value)          # ערך חדש</code></pre>
                 תבניות קשורות
             </h2>
             <ul>
+                <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
                 <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
+                <li><a href="builder.html" class="flex-center"><i class="fas fa-hammer icon"></i>Builder</a></li>
                 <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
-                <li><a href="flyweight.html" class="flex-center"><i class="fas fa-feather icon"></i>Flyweight</a></li>
             </ul>
         </div>
     </main>

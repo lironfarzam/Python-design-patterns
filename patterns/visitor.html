@@ -8,60 +8,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav class="side-nav">
-        <div class="search-box">
-            <input type="text" placeholder="חיפוש תבניות...">
-        </div>
-        
-        <div class="pattern-group">
-            <h3><i class="fas fa-puzzle-piece"></i> תבניות יצירה</h3>
-            <ul>
-                <li><a href="abstract-factory.html"><i class="fas fa-industry"></i> Abstract Factory</a></li>
-                <li><a href="builder.html"><i class="fas fa-hammer"></i> Builder</a></li>
-                <li><a href="factory-method.html"><i class="fas fa-industry"></i> Factory Method</a></li>
-                <li><a href="prototype.html"><i class="fas fa-clone"></i> Prototype</a></li>
-                <li><a href="singleton.html"><i class="fas fa-cube"></i> Singleton</a></li>
-            </ul>
-        </div>
-        
-        <div class="pattern-group">
-            <h3><i class="fas fa-sitemap"></i> תבניות מבנה</h3>
-            <ul>
-                <li><a href="adapter.html"><i class="fas fa-plug"></i> Adapter</a></li>
-                <li><a href="bridge.html"><i class="fas fa-link"></i> Bridge</a></li>
-                <li><a href="composite.html"><i class="fas fa-sitemap"></i> Composite</a></li>
-                <li><a href="decorator.html"><i class="fas fa-gift"></i> Decorator</a></li>
-                <li><a href="facade.html"><i class="fas fa-building"></i> Facade</a></li>
-                <li><a href="flyweight.html"><i class="fas fa-feather"></i> Flyweight</a></li>
-                <li><a href="proxy.html"><i class="fas fa-shield-alt"></i> Proxy</a></li>
-            </ul>
-        </div>
-        
-        <div class="pattern-group">
-            <h3><i class="fas fa-exchange-alt"></i> תבניות התנהגות</h3>
-            <ul>
-                <li><a href="chain-of-responsibility.html"><i class="fas fa-link"></i> Chain of Responsibility</a></li>
-                <li><a href="command.html"><i class="fas fa-terminal"></i> Command</a></li>
-                <li><a href="interpreter.html"><i class="fas fa-code"></i> Interpreter</a></li>
-                <li><a href="iterator.html"><i class="fas fa-sync"></i> Iterator</a></li>
-                <li><a href="mediator.html"><i class="fas fa-comments"></i> Mediator</a></li>
-                <li><a href="memento.html"><i class="fas fa-history"></i> Memento</a></li>
-                <li><a href="observer.html"><i class="fas fa-eye"></i> Observer</a></li>
-                <li><a href="state.html"><i class="fas fa-toggle-on"></i> State</a></li>
-                <li><a href="strategy.html"><i class="fas fa-chess"></i> Strategy</a></li>
-                <li><a href="template-method.html"><i class="fas fa-file-alt"></i> Template Method</a></li>
-                <li><a href="visitor.html" class="active"><i class="fas fa-user-check"></i> Visitor</a></li>
-            </ul>
-        </div>
-    </nav>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
 
     <main class="main-content">
         <header class="rtl-container">
             <h1 class="flex-center">
-                <i class="fas fa-user-check icon"></i>
+                <i class="fas fa-user-friends icon"></i>
                 Visitor Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -70,21 +29,69 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Visitor?
             </h2>
-            <p>תבנית Visitor מאפשרת להפריד אלגוריתם מהאובייקטים עליהם הוא פועל, ומאפשרת להוסיף פעולות חדשות לאובייקטים קיימים מבלי לשנות את המחלקות שלהם.</p>
+            <p>תבנית Visitor היא תבנית עיצוב התנהגותית המאפשרת להפריד אלגוריתם מהאובייקטים עליהם הוא פועל. התבנית מאפשרת להוסיף פעולות חדשות לאובייקטים קיימים מבלי לשנות את המחלקות שלהם.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם חנות עם מוצרים שונים: ספרים, מחשבים, וטלפונים. אתם רוצים לחשב את המחיר של כל מוצר, אבל כל מוצר מחושב בצורה שונה. במקום לכתוב קוד מורכב שמטפל בכל סוגי המוצרים, אתם יכולים להשתמש בתבנית Visitor כדי להפריד את חישוב המחיר מהמוצרים עצמם.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Open/Closed Principle על ידי הפרדה בין האובייקטים לבין הפעולות שפועלות עליהם. זה מאפשר הוספה של פעולות חדשות ללא צורך בשינוי הקוד הקיים, ומאפשר הפרדה ברורה בין הנתונים לבין האלגוריתמים.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר יש מבנה אובייקטים מורכב עם מחלקות רבות</li>
-                <li>כאשר רוצים להוסיף פעולות חדשות לאובייקטים קיימים</li>
-                <li>כאשר רוצים להפריד את הלוגיקה של הפעולות מהמחלקות</li>
-                <li>כאשר רוצים לאפשר הרחבה של הפעולות ללא שינוי במחלקות</li>
+                <li>כאשר יש צורך להפריד אלגוריתם מהאובייקטים</li>
+                <li>כאשר יש צורך להוסיף פעולות חדשות לאובייקטים קיימים</li>
+                <li>כאשר יש צורך למנוע כפילות בקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להפריד אלגוריתם מהאובייקטים</li>
+                <li>כאשר יש צורך להוסיף פעולות חדשות לאובייקטים קיימים</li>
+                <li>כאשר יש צורך למנוע כפילות בקוד</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Open/Closed Principle</li>
+                <li>כאשר יש צורך להפחית את הצימוד בין המחלקות</li>
+                <li>כאשר יש צורך לאפשר הרחבה של המערכת עם פעולות חדשות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משני חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Element</strong> - האובייקטים עליהם פועל האלגוריתם</li>
+                <li><strong>Visitor</strong> - האלגוריתם שפועל על האובייקטים</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Element</strong> - האובייקטים עליהם פועל האלגוריתם</li>
+                <li><strong>Visitor</strong> - האלגוריתם שפועל על האובייקטים</li>
+                <li><strong>ConcreteElement</strong> - המימוש הספציפי של האובייקטים</li>
+                <li><strong>ConcreteVisitor</strong> - המימוש הספציפי של האלגוריתם</li>
+                <li><strong>ObjectStructure</strong> - המבנה שמכיל את האובייקטים</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Element מגדיר את הממשק לקבלת Visitor</li>
+                <li>Visitor מגדיר את הממשק לביצוע פעולות</li>
+                <li>ConcreteElement מיישם את הממשק</li>
+                <li>ConcreteVisitor מיישם את האלגוריתם</li>
+                <li>ObjectStructure מנהל את האובייקטים</li>
             </ul>
         </section>
 
@@ -93,60 +100,224 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לחישוב מחירים של מוצרים. המערכת מפרידה בין המוצרים לבין חישוב המחיר, ומאפשרת הוספה של חישובים חדשים בקלות.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Visitor Pattern להפרדה בין האובייקטים לבין הפעולות שפועלות עליהם. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
             <pre><code>from abc import ABC, abstractmethod
-from typing import List
+
+class Product(ABC):
+    @abstractmethod
+    def accept(self, visitor) -> float:
+        pass
+
+class Book(Product):
+    def __init__(self, price: float, weight: float):
+        self._price = price
+        self._weight = weight
+    
+    def accept(self, visitor) -> float:
+        return visitor.visit_book(self)
+    
+    def get_price(self) -> float:
+        return self._price
+    
+    def get_weight(self) -> float:
+        return self._weight
+
+class Computer(Product):
+    def __init__(self, price: float, power: float):
+        self._price = price
+        self._power = power
+    
+    def accept(self, visitor) -> float:
+        return visitor.visit_computer(self)
+    
+    def get_price(self) -> float:
+        return self._price
+    
+    def get_power(self) -> float:
+        return self._power
 
 class Visitor(ABC):
     @abstractmethod
-    def visit_element_a(self, element: 'ElementA') -> None:
+    def visit_book(self, book: Book) -> float:
         pass
     
     @abstractmethod
-    def visit_element_b(self, element: 'ElementB') -> None:
+    def visit_computer(self, computer: Computer) -> float:
         pass
 
-class Element(ABC):
-    @abstractmethod
-    def accept(self, visitor: Visitor) -> None:
-        pass
-
-class ElementA(Element):
-    def accept(self, visitor: Visitor) -> None:
-        visitor.visit_element_a(this)
+class PriceCalculator(Visitor):
+    def visit_book(self, book: Book) -> float:
+        return book.get_price()
     
-    def operation_a(self) -> str:
-        return "פעולה A"
+    def visit_computer(self, computer: Computer) -> float:
+        return computer.get_price()
 
-class ElementB(Element):
-    def accept(self, visitor: Visitor) -> None:
-        visitor.visit_element_b(this)
+class ShippingCalculator(Visitor):
+    def visit_book(self, book: Book) -> float:
+        return book.get_weight() * 0.5
     
-    def operation_b(self) -> str:
-        return "פעולה B"
+    def visit_computer(self, computer: Computer) -> float:
+        return computer.get_power() * 0.1
 
-class ConcreteVisitor1(Visitor):
-    def visit_element_a(self, element: ElementA) -> None:
-        print(f"מבקר 1 מבצע פעולה על {element.operation_a()}")
+class Cart:
+    def __init__(self):
+        self._products: List[Product] = []
     
-    def visit_element_b(self, element: ElementB) -> None:
-        print(f"מבקר 1 מבצע פעולה על {element.operation_b()}")
-
-class ConcreteVisitor2(Visitor):
-    def visit_element_a(self, element: ElementA) -> None:
-        print(f"מבקר 2 מבצע פעולה על {element.operation_a()}")
+    def add_product(self, product: Product) -> None:
+        self._products.append(product)
     
-    def visit_element_b(self, element: ElementB) -> None:
-        print(f"מבקר 2 מבצע פעולה על {element.operation_b()}")
+    def calculate_total(self, visitor: Visitor) -> float:
+        total = 0.0
+        for product in self._products:
+            total += product.accept(visitor)
+        return total
 
 # שימוש
-def client_code() -> None:
-    elements: List[Element] = [ElementA(), ElementB()]
-    visitor1 = ConcreteVisitor1()
-    visitor2 = ConcreteVisitor2()
+if __name__ == "__main__":
+    # יצירת עגלת קניות
+    cart = Cart()
     
-    for element in elements:
-        element.accept(visitor1)
-        element.accept(visitor2)</code></pre>
+    # הוספת מוצרים
+    cart.add_product(Book(50.0, 0.5))
+    cart.add_product(Computer(2000.0, 500.0))
+    
+    # חישוב מחירים
+    price_calculator = PriceCalculator()
+    total_price = cart.calculate_total(price_calculator)
+    print(f"מחיר כולל: {total_price}")
+    
+    # חישוב עלות משלוח
+    shipping_calculator = ShippingCalculator()
+    total_shipping = cart.calculate_total(shipping_calculator)
+    print(f"עלות משלוח: {total_shipping}")</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול מסמכים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת ניהול מסמכים. המערכת מאפשרת לבצע פעולות שונות על סוגי מסמכים שונים, כמו חישוב גודל, המרת פורמט, ובדיקת תקינות.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Visitor Pattern להפרדה בין המסמכים לבין הפעולות שפועלות עליהם. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List, Dict
+from datetime import datetime
+
+class Document(ABC):
+    @abstractmethod
+    def accept(self, visitor) -> None:
+        pass
+
+class TextDocument(Document):
+    def __init__(self, content: str, metadata: Dict[str, str]):
+        self._content = content
+        self._metadata = metadata
+    
+    def accept(self, visitor) -> None:
+        visitor.visit_text_document(self)
+    
+    def get_content(self) -> str:
+        return self._content
+    
+    def get_metadata(self) -> Dict[str, str]:
+        return self._metadata
+
+class ImageDocument(Document):
+    def __init__(self, path: str, metadata: Dict[str, str]):
+        self._path = path
+        self._metadata = metadata
+    
+    def accept(self, visitor) -> None:
+        visitor.visit_image_document(self)
+    
+    def get_path(self) -> str:
+        return self._path
+    
+    def get_metadata(self) -> Dict[str, str]:
+        return self._metadata
+
+class DocumentVisitor(ABC):
+    @abstractmethod
+    def visit_text_document(self, document: TextDocument) -> None:
+        pass
+    
+    @abstractmethod
+    def visit_image_document(self, document: ImageDocument) -> None:
+        pass
+
+class SizeCalculator(DocumentVisitor):
+    def visit_text_document(self, document: TextDocument) -> None:
+        size = len(document.get_content())
+        print(f"גודל מסמך טקסט: {size} בתים")
+    
+    def visit_image_document(self, document: ImageDocument) -> None:
+        # כאן היינו קוראים לספרייה חיצונית לחישוב גודל התמונה
+        print(f"גודל תמונה: נדרש חישוב חיצוני")
+
+class FormatConverter(DocumentVisitor):
+    def visit_text_document(self, document: TextDocument) -> None:
+        content = document.get_content()
+        # המרה ל-HTML
+        html_content = f"<p>{content}</p>"
+        print(f"המרה ל-HTML: {html_content}")
+    
+    def visit_image_document(self, document: ImageDocument) -> None:
+        path = document.get_path()
+        # המרה ל-PNG
+        print(f"המרה ל-PNG: {path}")
+
+class Validator(DocumentVisitor):
+    def visit_text_document(self, document: TextDocument) -> None:
+        content = document.get_content()
+        metadata = document.get_metadata()
+        is_valid = len(content) > 0 and "author" in metadata
+        print(f"תקינות מסמך טקסט: {is_valid}")
+    
+    def visit_image_document(self, document: ImageDocument) -> None:
+        metadata = document.get_metadata()
+        is_valid = "resolution" in metadata and "format" in metadata
+        print(f"תקינות תמונה: {is_valid}")
+
+class DocumentManager:
+    def __init__(self):
+        self._documents: List[Document] = []
+    
+    def add_document(self, document: Document) -> None:
+        self._documents.append(document)
+    
+    def process_documents(self, visitor: DocumentVisitor) -> None:
+        for document in self._documents:
+            document.accept(visitor)
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת מנהל מסמכים
+    manager = DocumentManager()
+    
+    # הוספת מסמכים
+    manager.add_document(TextDocument("זהו מסמך טקסט", {"author": "יוסי"}))
+    manager.add_document(ImageDocument("תמונה.jpg", {"resolution": "1920x1080", "format": "JPEG"}))
+    
+    # חישוב גדלים
+    size_calculator = SizeCalculator()
+    manager.process_documents(size_calculator)
+    
+    # המרת פורמטים
+    format_converter = FormatConverter()
+    manager.process_documents(format_converter)
+    
+    # בדיקת תקינות
+    validator = Validator()
+    manager.process_documents(validator)</code></pre>
         </section>
 
         <section class="card">
@@ -154,11 +325,22 @@ def client_code() -> None:
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשרת הוספת פעולות חדשות ללא שינוי במחלקות</li>
-                <li>מפרידה את הלוגיקה של הפעולות מהמחלקות</li>
-                <li>מאפשרת הרחבה קלה של הפעולות</li>
-                <li>מפחיתה את הצורך בשינוי המחלקות הקיימות</li>
+                <li>מאפשרת הפרדה בין האובייקטים לבין הפעולות</li>
+                <li>מאפשרת הוספת פעולות חדשות בקלות</li>
+                <li>מונעת כפילות בקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הפרדה בין האובייקטים לבין הפעולות</li>
+                <li>מאפשרת הוספת פעולות חדשות בקלות</li>
+                <li>מונעת כפילות בקוד</li>
+                <li>מאפשרת שמירה על עקרון ה-Open/Closed Principle</li>
+                <li>מאפשרת הפחתת הצימוד בין המחלקות</li>
+                <li>מאפשרת הרחבה של המערכת עם פעולות חדשות</li>
+                <li>מאפשרת ניהול טוב יותר של הפעולות</li>
             </ul>
         </section>
 
@@ -167,10 +349,44 @@ def client_code() -> None:
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
                 <li>עלולה להקשות על הבנת הקוד</li>
-                <li>עלולה ליצור תלות חזקה בין המבקרים לאובייקטים</li>
-                <li>עלולה לגרום לביצועים נמוכים עם מספר רב של מבקרים</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -179,18 +395,43 @@ def client_code() -> None:
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
                     <th>הבדל</th>
                 </tr>
                 <tr>
-                    <td>Command</td>
-                    <td>מתמקדת בביצוע פעולות, בעוד Visitor מתמקדת בפעולות על אובייקטים</td>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Visitor מתמקדת בפעולות</td>
                 </tr>
                 <tr>
-                    <td>Composite</td>
-                    <td>מתמקדת במבנה היררכי, בעוד Visitor מתמקדת בפעולות על המבנה</td>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Visitor מתמקדת באובייקטים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Visitor מתמקדת בפעולות</td>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Visitor מתמקדת באובייקטים</td>
+                </tr>
+                <tr>
+                    <td>Observer</td>
+                    <td>מתמקדת בהודעות, בעוד Visitor מתמקדת בפעולות</td>
+                </tr>
+                <tr>
+                    <td>Template Method</td>
+                    <td>מתמקדת בשלבים, בעוד Visitor מתמקדת בפעולות</td>
                 </tr>
             </table>
         </section>
@@ -200,12 +441,67 @@ def client_code() -> None:
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Visitor במקרים הבאים:</p>
             <ol>
-                <li>מערכת ניתוח קוד (בדיקת שגיאות, מדידת מורכבות, דיווח)</li>
-                <li>מערכת עיבוד מסמכים (המרה, דחיסה, הצפנה)</li>
-                <li>מערכת ניהול מלאי (ספירה, הערכת ערך, דיווח)</li>
+                <li>מערכת חישוב מחירים</li>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול תמונות</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Visitor במקרים הבאים:</p>
+            <ol>
+                <li>מערכת חישוב מחירים</li>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול תמונות</li>
+                <li>מערכת ניהול תהליכים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאובייקטים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאובייקטים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות חישוב מחירים</li>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול תמונות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות חישוב מחירים</li>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול תמונות</li>
+                <li>מערכות ניהול תהליכים</li>
+                <li>מערכות ניהול פעולות</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -214,11 +510,14 @@ def client_code() -> None:
                 תבניות קשורות
             </h2>
             <ul>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
                 <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
-                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
-                <li><a href="iterator.html" class="flex-center"><i class="fas fa-sync icon"></i>Iterator</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
+                <li><a href="template.html" class="flex-center"><i class="fas fa-file-alt icon"></i>Template Method</a></li>
             </ul>
         </div>
     </main>
+
+    <script src="../js/load-sidebar.js"></script>
 </body>
 </html> 

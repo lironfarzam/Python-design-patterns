@@ -29,21 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Adapter?
             </h2>
-            <p>תבנית Adapter מאפשרת לממשקים לא תואמים לעבוד יחד על ידי המרת הממשק של מחלקה אחת לממשק שהלקוח מצפה לו.</p>
+            <p>תבנית Adapter היא תבנית עיצוב מבנית המאפשרת לממשקים לא תואמים לעבוד יחד. התבנית משמשת כאשר יש צורך להשתמש במחלקה קיימת, אך הממשק שלה אינו תואם את הממשק הנדרש.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם מטען טלפון עם חיבור מיוחד, אבל השקע בקיר הוא מסוג אחר. מתאם (Adapter) מאפשר לחבר את המטען לשקע על ידי המרת החיבור. תבנית Adapter עובדת באותו אופן - היא מאפשרת לממשקים שונים לעבוד יחד.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Adapter Pattern על ידי שימוש במחלקת מתאם (Adapter) שממירה את הממשק של מחלקה קיימת לממשק הנדרש. זה מאפשר שימוש חוזר בקוד קיים ומאפשר אינטגרציה בין מערכות שונות.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים להשתמש במחלקה קיימת אך הממשק שלה לא תואם לצרכים</li>
-                <li>כאשר רוצים ליצור מחלקה שניתן לעבוד איתה עם מחלקות אחרות</li>
-                <li>כאשר רוצים לספק ממשק אחיד למספר ממשקים קיימים</li>
-                <li>כאשר רוצים להסתיר את המימוש של מחלקה קיימת</li>
+                <li>כאשר אתם צריכים להשתמש במחלקה קיימת עם ממשק שונה</li>
+                <li>כאשר אתם צריכים ליצור מחלקה שתתמוך בממשקים שונים</li>
+                <li>כאשר אתם צריכים לאפשר אינטגרציה בין מערכות שונות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להשתמש במחלקה קיימת עם ממשק שונה</li>
+                <li>כאשר יש צורך ליצור מחלקה שתתמוך בממשקים שונים</li>
+                <li>כאשר יש צורך לאפשר אינטגרציה בין מערכות שונות</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Open/Closed Principle</li>
+                <li>כאשר יש צורך לאפשר שימוש חוזר בקוד קיים</li>
+                <li>כאשר יש צורך לאפשר שינוי ממשקים ללא שינוי הקוד הקיים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Target</strong> - הממשק שהלקוח מצפה לו</li>
+                <li><strong>Adaptee</strong> - המחלקה הקיימת שצריך להתאים</li>
+                <li><strong>Adapter</strong> - המחלקה שמתאימה את Adaptee ל-Target</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Target</strong> - הממשק שהלקוח מצפה לו</li>
+                <li><strong>Adaptee</strong> - המחלקה הקיימת שצריך להתאים</li>
+                <li><strong>Adapter</strong> - המחלקה שמתאימה את Adaptee ל-Target</li>
+                <li><strong>Client</strong> - המשתמש ב-Target דרך Adapter</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Client משתמש ב-Target</li>
+                <li>Adapter מיישם את Target</li>
+                <li>Adapter משתמש ב-Adaptee</li>
+                <li>Adaptee מספק את הפונקציונליות הבסיסית</li>
             </ul>
         </section>
 
@@ -52,32 +99,128 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
-            <pre><code>class Target:
-    def request(self) -> str:
-        return "תוצאה של Target"
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול מסמכים. יש לנו מחלקה קיימת שמטפלת במסמכי PDF, אבל אנחנו רוצים להשתמש בה עם ממשק אחיד לכל סוגי המסמכים.</p>
 
-class Adaptee:
-    def specific_request(self) -> str:
-        return "תוצאה של Adaptee"
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Adapter Pattern ליצירת ממשק אחיד למסמכים. הממשק המופשט מגדיר את הפעולות הבסיסיות, והמתאם מספק את המימוש הספציפי.</p>
 
-class Adapter(Target):
-    def __init__(self, adaptee: Adaptee):
-        self.adaptee = adaptee
+            <pre><code>from abc import ABC, abstractmethod
 
-    def request(self) -> str:
-        return f"Adapter: {self.adaptee.specific_request()}"
+class Document(ABC):
+    @abstractmethod
+    def open(self):
+        pass
+    
+    @abstractmethod
+    def save(self):
+        pass
+
+class PDFDocument:
+    def open_pdf(self):
+        print("Opening PDF document")
+    
+    def save_pdf(self):
+        print("Saving PDF document")
+
+class PDFAdapter(Document):
+    def __init__(self, pdf_document: PDFDocument):
+        self.pdf_document = pdf_document
+    
+    def open(self):
+        self.pdf_document.open_pdf()
+    
+    def save(self):
+        self.pdf_document.save_pdf()
 
 # שימוש
-def client_code(target: Target) -> None:
-    print(target.request())
-
 if __name__ == "__main__":
-    target = Target()
-    client_code(target)
+    # יצירת מסמך PDF
+    pdf = PDFDocument()
+    
+    # יצירת מתאם
+    adapter = PDFAdapter(pdf)
+    
+    # שימוש במתאם
+    adapter.open()
+    adapter.save()</code></pre>
+        </section>
 
-    adaptee = Adaptee()
-    adapter = Adapter(adaptee)
-    client_code(adapter)</code></pre>
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת תשלומים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת תשלומים שתומכת בשיטות תשלום שונות. יש לנו מחלקות קיימות שמטפלות בכל שיטת תשלום, אבל אנחנו רוצים להשתמש בהן עם ממשק אחיד.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Adapter Pattern ליצירת ממשק אחיד לתשלומים. הממשק המופשט מגדיר את הפעולות הבסיסיות, והמתאמים מספקים את המימוש הספציפי לכל שיטת תשלום.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Dict, Any
+
+class PaymentProcessor(ABC):
+    @abstractmethod
+    def process_payment(self, amount: float, details: Dict[str, Any]) -> bool:
+        pass
+
+class CreditCardProcessor:
+    def charge_credit_card(self, amount: float, card_number: str, expiry_date: str, cvv: str) -> bool:
+        print(f"Charging credit card {card_number} for ${amount}")
+        return True
+
+class PayPalProcessor:
+    def make_payment(self, amount: float, email: str, password: str) -> bool:
+        print(f"Making PayPal payment from {email} for ${amount}")
+        return True
+
+class CreditCardAdapter(PaymentProcessor):
+    def __init__(self, processor: CreditCardProcessor):
+        self.processor = processor
+    
+    def process_payment(self, amount: float, details: Dict[str, Any]) -> bool:
+        return self.processor.charge_credit_card(
+            amount,
+            details["card_number"],
+            details["expiry_date"],
+            details["cvv"]
+        )
+
+class PayPalAdapter(PaymentProcessor):
+    def __init__(self, processor: PayPalProcessor):
+        self.processor = processor
+    
+    def process_payment(self, amount: float, details: Dict[str, Any]) -> bool:
+        return self.processor.make_payment(
+            amount,
+            details["email"],
+            details["password"]
+        )
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת מעבדי תשלום
+    credit_card_processor = CreditCardProcessor()
+    paypal_processor = PayPalProcessor()
+    
+    # יצירת מתאמים
+    credit_card_adapter = CreditCardAdapter(credit_card_processor)
+    paypal_adapter = PayPalAdapter(paypal_processor)
+    
+    # שימוש במתאמים
+    credit_card_details = {
+        "card_number": "1234-5678-9012-3456",
+        "expiry_date": "12/25",
+        "cvv": "123"
+    }
+    credit_card_adapter.process_payment(100.0, credit_card_details)
+    
+    paypal_details = {
+        "email": "user@example.com",
+        "password": "password123"
+    }
+    paypal_adapter.process_payment(50.0, paypal_details)</code></pre>
         </section>
 
         <section class="card">
@@ -85,11 +228,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
                 <li>מאפשרת שימוש במחלקות קיימות</li>
-                <li>מאפשרת שימוש במחלקות ממקורות שונים</li>
-                <li>מאפשרת שימוש במחלקות עם ממשקים שונים</li>
-                <li>מאפשרת שימוש במחלקות ללא שינוי הקוד שלהן</li>
+                <li>מאפשרת יצירת ממשק אחיד</li>
+                <li>מאפשרת אינטגרציה בין מערכות שונות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת שימוש במחלקות קיימות</li>
+                <li>מאפשרת יצירת ממשק אחיד</li>
+                <li>מאפשרת אינטגרציה בין מערכות שונות</li>
+                <li>מאפשרת שמירה על עקרון ה-Open/Closed Principle</li>
+                <li>מאפשרת שימוש חוזר בקוד קיים</li>
+                <li>מאפשרת שינוי ממשקים ללא שינוי הקוד הקיים</li>
+                <li>מאפשרת הפרדה בין הממשק למימוש</li>
             </ul>
         </section>
 
@@ -98,11 +252,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה ליצור קוד מורכב</li>
-                <li>עלולה ליצור קוד קשה לתחזוקה</li>
-                <li>עלולה ליצור קוד קשה להבנה</li>
-                <li>עלולה ליצור קוד קשה לבדיקה</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק אחיד</li>
+                <li>אי-הקפדה על שימוש נכון במתאם</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק אחיד</li>
+                <li>אי-הקפדה על שימוש נכון במתאם</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -111,6 +298,7 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -118,11 +306,35 @@ if __name__ == "__main__":
                 </tr>
                 <tr>
                     <td>Bridge</td>
-                    <td>מפרידה בין ממשק למימוש, בעוד Adapter מתמקדת בהתאמת ממשקים</td>
+                    <td>מתמקדת בהפרדה בין ממשק למימוש</td>
                 </tr>
                 <tr>
                     <td>Decorator</td>
-                    <td>מוסיפה תפקוד לאובייקט, בעוד Adapter מתמקדת בהתאמת ממשקים</td>
+                    <td>מתמקדת בהוספת תכונות לאובייקט</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Bridge</td>
+                    <td>מתמקדת בהפרדה בין ממשק למימוש, בעוד Adapter מתמקדת בהתאמת ממשקים</td>
+                </tr>
+                <tr>
+                    <td>Decorator</td>
+                    <td>מתמקדת בהוספת תכונות לאובייקט, בעוד Adapter מתמקדת בהתאמת ממשקים</td>
+                </tr>
+                <tr>
+                    <td>Facade</td>
+                    <td>מתמקדת בספק ממשק פשוט למערכת מורכבת, בעוד Adapter מתמקדת בהתאמת ממשקים</td>
+                </tr>
+                <tr>
+                    <td>Proxy</td>
+                    <td>מתמקדת בשליטה בגישה לאובייקט, בעוד Adapter מתמקדת בהתאמת ממשקים</td>
                 </tr>
             </table>
         </section>
@@ -132,12 +344,67 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Adapter במקרים הבאים:</p>
             <ol>
-                <li>התאמת ממשק של ספרייה חיצונית</li>
-                <li>התאמת ממשק של מערכת ישנה</li>
-                <li>התאמת ממשק של שירות חיצוני</li>
+                <li>מערכת ניהול מסמכים עם תמיכה בפורמטים שונים</li>
+                <li>מערכת תשלומים עם תמיכה בשיטות תשלום שונות</li>
+                <li>מערכת תקשורת עם תמיכה בפרוטוקולים שונים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Adapter במקרים הבאים:</p>
+            <ol>
+                <li>מערכת אחסון קבצים עם תמיכה בשירותי אחסון שונים</li>
+                <li>מערכת דיווח עם תמיכה בפורמטים שונים</li>
+                <li>מערכת תקשורת עם תמיכה בפרוטוקולים שונים</li>
+                <li>מערכת עיבוד תמונות עם תמיכה בפורמטים שונים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק מופשט ל-Target</li>
+                <li>ודא שהמתאם מיישם את הממשק הנכון</li>
+                <li>הוסף בדיקות תקינות למתאם</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק מופשט ל-Target</li>
+                <li>ודא שהמתאם מיישם את הממשק הנכון</li>
+                <li>הוסף בדיקות תקינות למתאם</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות תשלומים</li>
+                <li>מערכות תקשורת</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות אחסון קבצים</li>
+                <li>מערכות דיווח</li>
+                <li>מערכות תקשורת</li>
+                <li>מערכות עיבוד תמונות</li>
+                <li>מערכות אחסון נתונים</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -147,8 +414,9 @@ if __name__ == "__main__":
             </h2>
             <ul>
                 <li><a href="bridge.html" class="flex-center"><i class="fas fa-link icon"></i>Bridge</a></li>
-                <li><a href="decorator.html" class="flex-center"><i class="fas fa-gift icon"></i>Decorator</a></li>
+                <li><a href="decorator.html" class="flex-center"><i class="fas fa-paint-brush icon"></i>Decorator</a></li>
                 <li><a href="facade.html" class="flex-center"><i class="fas fa-building icon"></i>Facade</a></li>
+                <li><a href="proxy.html" class="flex-center"><i class="fas fa-shield-alt icon"></i>Proxy</a></li>
             </ul>
         </div>
     </main>

@@ -29,21 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Builder?
             </h2>
-            <p>תבנית Builder מאפשרת בנייה של אובייקטים מורכבים בשלבים, ומפרידה בין תהליך הבנייה לייצוג הסופי של האובייקט.</p>
+            <p>תבנית Builder היא תבנית עיצוב יצירתית המפרידה בין בניית אובייקט מורכב לייצוג שלו, כך שאותו תהליך בנייה יכול ליצור ייצוגים שונים. התבנית מאפשרת בנייה הדרגתית של אובייקט מורכב.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שאתם בונים בית. במקום לנסות לבנות את כל הבית בבת אחת, אתם בונים אותו שלב אחר שלב: קודם יסודות, אחר כך קירות, גג, חלונות וכו'. תבנית Builder עובדת באותו אופן - היא מאפשרת לבנות אובייקט מורכב שלב אחר שלב.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Single Responsibility Principle (SRP) על ידי הפרדה בין הלוגיקה של בניית האובייקט לייצוג שלו. זה מאפשר יצירת אובייקטים מורכבים בצורה מודולרית וגמישה, תוך שמירה על קוד נקי וקריא.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר האובייקט שיש לבנות הוא מורכב ודורש מספר שלבים</li>
-                <li>כאשר רוצים ליצור גרסאות שונות של אותו אובייקט</li>
-                <li>כאשר רוצים להפריד בין תהליך הבנייה לייצוג הסופי</li>
-                <li>כאשר רוצים לספק API נוח לבניית אובייקטים מורכבים</li>
+                <li>כאשר אתם צריכים ליצור אובייקט מורכב עם הרבה חלקים</li>
+                <li>כאשר אתם רוצים לבנות את האובייקט שלב אחר שלב</li>
+                <li>כאשר אתם רוצים ליצור גרסאות שונות של אותו אובייקט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר האובייקט המורכב דורש תהליך בנייה מורכב</li>
+                <li>כאשר יש צורך ליצור גרסאות שונות של אותו אובייקט</li>
+                <li>כאשר רוצים להפריד בין הלוגיקה של בניית האובייקט לייצוג שלו</li>
+                <li>כאשר רוצים לאפשר בנייה הדרגתית של האובייקט</li>
+                <li>כאשר רוצים להסתיר את המורכבות של בניית האובייקט</li>
+                <li>כאשר רוצים לאפשר שימוש חוזר בלוגיקת הבנייה</li>
+                <li>כאשר רוצים לאפשר הרחבה קלה של תהליך הבנייה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Director</strong> - מנהל את תהליך הבנייה</li>
+                <li><strong>Builder</strong> - מגדיר את הממשק לבניית האובייקט</li>
+                <li><strong>Product</strong> - האובייקט המורכב שנבנה</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Director</strong> - מנהל את תהליך הבנייה ומשתמש ב-Builder</li>
+                <li><strong>Builder</strong> - ממשק מופשט המגדיר את הפעולות לבניית האובייקט</li>
+                <li><strong>ConcreteBuilder</strong> - מימוש של Builder, מיישם את הפעולות לבניית האובייקט</li>
+                <li><strong>Product</strong> - האובייקט המורכב שנבנה</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Director משתמש ב-Builder לבניית האובייקט</li>
+                <li>ConcreteBuilder מיישם את Builder ויוצר את האובייקט</li>
+                <li>Product הוא האובייקט המורכב שנבנה</li>
             </ul>
         </section>
 
@@ -52,64 +99,219 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לבניית בית. המחלקה הבסיסית מגדירה איך לבנות בית, והמחלקות היורשות מיישמות את הבנייה עבור כל סוג בית.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Builder Pattern לבניית אובייקט מורכב. הממשק המופשט מגדיר את הפעולות לבניית האובייקט, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
             <pre><code>from abc import ABC, abstractmethod
-from typing import Any
 
-class Product:
-    def __init__(self) -> None:
-        self.parts: list[str] = []
+class House:
+    def __init__(self):
+        self.walls = []
+        self.doors = []
+        self.windows = []
+        self.roof = None
+    
+    def __str__(self):
+        return f"House with {len(self.walls)} walls, {len(self.doors)} doors, {len(self.windows)} windows, and {self.roof}"
 
-    def add_part(self, part: str) -> None:
-        self.parts.append(part)
-
-    def show_parts(self) -> None:
-        print("חלקי המוצר:", ", ".join(self.parts))
-
-class Builder(ABC):
+class HouseBuilder(ABC):
+    def __init__(self):
+        self.house = House()
+    
     @abstractmethod
-    def build_part_a(self) -> None:
+    def build_walls(self):
         pass
-
+    
     @abstractmethod
-    def build_part_b(self) -> None:
+    def build_doors(self):
         pass
-
+    
     @abstractmethod
-    def get_result(self) -> Product:
+    def build_windows(self):
         pass
+    
+    @abstractmethod
+    def build_roof(self):
+        pass
+    
+    def get_house(self):
+        return self.house
 
-class ConcreteBuilder(Builder):
-    def __init__(self) -> None:
-        self._product = Product()
+class WoodenHouseBuilder(HouseBuilder):
+    def build_walls(self):
+        self.house.walls = ["Wooden walls"]
+    
+    def build_doors(self):
+        self.house.doors = ["Wooden doors"]
+    
+    def build_windows(self):
+        self.house.windows = ["Wooden windows"]
+    
+    def build_roof(self):
+        self.house.roof = "Wooden roof"
 
-    def build_part_a(self) -> None:
-        self._product.add_part("חלק A")
+class BrickHouseBuilder(HouseBuilder):
+    def build_walls(self):
+        self.house.walls = ["Brick walls"]
+    
+    def build_doors(self):
+        self.house.doors = ["Brick doors"]
+    
+    def build_windows(self):
+        self.house.windows = ["Brick windows"]
+    
+    def build_roof(self):
+        self.house.roof = "Brick roof"
 
-    def build_part_b(self) -> None:
-        self._product.add_part("חלק B")
-
-    def get_result(self) -> Product:
-        return self._product
-
-class Director:
-    def __init__(self, builder: Builder) -> None:
-        self._builder = builder
-
-    def construct(self) -> Product:
-        self._builder.build_part_a()
-        self._builder.build_part_b()
-        return self._builder.get_result()
+class HouseDirector:
+    def __init__(self, builder: HouseBuilder):
+        self.builder = builder
+    
+    def build_house(self):
+        self.builder.build_walls()
+        self.builder.build_doors()
+        self.builder.build_windows()
+        self.builder.build_roof()
+        return self.builder.get_house()
 
 # שימוש
-def client_code() -> None:
-    builder = ConcreteBuilder()
-    director = Director(builder)
-    product = director.construct()
-    product.show_parts()
-
-# דוגמה לשימוש
 if __name__ == "__main__":
-    client_code()</code></pre>
+    # בניית בית מעץ
+    wooden_builder = WoodenHouseBuilder()
+    director = HouseDirector(wooden_builder)
+    wooden_house = director.build_house()
+    print(wooden_house)
+    
+    # בניית בית מלבנים
+    brick_builder = BrickHouseBuilder()
+    director = HouseDirector(brick_builder)
+    brick_house = director.build_house()
+    print(brick_house)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול מסמכים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת ניהול מסמכים שתומכת בסוגים שונים של מסמכים. המחלקה הבסיסית מגדירה איך לבנות מסמך, והמחלקות היורשות מיישמות את הבנייה עבור כל סוג מסמך.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Builder Pattern לבניית אובייקט מורכב. הממשק המופשט מגדיר את הפעולות לבניית האובייקט, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from datetime import datetime
+
+class Document:
+    def __init__(self):
+        self.title = None
+        self.author = None
+        self.content = []
+        self.created_at = None
+        self.modified_at = None
+    
+    def __str__(self):
+        return f"Document: {self.title}\nAuthor: {self.author}\nContent: {self.content}\nCreated: {self.created_at}\nModified: {self.modified_at}"
+
+class DocumentBuilder(ABC):
+    def __init__(self):
+        self.document = Document()
+    
+    @abstractmethod
+    def set_title(self, title: str):
+        pass
+    
+    @abstractmethod
+    def set_author(self, author: str):
+        pass
+    
+    @abstractmethod
+    def add_content(self, content: str):
+        pass
+    
+    @abstractmethod
+    def set_created_at(self):
+        pass
+    
+    @abstractmethod
+    def set_modified_at(self):
+        pass
+    
+    def get_document(self):
+        return self.document
+
+class PDFDocumentBuilder(DocumentBuilder):
+    def set_title(self, title: str):
+        self.document.title = f"PDF: {title}"
+    
+    def set_author(self, author: str):
+        self.document.author = author
+    
+    def add_content(self, content: str):
+        self.document.content.append(f"PDF Content: {content}")
+    
+    def set_created_at(self):
+        self.document.created_at = datetime.now()
+    
+    def set_modified_at(self):
+        self.document.modified_at = datetime.now()
+
+class HTMLDocumentBuilder(DocumentBuilder):
+    def set_title(self, title: str):
+        self.document.title = f"HTML: {title}"
+    
+    def set_author(self, author: str):
+        self.document.author = author
+    
+    def add_content(self, content: str):
+        self.document.content.append(f"<p>{content}</p>")
+    
+    def set_created_at(self):
+        self.document.created_at = datetime.now()
+    
+    def set_modified_at(self):
+        self.document.modified_at = datetime.now()
+
+class DocumentDirector:
+    def __init__(self, builder: DocumentBuilder):
+        self.builder = builder
+    
+    def build_document(self, title: str, author: str, content: list):
+        self.builder.set_title(title)
+        self.builder.set_author(author)
+        self.builder.set_created_at()
+        
+        for item in content:
+            self.builder.add_content(item)
+        
+        self.builder.set_modified_at()
+        return self.builder.get_document()
+
+# שימוש
+if __name__ == "__main__":
+    # בניית מסמך PDF
+    pdf_builder = PDFDocumentBuilder()
+    director = DocumentDirector(pdf_builder)
+    pdf_document = director.build_document(
+        "Example PDF",
+        "John Doe",
+        ["First paragraph", "Second paragraph", "Third paragraph"]
+    )
+    print(pdf_document)
+    
+    # בניית מסמך HTML
+    html_builder = HTMLDocumentBuilder()
+    director = DocumentDirector(html_builder)
+    html_document = director.build_document(
+        "Example HTML",
+        "Jane Doe",
+        ["First paragraph", "Second paragraph", "Third paragraph"]
+    )
+    print(html_document)</code></pre>
         </section>
 
         <section class="card">
@@ -117,11 +319,20 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשרת בנייה של אובייקטים מורכבים בשלבים</li>
-                <li>מפרידה בין תהליך הבנייה לייצוג הסופי</li>
-                <li>מאפשרת יצירת גרסאות שונות של אותו אובייקט</li>
-                <li>מספקת API נוח לבניית אובייקטים מורכבים</li>
+                <li>מאפשרת בנייה הדרגתית של אובייקט מורכב</li>
+                <li>מקלה על יצירת גרסאות שונות של אותו אובייקט</li>
+                <li>מפרידה בין הלוגיקה של בניית האובייקט לייצוג שלו</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הרחבה של תהליך הבנייה</li>
+                <li>מספקת ממשק אחיד לבניית האובייקט</li>
+                <li>מאפשרת החלפה דינמית של תהליך הבנייה</li>
+                <li>מקלה על בדיקות (Testing) של המערכת</li>
+                <li>מאפשרת שימוש ב-Mock Objects לצורכי בדיקות</li>
             </ul>
         </section>
 
@@ -130,10 +341,39 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה להקשות על הבנת הקוד</li>
                 <li>עלולה ליצור מספר רב של מחלקות</li>
-                <li>עלולה להאט את הביצועים</li>
+                <li>עלולה להיות מורכבת מדי עבור מקרים פשוטים</li>
+                <li>מקשה על הוספת חלקים חדשים לאובייקט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הרחבת הממשק</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור קוד מיותר במקרים פשוטים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>יצירת יותר מדי מחלקות קונקרטיות</li>
+                <li>שימוש בתבנית כאשר לא נדרשת</li>
+                <li>אי-הקפדה על סדר הבנייה</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-שימוש בממשקים מופשטים</li>
+                <li>אי-הפרדה בין הלוגיקה של בניית האובייקט לייצוג שלו</li>
+                <li>אי-שימוש ב-Director</li>
             </ul>
         </section>
 
@@ -142,18 +382,43 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
                     <th>הבדל</th>
                 </tr>
                 <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת אובייקט בודד</td>
+                </tr>
+                <tr>
                     <td>Abstract Factory</td>
-                    <td>מתמקדת ביצירת משפחות של אובייקטים, בעוד Builder מתמקדת בבניית אובייקט מורכב</td>
+                    <td>מתמקדת ביצירת משפחות של מוצרים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
                 </tr>
                 <tr>
                     <td>Factory Method</td>
                     <td>מתמקדת ביצירת אובייקט בודד, בעוד Builder מתמקדת בבניית אובייקט מורכב</td>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקדת ביצירת משפחות של מוצרים, בעוד Builder מתמקדת בבניית אובייקט מורכב</td>
+                </tr>
+                <tr>
+                    <td>Prototype</td>
+                    <td>מתמקדת ביצירת אובייקטים על ידי שיבוט, בעוד Builder מתמקדת בבניית אובייקטים חדשים</td>
+                </tr>
+                <tr>
+                    <td>Singleton</td>
+                    <td>מתמקדת ביצירת מופע יחיד של מחלקה, בעוד Builder מתמקדת בבניית אובייקטים חדשים</td>
                 </tr>
             </table>
         </section>
@@ -163,12 +428,66 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Builder במקרים הבאים:</p>
             <ol>
-                <li>מערכת בניית מסמכים (HTML, PDF, DOCX)</li>
-                <li>מערכת בניית שאלונים</li>
-                <li>מערכת בניית תפריטים</li>
+                <li>מערכת ניהול מסמכים עם תמיכה בפורמטים שונים</li>
+                <li>מערכת ניהול קבצים עם תמיכה בסוגי קבצים שונים</li>
+                <li>מערכת עיבוד תמונות עם תמיכה בפורמטים שונים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Builder במקרים הבאים:</p>
+            <ol>
+                <li>מערכת משחק עם דמויות שונות</li>
+                <li>מערכת דיווח עם פורמטים שונים</li>
+                <li>מערכת תקשורת עם פרוטוקולים שונים</li>
+                <li>מערכת עיבוד תמונות עם פורמטים שונים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשקים מופשטים להגדרת המחלקות והאובייקטים</li>
+                <li>ודא שכל מחלקה יורשת מיישמת את הממשק המוגדר</li>
+                <li>הוסף בדיקות תקינות לאובייקטים שיוצרו</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש ב-Singleton עבור המחלקות הקונקרטיות אם נדרש</li>
+                <li>שקול שימוש ב-Registry או Configuration עבור בחירת המחלקה המתאימה</li>
+                <li>השתמש ב-Dependency Injection עבור הזרקת המחלקה</li>
+                <li>שקול שימוש ב-Abstract Factory בתוך Builder</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול קבצים</li>
+                <li>מערכות עיבוד תמונות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות משחק</li>
+                <li>מערכות דיווח</li>
+                <li>מערכות תקשורת</li>
+                <li>מערכות עיבוד תמונות</li>
+                <li>מערכות אחסון קבצים</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -179,7 +498,8 @@ if __name__ == "__main__":
             <ul>
                 <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
                 <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
-                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
+                <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+                <li><a href="singleton.html" class="flex-center"><i class="fas fa-cube icon"></i>Singleton</a></li>
             </ul>
         </div>
     </main>

@@ -29,21 +29,67 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Chain of Responsibility?
             </h2>
-            <p>תבנית Chain of Responsibility מאפשרת להעביר בקשות דרך שרשרת של מטפלים, כאשר כל מטפל מחליט האם לטפל בבקשה או להעביר אותה למטפל הבא בשרשרת.</p>
+            <p>תבנית Chain of Responsibility היא תבנית עיצוב התנהגותית המאפשרת להעביר בקשות דרך שרשרת של מטפלים. כל מטפל מחליט האם לטפל בבקשה או להעביר אותה למטפל הבא בשרשרת.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם שרשרת של אנשים שעומדים בתור. כל אחד יכול לטפל בבעיה מסוימת. אם הוא לא יכול לטפל בה, הוא מעביר אותה לאדם הבא בתור. כך הבעיה עוברת בשרשרת עד שמישהו יכול לטפל בה.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Single Responsibility Principle על ידי הפרדת המטפלים השונים, ומאפשרת גמישות רבה בטיפול בבקשות. כל מטפל אחראי על סוג מסוים של בקשות, והשרשרת מאפשרת הוספה והסרה של מטפלים בקלות.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר יש מספר מטפלים פוטנציאליים לבקשה</li>
-                <li>כאשר רוצים להפריד בין השולח למקבל</li>
-                <li>כאשר רוצים לאפשר למטפלים שונים לטפל בבקשות שונות</li>
-                <li>כאשר רוצים להוסיף או לשנות מטפלים באופן דינמי</li>
+                <li>כאשר יש צורך להעביר בקשות דרך שרשרת של מטפלים</li>
+                <li>כאשר יש צורך לאפשר גמישות בטיפול בבקשות</li>
+                <li>כאשר יש צורך למנוע כפילות בקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להעביר בקשות דרך שרשרת של מטפלים</li>
+                <li>כאשר יש צורך לאפשר גמישות בטיפול בבקשות</li>
+                <li>כאשר יש צורך למנוע כפילות בקוד</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Single Responsibility Principle</li>
+                <li>כאשר יש צורך להפחית את הצימוד בין המטפלים</li>
+                <li>כאשר יש צורך לאפשר הרחבה של המערכת עם מטפלים חדשים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משני חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Handler</strong> - המטפל שמגדיר את הממשק לטיפול בבקשות</li>
+                <li><strong>ConcreteHandler</strong> - המימוש הספציפי של המטפל</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Handler</strong> - המטפל שמגדיר את הממשק לטיפול בבקשות</li>
+                <li><strong>ConcreteHandler</strong> - המימוש הספציפי של המטפל</li>
+                <li><strong>Client</strong> - מי שיוצר את הבקשה ומתחיל את השרשרת</li>
+                <li><strong>Request</strong> - הבקשה שעוברת בשרשרת</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Handler מגדיר את הממשק לטיפול בבקשות</li>
+                <li>ConcreteHandler מיישם את הממשק</li>
+                <li>Client יוצר את הבקשה</li>
+                <li>Request עוברת בשרשרת</li>
             </ul>
         </section>
 
@@ -52,61 +98,236 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לטיפול בבקשות תמיכה. המערכת מאפשרת להעביר בקשות דרך שרשרת של מטפלים, כאשר כל מטפל יכול לטפל בסוג מסוים של בקשות.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Chain of Responsibility Pattern להפרדה בין המטפלים השונים. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
             <pre><code>from abc import ABC, abstractmethod
-from typing import Optional
+from enum import Enum
+
+class RequestType(Enum):
+    TECHNICAL = 1
+    BILLING = 2
+    GENERAL = 3
+
+class Request:
+    def __init__(self, type: RequestType, description: str):
+        self._type = type
+        self._description = description
+    
+    def get_type(self) -> RequestType:
+        return self._type
+    
+    def get_description(self) -> str:
+        return self._description
 
 class Handler(ABC):
-    def __init__(self) -> None:
-        self._next_handler: Optional['Handler'] = None
-
-    def set_next(self, handler: 'Handler') -> 'Handler':
-        self._next_handler = handler
-        return handler
-
+    def __init__(self, successor: 'Handler' = None):
+        self._successor = successor
+    
+    def set_successor(self, successor: 'Handler') -> None:
+        self._successor = successor
+    
+    def handle(self, request: Request) -> None:
+        if self._can_handle(request):
+            self._process(request)
+        elif self._successor is not None:
+            self._successor.handle(request)
+        else:
+            print(f"אין מטפל מתאים לבקשה: {request.get_description()}")
+    
     @abstractmethod
-    def handle(self, request: str) -> Optional[str]:
+    def _can_handle(self, request: Request) -> bool:
+        pass
+    
+    @abstractmethod
+    def _process(self, request: Request) -> None:
         pass
 
-    def _handle_next(self, request: str) -> Optional[str]:
-        if self._next_handler:
-            return self._next_handler.handle(request)
-        return None
+class TechnicalSupportHandler(Handler):
+    def _can_handle(self, request: Request) -> bool:
+        return request.get_type() == RequestType.TECHNICAL
+    
+    def _process(self, request: Request) -> None:
+        print(f"מטפל טכני מטפל בבקשה: {request.get_description()}")
 
-class ConcreteHandlerA(Handler):
-    def handle(self, request: str) -> Optional[str]:
-        if request == "A":
-            return f"ConcreteHandlerA טיפל בבקשה {request}"
-        return self._handle_next(request)
+class BillingSupportHandler(Handler):
+    def _can_handle(self, request: Request) -> bool:
+        return request.get_type() == RequestType.BILLING
+    
+    def _process(self, request: Request) -> None:
+        print(f"מטפל חשבוניות מטפל בבקשה: {request.get_description()}")
 
-class ConcreteHandlerB(Handler):
-    def handle(self, request: str) -> Optional[str]:
-        if request == "B":
-            return f"ConcreteHandlerB טיפל בבקשה {request}"
-        return self._handle_next(request)
-
-class ConcreteHandlerC(Handler):
-    def handle(self, request: str) -> Optional[str]:
-        if request == "C":
-            return f"ConcreteHandlerC טיפל בבקשה {request}"
-        return self._handle_next(request)
+class GeneralSupportHandler(Handler):
+    def _can_handle(self, request: Request) -> bool:
+        return request.get_type() == RequestType.GENERAL
+    
+    def _process(self, request: Request) -> None:
+        print(f"מטפל כללי מטפל בבקשה: {request.get_description()}")
 
 # שימוש
-def client_code(handler: Handler) -> None:
-    for request in ["A", "B", "C", "D"]:
-        result = handler.handle(request)
-        if result:
-            print(result)
-        else:
-            print(f"אף מטפל לא יכול לטפל בבקשה {request}")
-
-# דוגמה לשימוש
 if __name__ == "__main__":
-    handler_a = ConcreteHandlerA()
-    handler_b = ConcreteHandlerB()
-    handler_c = ConcreteHandlerC()
+    # יצירת השרשרת
+    technical = TechnicalSupportHandler()
+    billing = BillingSupportHandler()
+    general = GeneralSupportHandler()
+    
+    # הגדרת הסדר בשרשרת
+    technical.set_successor(billing)
+    billing.set_successor(general)
+    
+    # יצירת בקשות
+    requests = [
+        Request(RequestType.TECHNICAL, "בעיה בהתקנת התוכנה"),
+        Request(RequestType.BILLING, "שאלה לגבי חשבונית"),
+        Request(RequestType.GENERAL, "שאלה כללית"),
+        Request(RequestType.TECHNICAL, "בעיה בחומרה")
+    ]
+    
+    # טיפול בבקשות
+    for request in requests:
+        technical.handle(request)</code></pre>
+        </section>
 
-    handler_a.set_next(handler_b).set_next(handler_c)
-    client_code(handler_a)</code></pre>
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת אימות
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת אימות. המערכת מאפשרת להעביר בקשות אימות דרך שרשרת של מטפלים, כאשר כל מטפל יכול לטפל בסוג מסוים של אימות.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Chain of Responsibility Pattern להפרדה בין המטפלים השונים. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Dict, Optional
+
+class User:
+    def __init__(self, username: str, password: str, email: str, phone: str):
+        self._username = username
+        self._password = password
+        self._email = email
+        self._phone = phone
+    
+    def get_username(self) -> str:
+        return self._username
+    
+    def get_password(self) -> str:
+        return self._password
+    
+    def get_email(self) -> str:
+        return self._email
+    
+    def get_phone(self) -> str:
+        return self._phone
+
+class AuthenticationRequest:
+    def __init__(self, user: User, credentials: Dict[str, str]):
+        self._user = user
+        self._credentials = credentials
+    
+    def get_user(self) -> User:
+        return self._user
+    
+    def get_credentials(self) -> Dict[str, str]:
+        return self._credentials
+
+class AuthenticationHandler(ABC):
+    def __init__(self, successor: 'AuthenticationHandler' = None):
+        self._successor = successor
+    
+    def set_successor(self, successor: 'AuthenticationHandler') -> None:
+        self._successor = successor
+    
+    def authenticate(self, request: AuthenticationRequest) -> bool:
+        if self._can_handle(request):
+            return self._process(request)
+        elif self._successor is not None:
+            return self._successor.authenticate(request)
+        else:
+            return False
+    
+    @abstractmethod
+    def _can_handle(self, request: AuthenticationRequest) -> bool:
+        pass
+    
+    @abstractmethod
+    def _process(self, request: AuthenticationRequest) -> bool:
+        pass
+
+class UsernamePasswordHandler(AuthenticationHandler):
+    def _can_handle(self, request: AuthenticationRequest) -> bool:
+        return 'username' in request.get_credentials() and 'password' in request.get_credentials()
+    
+    def _process(self, request: AuthenticationRequest) -> bool:
+        user = request.get_user()
+        credentials = request.get_credentials()
+        return (user.get_username() == credentials['username'] and 
+                user.get_password() == credentials['password'])
+
+class EmailHandler(AuthenticationHandler):
+    def _can_handle(self, request: AuthenticationRequest) -> bool:
+        return 'email' in request.get_credentials() and 'code' in request.get_credentials()
+    
+    def _process(self, request: AuthenticationRequest) -> bool:
+        user = request.get_user()
+        credentials = request.get_credentials()
+        return (user.get_email() == credentials['email'] and 
+                credentials['code'] == '123456')  # קוד קבוע לצורך הדוגמה
+
+class PhoneHandler(AuthenticationHandler):
+    def _can_handle(self, request: AuthenticationRequest) -> bool:
+        return 'phone' in request.get_credentials() and 'code' in request.get_credentials()
+    
+    def _process(self, request: AuthenticationRequest) -> bool:
+        user = request.get_user()
+        credentials = request.get_credentials()
+        return (user.get_phone() == credentials['phone'] and 
+                credentials['code'] == '654321')  # קוד קבוע לצורך הדוגמה
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת משתמש
+    user = User("user123", "password123", "user@example.com", "0501234567")
+    
+    # יצירת השרשרת
+    username_password = UsernamePasswordHandler()
+    email = EmailHandler()
+    phone = PhoneHandler()
+    
+    # הגדרת הסדר בשרשרת
+    username_password.set_successor(email)
+    email.set_successor(phone)
+    
+    # יצירת בקשות אימות
+    requests = [
+        AuthenticationRequest(user, {
+            'username': 'user123',
+            'password': 'password123'
+        }),
+        AuthenticationRequest(user, {
+            'email': 'user@example.com',
+            'code': '123456'
+        }),
+        AuthenticationRequest(user, {
+            'phone': '0501234567',
+            'code': '654321'
+        }),
+        AuthenticationRequest(user, {
+            'username': 'wrong',
+            'password': 'wrong'
+        })
+    ]
+    
+    # טיפול בבקשות
+    for request in requests:
+        if username_password.authenticate(request):
+            print("אימות הצליח")
+        else:
+            print("אימות נכשל")</code></pre>
         </section>
 
         <section class="card">
@@ -114,11 +335,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מפחיתה את הצימוד בין השולח למקבל</li>
-                <li>מאפשרת הוספה או שינוי של מטפלים באופן דינמי</li>
-                <li>מאפשרת למטפלים שונים לטפל בבקשות שונות</li>
-                <li>מקלה על הרחבת המערכת</li>
+                <li>מאפשרת הפרדה בין המטפלים</li>
+                <li>מאפשרת גמישות בטיפול בבקשות</li>
+                <li>מונעת כפילות בקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הפרדה בין המטפלים</li>
+                <li>מאפשרת גמישות בטיפול בבקשות</li>
+                <li>מונעת כפילות בקוד</li>
+                <li>מאפשרת שמירה על עקרון ה-Single Responsibility Principle</li>
+                <li>מאפשרת הפחתת הצימוד בין המטפלים</li>
+                <li>מאפשרת הרחבה של המערכת עם מטפלים חדשים</li>
+                <li>מאפשרת ניהול טוב יותר של המטפלים</li>
             </ul>
         </section>
 
@@ -127,10 +359,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
                 <li>עלולה להקשות על הבנת הקוד</li>
                 <li>עלולה ליצור מספר רב של מחלקות</li>
-                <li>עלולה להאט את הביצועים</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -139,6 +405,7 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -146,11 +413,35 @@ if __name__ == "__main__":
                 </tr>
                 <tr>
                     <td>Command</td>
-                    <td>מתמקדת בהקפצת בקשות, בעוד Chain of Responsibility מתמקדת בטיפול בבקשות</td>
+                    <td>מתמקדת בפעולות, בעוד Chain of Responsibility מתמקדת במטפלים</td>
                 </tr>
                 <tr>
-                    <td>Mediator</td>
-                    <td>מתמקדת בתיווך בין אובייקטים, בעוד Chain of Responsibility מתמקדת בשרשרת של מטפלים</td>
+                    <td>Observer</td>
+                    <td>מתמקדת בהודעות, בעוד Chain of Responsibility מתמקדת בבקשות</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Chain of Responsibility מתמקדת במטפלים</td>
+                </tr>
+                <tr>
+                    <td>Observer</td>
+                    <td>מתמקדת בהודעות, בעוד Chain of Responsibility מתמקדת בבקשות</td>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Chain of Responsibility מתמקדת במטפלים</td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>מתמקדת במצבים, בעוד Chain of Responsibility מתמקדת במטפלים</td>
                 </tr>
             </table>
         </section>
@@ -160,12 +451,67 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Chain of Responsibility במקרים הבאים:</p>
             <ol>
-                <li>מערכת ניהול בקשות תמיכה</li>
-                <li>מערכת ניהול הרשאות</li>
-                <li>מערכת ניהול שגיאות</li>
+                <li>מערכת תמיכה</li>
+                <li>מערכת אימות</li>
+                <li>מערכת לוגים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Chain of Responsibility במקרים הבאים:</p>
+            <ol>
+                <li>מערכת תמיכה</li>
+                <li>מערכת אימות</li>
+                <li>מערכת לוגים</li>
+                <li>מערכת ניהול הרשאות</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהמטפלים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהמטפלים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות תמיכה</li>
+                <li>מערכות אימות</li>
+                <li>מערכות לוגים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות תמיכה</li>
+                <li>מערכות אימות</li>
+                <li>מערכות לוגים</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול בקשות</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -175,8 +521,9 @@ if __name__ == "__main__":
             </h2>
             <ul>
                 <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
-                <li><a href="mediator.html" class="flex-center"><i class="fas fa-comments icon"></i>Mediator</a></li>
-                <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
+                <li><a href="state.html" class="flex-center"><i class="fas fa-toggle-on icon"></i>State</a></li>
             </ul>
         </div>
     </main>

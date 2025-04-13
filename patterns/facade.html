@@ -29,21 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Facade?
             </h2>
-            <p>תבנית Facade מספקת ממשק פשוט למערכת מורכבת, ומסתירה את המורכבות שלה מהלקוח.</p>
+            <p>תבנית Facade היא תבנית עיצוב מבנית המספקת ממשק פשוט ונוח לשימוש עבור מערכת מורכבת. התבנית משמשת כאשר יש צורך להסתיר את המורכבות של מערכת ולהציג ממשק פשוט למשתמש.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שאתם רוצים להזמין פיצה. אתם לא צריכים לדעת איך הפיצה מיוצרת, איך הבצק מוכן, או איך הגבינה נחתכת. אתם פשוט מתקשרים למסעדה ומבקשים פיצה. המסעדה משמשת כ-Facade - היא מסתירה את המורכבות של תהליך הכנת הפיצה ומספקת לכם ממשק פשוט.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Single Responsibility Principle על ידי הפרדת הממשק מהמימוש. זה מאפשר שינוי המימוש מבלי להשפיע על הממשק, ומאפשר שימוש חוזר בקוד קיים.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים לספק ממשק פשוט למערכת מורכבת</li>
-                <li>כאשר רוצים להסתיר את המורכבות של המערכת מהלקוח</li>
-                <li>כאשר רוצים להפחית את התלות בין הלקוח למערכת</li>
-                <li>כאשר רוצים לספק נקודת כניסה אחת למערכת</li>
+                <li>כאשר אתם צריכים להסתיר את המורכבות של מערכת</li>
+                <li>כאשר אתם צריכים להציג ממשק פשוט למשתמש</li>
+                <li>כאשר אתם צריכים להפריד בין הממשק למימוש</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להסתיר את המורכבות של מערכת</li>
+                <li>כאשר יש צורך להציג ממשק פשוט למשתמש</li>
+                <li>כאשר יש צורך להפריד בין הממשק למימוש</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Single Responsibility Principle</li>
+                <li>כאשר יש צורך לאפשר שימוש חוזר בקוד קיים</li>
+                <li>כאשר יש צורך לאפשר שינוי המימוש מבלי להשפיע על הממשק</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Facade</strong> - הממשק הפשוט שמספק גישה למערכת המורכבת</li>
+                <li><strong>Subsystem</strong> - המערכת המורכבת שמספקת את הפונקציונליות</li>
+                <li><strong>Client</strong> - המשתמש שמשתמש ב-Facade</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Facade</strong> - הממשק הפשוט שמספק גישה למערכת המורכבת</li>
+                <li><strong>Subsystem</strong> - המערכת המורכבת שמספקת את הפונקציונליות</li>
+                <li><strong>Client</strong> - המשתמש שמשתמש ב-Facade</li>
+                <li><strong>Additional Facade</strong> - ממשקים נוספים שמספקים גישה לחלקים ספציפיים של המערכת</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Facade מגדיר את הממשק הפשוט</li>
+                <li>Subsystem מספק את הפונקציונליות</li>
+                <li>Client משתמש ב-Facade</li>
+                <li>Additional Facade מספק גישה לחלקים ספציפיים</li>
             </ul>
         </section>
 
@@ -52,44 +99,131 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
-            <pre><code>class Subsystem1:
-    def operation1(self) -> str:
-        return "Subsystem1: Ready!"
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול מסעדה. יש לנו מערכת מורכבת שמטפלת בהזמנות, הכנת אוכל, וקבלת תשלום. ה-Facade מספק ממשק פשוט למשתמש.</p>
 
-    def operation_n(self) -> str:
-        return "Subsystem1: Go!"
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Facade Pattern להסתרת המורכבות של מערכת. הממשק הפשוט מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
 
-class Subsystem2:
-    def operation1(self) -> str:
-        return "Subsystem2: Get ready!"
+            <pre><code>class OrderSystem:
+    def place_order(self, order):
+        print(f"מקבל הזמנה: {order}")
+    
+    def cancel_order(self, order):
+        print(f"מבטל הזמנה: {order}")
 
-    def operation_z(self) -> str:
-        return "Subsystem2: Fire!"
+class KitchenSystem:
+    def prepare_food(self, order):
+        print(f"מכין אוכל: {order}")
+    
+    def package_food(self, order):
+        print(f"מארז אוכל: {order}")
 
-class Facade:
-    def __init__(self, subsystem1: Subsystem1, subsystem2: Subsystem2):
-        self._subsystem1 = subsystem1
-        self._subsystem2 = subsystem2
+class PaymentSystem:
+    def process_payment(self, amount):
+        print(f"מעבד תשלום: {amount} ש\"ח")
+    
+    def refund_payment(self, amount):
+        print(f"מחזיר תשלום: {amount} ש\"ח")
 
-    def operation(self) -> str:
-        results = []
-        results.append("Facade initializes subsystems:")
-        results.append(self._subsystem1.operation1())
-        results.append(self._subsystem2.operation1())
-        results.append("Facade orders subsystems to perform the action:")
-        results.append(self._subsystem1.operation_n())
-        results.append(self._subsystem2.operation_z())
-        return "\n".join(results)
+class RestaurantFacade:
+    def __init__(self):
+        self._order_system = OrderSystem()
+        self._kitchen_system = KitchenSystem()
+        self._payment_system = PaymentSystem()
+    
+    def order_food(self, order, amount):
+        self._order_system.place_order(order)
+        self._kitchen_system.prepare_food(order)
+        self._kitchen_system.package_food(order)
+        self._payment_system.process_payment(amount)
+    
+    def cancel_order(self, order, amount):
+        self._order_system.cancel_order(order)
+        self._payment_system.refund_payment(amount)
 
 # שימוש
-def client_code(facade: Facade) -> None:
-    print(facade.operation())
-
 if __name__ == "__main__":
-    subsystem1 = Subsystem1()
-    subsystem2 = Subsystem2()
-    facade = Facade(subsystem1, subsystem2)
-    client_code(facade)</code></pre>
+    restaurant = RestaurantFacade()
+    
+    # הזמנת אוכל
+    restaurant.order_food("פיצה", 50)
+    
+    # ביטול הזמנה
+    restaurant.cancel_order("פיצה", 50)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול חשבונות
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת לניהול חשבונות. יש לנו מערכת מורכבת שמטפלת בחשבונות, תשלומים, ודוחות. ה-Facade מספק ממשק פשוט למשתמש.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Facade Pattern להסתרת המורכבות של מערכת. הממשק הפשוט מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>class AccountSystem:
+    def create_account(self, customer):
+        print(f"יוצר חשבון עבור: {customer}")
+    
+    def close_account(self, customer):
+        print(f"סוגר חשבון עבור: {customer}")
+
+class PaymentSystem:
+    def process_payment(self, customer, amount):
+        print(f"מעבד תשלום עבור {customer}: {amount} ש\"ח")
+    
+    def refund_payment(self, customer, amount):
+        print(f"מחזיר תשלום עבור {customer}: {amount} ש\"ח")
+
+class ReportSystem:
+    def generate_report(self, customer):
+        print(f"מייצר דוח עבור: {customer}")
+    
+    def send_report(self, customer):
+        print(f"שולח דוח ל: {customer}")
+
+class BankingFacade:
+    def __init__(self):
+        self._account_system = AccountSystem()
+        self._payment_system = PaymentSystem()
+        self._report_system = ReportSystem()
+    
+    def open_account(self, customer):
+        self._account_system.create_account(customer)
+        self._report_system.generate_report(customer)
+    
+    def close_account(self, customer):
+        self._account_system.close_account(customer)
+        self._report_system.generate_report(customer)
+    
+    def make_payment(self, customer, amount):
+        self._payment_system.process_payment(customer, amount)
+        self._report_system.generate_report(customer)
+        self._report_system.send_report(customer)
+    
+    def refund_payment(self, customer, amount):
+        self._payment_system.refund_payment(customer, amount)
+        self._report_system.generate_report(customer)
+        self._report_system.send_report(customer)
+
+# שימוש
+if __name__ == "__main__":
+    bank = BankingFacade()
+    
+    # פתיחת חשבון
+    bank.open_account("ישראל ישראלי")
+    
+    # ביצוע תשלום
+    bank.make_payment("ישראל ישראלי", 1000)
+    
+    # החזרת תשלום
+    bank.refund_payment("ישראל ישראלי", 500)
+    
+    # סגירת חשבון
+    bank.close_account("ישראל ישראלי")</code></pre>
         </section>
 
         <section class="card">
@@ -97,11 +231,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מספקת ממשק פשוט למערכת מורכבת</li>
-                <li>מסתירה את המורכבות של המערכת מהלקוח</li>
-                <li>מפחיתה את התלות בין הלקוח למערכת</li>
-                <li>מספקת נקודת כניסה אחת למערכת</li>
+                <li>מאפשרת הסתרת המורכבות של מערכת</li>
+                <li>מאפשרת הצגת ממשק פשוט למשתמש</li>
+                <li>מאפשרת הפרדה בין הממשק למימוש</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הסתרת המורכבות של מערכת</li>
+                <li>מאפשרת הצגת ממשק פשוט למשתמש</li>
+                <li>מאפשרת הפרדה בין הממשק למימוש</li>
+                <li>מאפשרת שמירה על עקרון ה-Single Responsibility Principle</li>
+                <li>מאפשרת שימוש חוזר בקוד קיים</li>
+                <li>מאפשרת שינוי המימוש מבלי להשפיע על הממשק</li>
+                <li>מאפשרת הפחתת תלויות בין המרכיבים</li>
             </ul>
         </section>
 
@@ -110,11 +255,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה ליצור קוד מורכב</li>
-                <li>עלולה ליצור קוד קשה לתחזוקה</li>
-                <li>עלולה ליצור קוד קשה להבנה</li>
-                <li>עלולה ליצור קוד קשה לבדיקה</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון ב-Facade</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון ב-Facade</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -123,6 +301,7 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -130,11 +309,35 @@ if __name__ == "__main__":
                 </tr>
                 <tr>
                     <td>Adapter</td>
-                    <td>מתמקדת בהתאמת ממשקים, בעוד Facade מתמקדת בהפשטת מערכת מורכבת</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Facade מתמקדת בהסתרת מורכבות</td>
                 </tr>
                 <tr>
                     <td>Mediator</td>
-                    <td>מתמקדת בתיאום בין אובייקטים, בעוד Facade מתמקדת בהפשטת מערכת מורכבת</td>
+                    <td>מתמקדת בתיווך בין אובייקטים, בעוד Facade מתמקדת בהסתרת מורכבות</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Adapter</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Facade מתמקדת בהסתרת מורכבות</td>
+                </tr>
+                <tr>
+                    <td>Mediator</td>
+                    <td>מתמקדת בתיווך בין אובייקטים, בעוד Facade מתמקדת בהסתרת מורכבות</td>
+                </tr>
+                <tr>
+                    <td>Proxy</td>
+                    <td>מתמקדת בשליטה בגישה, בעוד Facade מתמקדת בהסתרת מורכבות</td>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקדת ביצירת משפחות של אובייקטים, בעוד Facade מתמקדת בהסתרת מורכבות</td>
                 </tr>
             </table>
         </section>
@@ -144,12 +347,67 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Facade במקרים הבאים:</p>
             <ol>
-                <li>מערכת ניהול קבצים עם תמיכה בפורמטים שונים</li>
-                <li>מערכת תקשורת עם פרוטוקולים שונים</li>
-                <li>מערכת ניהול בסיסי נתונים עם תמיכה במנועים שונים</li>
+                <li>מערכת ניהול מסעדה</li>
+                <li>מערכת ניהול חשבונות</li>
+                <li>מערכת ניהול מלאי</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Facade במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול מסעדה</li>
+                <li>מערכת ניהול חשבונות</li>
+                <li>מערכת ניהול מלאי</li>
+                <li>מערכת ניהול הרשאות</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שה-Facade מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שה-Facade מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול מסעדה</li>
+                <li>מערכות ניהול חשבונות</li>
+                <li>מערכות ניהול מלאי</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות ניהול מסעדה</li>
+                <li>מערכות ניהול חשבונות</li>
+                <li>מערכות ניהול מלאי</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול תצוגה</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -160,6 +418,7 @@ if __name__ == "__main__":
             <ul>
                 <li><a href="adapter.html" class="flex-center"><i class="fas fa-plug icon"></i>Adapter</a></li>
                 <li><a href="mediator.html" class="flex-center"><i class="fas fa-comments icon"></i>Mediator</a></li>
+                <li><a href="proxy.html" class="flex-center"><i class="fas fa-shield-alt icon"></i>Proxy</a></li>
                 <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
             </ul>
         </div>

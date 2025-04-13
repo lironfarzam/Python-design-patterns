@@ -20,7 +20,7 @@
                 <i class="fas fa-sync icon"></i>
                 Iterator Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -29,20 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Iterator?
             </h2>
-            <p>תבנית Iterator מאפשרת גישה רציפה לאלמנטים של מבנה נתונים מבלי לחשוף את המבנה הפנימי שלו.</p>
+            <p>תבנית Iterator היא תבנית עיצוב התנהגותית המאפשרת גישה רציפה לאלמנטים של מבנה נתונים מבלי לחשוף את המבנה הפנימי שלו. התבנית מפרידה בין הלוגיקה של המעבר על האלמנטים לבין המבנה עצמו.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שאתם רוצים לעבור על כל הספרים בספרייה. במקום לדעת איך הספרים מאורגנים בספרייה, אתם משתמשים בקטלוג שמאפשר לכם לעבור על הספרים אחד אחרי השני. הקטלוג הוא ה-Iterator - הוא יודע איך לעבור על הספרים מבלי שתצטרכו לדעת איך הם מאורגנים.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Single Responsibility Principle על ידי הפרדת הלוגיקה של המעבר על האלמנטים מהמבנה עצמו. זה מאפשר שימוש באותו קוד למעבר על מבני נתונים שונים, ומאפשר שינוי המימוש של המבנה מבלי להשפיע על הקוד שמשתמש בו.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים לגשת לאלמנטים של מבנה נתונים מבלי לחשוף את המבנה הפנימי</li>
-                <li>כאשר רוצים לתמוך במספר דרכים שונות לעבור על מבנה נתונים</li>
-                <li>כאשר רוצים לספק ממשק אחיד למבני נתונים שונים</li>
+                <li>כאשר אתם צריכים לעבור על אלמנטים של מבנה נתונים</li>
+                <li>כאשר אתם צריכים להסתיר את המבנה הפנימי של הנתונים</li>
+                <li>כאשר אתם צריכים לאפשר מעבר על מבני נתונים שונים באותו אופן</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך לעבור על אלמנטים של מבנה נתונים</li>
+                <li>כאשר יש צורך להסתיר את המבנה הפנימי של הנתונים</li>
+                <li>כאשר יש צורך לאפשר מעבר על מבני נתונים שונים באותו אופן</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Single Responsibility Principle</li>
+                <li>כאשר יש צורך לאפשר שינוי המימוש של המבנה מבלי להשפיע על הקוד שמשתמש בו</li>
+                <li>כאשר יש צורך לאפשר מעבר על מבני נתונים בצורה דינמית</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Iterator</strong> - הממשק שמגדיר את הפעולות המשותפות לכל האיטרטורים</li>
+                <li><strong>ConcreteIterator</strong> - המימוש של הממשק</li>
+                <li><strong>Aggregate</strong> - הממשק שמגדיר את הפעולות ליצירת איטרטור</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Iterator</strong> - הממשק שמגדיר את הפעולות המשותפות לכל האיטרטורים</li>
+                <li><strong>ConcreteIterator</strong> - המימוש של הממשק</li>
+                <li><strong>Aggregate</strong> - הממשק שמגדיר את הפעולות ליצירת איטרטור</li>
+                <li><strong>ConcreteAggregate</strong> - המימוש של הממשק</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Iterator מגדיר את הממשק</li>
+                <li>ConcreteIterator מיישם את הממשק</li>
+                <li>Aggregate מגדיר את הממשק ליצירת איטרטור</li>
+                <li>ConcreteAggregate מיישם את הממשק</li>
             </ul>
         </section>
 
@@ -51,62 +99,177 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול ספרים בספרייה. יש לנו אוסף של ספרים, ויש לנו איטרטור שמאפשר לנו לעבור על הספרים אחד אחרי השני.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Iterator Pattern להפרדת הלוגיקה של המעבר על האלמנטים מהמבנה עצמו. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
             <pre><code>from abc import ABC, abstractmethod
-from typing import Any, List, Optional
+from typing import List, Any
 
-# ממשק משותף לאיטרטור
+class Book:
+    def __init__(self, title: str, author: str):
+        self._title = title
+        self._author = author
+    
+    def get_title(self) -> str:
+        return self._title
+    
+    def get_author(self) -> str:
+        return self._author
+
 class Iterator(ABC):
-    @abstractmethod
-    def next(self) -> Optional[Any]:
-        pass
-
     @abstractmethod
     def has_next(self) -> bool:
         pass
+    
+    @abstractmethod
+    def next(self) -> Any:
+        pass
 
-# ממשק משותף למבנה נתונים
+class BookIterator(Iterator):
+    def __init__(self, books: List[Book]):
+        self._books = books
+        self._index = 0
+    
+    def has_next(self) -> bool:
+        return self._index < len(self._books)
+    
+    def next(self) -> Book:
+        if self.has_next():
+            book = self._books[self._index]
+            self._index += 1
+            return book
+        else:
+            raise StopIteration()
+
 class Aggregate(ABC):
     @abstractmethod
     def create_iterator(self) -> Iterator:
         pass
 
-# מימוש קונקרטי של איטרטור
-class ConcreteIterator(Iterator):
-    def __init__(self, items: List[Any]):
-        self._items = items
-        self._index = 0
-
-    def next(self) -> Optional[Any]:
-        if self.has_next():
-            item = self._items[self._index]
-            self._index += 1
-            return item
-        return None
-
-    def has_next(self) -> bool:
-        return self._index < len(self._items)
-
-# מימוש קונקרטי של מבנה נתונים
-class ConcreteAggregate(Aggregate):
+class BookCollection(Aggregate):
     def __init__(self):
-        self._items: List[Any] = []
-
-    def add_item(self, item: Any) -> None:
-        self._items.append(item)
-
+        self._books: List[Book] = []
+    
+    def add_book(self, book: Book):
+        self._books.append(book)
+    
     def create_iterator(self) -> Iterator:
-        return ConcreteIterator(self._items)
+        return BookIterator(self._books)
 
 # שימוש
-def client_code() -> None:
-    aggregate = ConcreteAggregate()
-    aggregate.add_item("א")
-    aggregate.add_item("ב")
-    aggregate.add_item("ג")
-
-    iterator = aggregate.create_iterator()
+if __name__ == "__main__":
+    # יצירת אוסף ספרים
+    collection = BookCollection()
+    
+    # הוספת ספרים
+    collection.add_book(Book("הארי פוטר", "ג'יי קיי רולינג"))
+    collection.add_book(Book("שר הטבעות", "ג'יי אר אר טולקין"))
+    collection.add_book(Book("מלחמה ושלום", "לב טולסטוי"))
+    
+    # יצירת איטרטור
+    iterator = collection.create_iterator()
+    
+    # מעבר על הספרים
     while iterator.has_next():
-        print(iterator.next())</code></pre>
+        book = iterator.next()
+        print(f"{book.get_title()} מאת {book.get_author()}")</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול משימות
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת לניהול משימות. יש לנו אוסף של משימות, ויש לנו איטרטור שמאפשר לנו לעבור על המשימות לפי סדר העדיפות.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Iterator Pattern להפרדת הלוגיקה של המעבר על האלמנטים מהמבנה עצמו. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List, Any
+from enum import Enum
+
+class Priority(Enum):
+    LOW = 1
+    MEDIUM = 2
+    HIGH = 3
+
+class Task:
+    def __init__(self, title: str, description: str, priority: Priority):
+        self._title = title
+        self._description = description
+        self._priority = priority
+    
+    def get_title(self) -> str:
+        return self._title
+    
+    def get_description(self) -> str:
+        return self._description
+    
+    def get_priority(self) -> Priority:
+        return self._priority
+
+class Iterator(ABC):
+    @abstractmethod
+    def has_next(self) -> bool:
+        pass
+    
+    @abstractmethod
+    def next(self) -> Any:
+        pass
+
+class PriorityTaskIterator(Iterator):
+    def __init__(self, tasks: List[Task]):
+        self._tasks = sorted(tasks, key=lambda task: task.get_priority().value, reverse=True)
+        self._index = 0
+    
+    def has_next(self) -> bool:
+        return self._index < len(self._tasks)
+    
+    def next(self) -> Task:
+        if self.has_next():
+            task = self._tasks[self._index]
+            self._index += 1
+            return task
+        else:
+            raise StopIteration()
+
+class Aggregate(ABC):
+    @abstractmethod
+    def create_iterator(self) -> Iterator:
+        pass
+
+class TaskCollection(Aggregate):
+    def __init__(self):
+        self._tasks: List[Task] = []
+    
+    def add_task(self, task: Task):
+        self._tasks.append(task)
+    
+    def create_iterator(self) -> Iterator:
+        return PriorityTaskIterator(self._tasks)
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת אוסף משימות
+    collection = TaskCollection()
+    
+    # הוספת משימות
+    collection.add_task(Task("לקנות חלב", "לקנות חלב מהסופר", Priority.LOW))
+    collection.add_task(Task("לנקות את הבית", "לנקות את הבית", Priority.MEDIUM))
+    collection.add_task(Task("להכין מצגת", "להכין מצגת לפגישה", Priority.HIGH))
+    
+    # יצירת איטרטור
+    iterator = collection.create_iterator()
+    
+    # מעבר על המשימות
+    while iterator.has_next():
+        task = iterator.next()
+        print(f"{task.get_title()} - עדיפות: {task.get_priority().name}")</code></pre>
         </section>
 
         <section class="card">
@@ -114,11 +277,22 @@ def client_code() -> None:
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשר גישה לאלמנטים מבלי לחשוף את המבנה הפנימי</li>
-                <li>מאפשר מספר דרכים שונות לעבור על מבנה נתונים</li>
-                <li>מאפשר שינוי המבנה הפנימי ללא השפעה על הקוד החיצוני</li>
-                <li>מאפשר לעצור את המעבר בכל רגע</li>
+                <li>מאפשרת גישה רציפה לאלמנטים של מבנה נתונים</li>
+                <li>מאפשרת להסתיר את המבנה הפנימי של הנתונים</li>
+                <li>מאפשרת מעבר על מבני נתונים שונים באותו אופן</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת גישה רציפה לאלמנטים של מבנה נתונים</li>
+                <li>מאפשרת להסתיר את המבנה הפנימי של הנתונים</li>
+                <li>מאפשרת מעבר על מבני נתונים שונים באותו אופן</li>
+                <li>מאפשרת שמירה על עקרון ה-Single Responsibility Principle</li>
+                <li>מאפשרת שינוי המימוש של המבנה מבלי להשפיע על הקוד שמשתמש בו</li>
+                <li>מאפשרת מעבר על מבני נתונים בצורה דינמית</li>
+                <li>מאפשרת הפחתת תלויות בין המרכיבים</li>
             </ul>
         </section>
 
@@ -127,10 +301,44 @@ def client_code() -> None:
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלול להגדיל את המורכבות של הקוד</li>
-                <li>עלול להשפיע על הביצועים</li>
-                <li>לא מתאים למבני נתונים פשוטים</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון באיטרטור</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון באיטרטור</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -139,18 +347,43 @@ def client_code() -> None:
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
                     <th>הבדל</th>
                 </tr>
                 <tr>
+                    <td>Visitor</td>
+                    <td>מתמקדת בביצוע פעולות על אובייקטים, בעוד Iterator מתמקדת במעבר על אובייקטים</td>
+                </tr>
+                <tr>
                     <td>Composite</td>
-                    <td>מתמקד במבנה, בעוד Iterator מתמקד בגישה לאלמנטים</td>
+                    <td>מתמקדת במבנה היררכי, בעוד Iterator מתמקדת במעבר על אובייקטים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
                 </tr>
                 <tr>
                     <td>Visitor</td>
-                    <td>מתמקד בפעולות, בעוד Iterator מתמקד בגישה</td>
+                    <td>מתמקדת בביצוע פעולות על אובייקטים, בעוד Iterator מתמקדת במעבר על אובייקטים</td>
+                </tr>
+                <tr>
+                    <td>Composite</td>
+                    <td>מתמקדת במבנה היררכי, בעוד Iterator מתמקדת במעבר על אובייקטים</td>
+                </tr>
+                <tr>
+                    <td>Observer</td>
+                    <td>מתמקדת בהודעות, בעוד Iterator מתמקדת במעבר על אובייקטים</td>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Iterator מתמקדת במעבר על אובייקטים</td>
                 </tr>
             </table>
         </section>
@@ -160,12 +393,67 @@ def client_code() -> None:
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Iterator במקרים הבאים:</p>
             <ol>
-                <li>מעבר על עץ בינארי</li>
-                <li>מעבר על גרף</li>
-                <li>מעבר על מבנה נתונים מורכב</li>
+                <li>מערכת ניהול ספרים</li>
+                <li>מערכת ניהול משימות</li>
+                <li>מערכת ניהול מסמכים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Iterator במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול ספרים</li>
+                <li>מערכת ניהול משימות</li>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול תצוגה</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאיטרטור מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאיטרטור מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול ספרים</li>
+                <li>מערכות ניהול משימות</li>
+                <li>מערכות ניהול מסמכים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות ניהול ספרים</li>
+                <li>מערכות ניהול משימות</li>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול תצוגה</li>
+                <li>מערכות ניהול זיכרון מטמון</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -174,9 +462,10 @@ def client_code() -> None:
                 תבניות קשורות
             </h2>
             <ul>
+                <li><a href="visitor.html" class="flex-center"><i class="fas fa-user icon"></i>Visitor</a></li>
                 <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
-                <li><a href="visitor.html" class="flex-center"><i class="fas fa-user-check icon"></i>Visitor</a></li>
-                <li><a href="memento.html" class="flex-center"><i class="fas fa-history icon"></i>Memento</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
             </ul>
         </div>
     </main>

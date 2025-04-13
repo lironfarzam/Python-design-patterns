@@ -29,21 +29,70 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Command?
             </h2>
-            <p>תבנית Command הופכת בקשות לאובייקטים, ומאפשרת הפרדה בין השולח למקבל, תוך מתן אפשרות לפרמטריזציה, תור, ביטול וחזרה על פעולות.</p>
+            <p>תבנית Command היא תבנית עיצוב התנהגותית המאפשרת להפוך בקשות לאובייקטים, ובכך מאפשרת הפרדה בין השולח לבין המבצע של הבקשה.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם שלט רחוק עם כפתורים. כל כפתור הוא פקודה שמבצעת פעולה מסוימת. השלט עצמו לא יודע מה כל פקודה עושה - הוא רק שולח את הפקודה למכשיר המתאים. כך אפשר להוסיף כפתורים חדשים בלי לשנות את השלט.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Single Responsibility Principle על ידי הפרדת הפעולות לאובייקטים נפרדים, ומאפשרת גמישות רבה בביצוע פעולות. כל פקודה היא אובייקט שמכיל את כל המידע הדרוש לביצוע הפעולה.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים להפריד בין השולח למקבל</li>
-                <li>כאשר רוצים לתמוך בביטול וחזרה על פעולות</li>
-                <li>כאשר רוצים ליצור תור של בקשות</li>
-                <li>כאשר רוצים לתמוך בפעולות מורכבות</li>
+                <li>כאשר יש צורך להפריד בין השולח למבצע</li>
+                <li>כאשר יש צורך לתמוך בביטול פעולות</li>
+                <li>כאשר יש צורך לתמוך בתור פקודות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להפריד בין השולח למבצע</li>
+                <li>כאשר יש צורך לתמוך בביטול פעולות</li>
+                <li>כאשר יש צורך לתמוך בתור פקודות</li>
+                <li>כאשר יש צורך לשמור על היסטוריית פעולות</li>
+                <li>כאשר יש צורך לתמוך בפקודות מורכבות</li>
+                <li>כאשר יש צורך לתמוך בפקודות מקרו</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Command</strong> - הממשק שמגדיר את הפעולות המשותפות לכל הפקודות</li>
+                <li><strong>ConcreteCommand</strong> - המימוש הספציפי של הפקודה</li>
+                <li><strong>Invoker</strong> - מי שמבקש את ביצוע הפקודה</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Command</strong> - הממשק שמגדיר את הפעולות המשותפות לכל הפקודות</li>
+                <li><strong>ConcreteCommand</strong> - המימוש הספציפי של הפקודה</li>
+                <li><strong>Invoker</strong> - מי שמבקש את ביצוע הפקודה</li>
+                <li><strong>Receiver</strong> - מי שמבצע את הפעולה בפועל</li>
+                <li><strong>Client</strong> - מי שיוצר את הפקודה ומגדיר את הקשר בין השולח למבצע</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Command מגדיר את הממשק</li>
+                <li>ConcreteCommand מיישם את הממשק</li>
+                <li>Invoker מבקש את ביצוע הפקודה</li>
+                <li>Receiver מבצע את הפעולה</li>
+                <li>Client יוצר את הפקודה</li>
             </ul>
         </section>
 
@@ -52,79 +101,228 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת פשוטה לניהול משימות. המערכת מאפשרת להוסיף, להסיר ולבטל משימות.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Command Pattern להפרדה בין הפעולות השונות. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
             <pre><code>from abc import ABC, abstractmethod
-from typing import Any
+from typing import List
+
+class Task:
+    def __init__(self, title: str, description: str):
+        self._title = title
+        self._description = description
+        self._completed = False
+    
+    def get_title(self) -> str:
+        return self._title
+    
+    def get_description(self) -> str:
+        return self._description
+    
+    def is_completed(self) -> bool:
+        return self._completed
+    
+    def complete(self) -> None:
+        self._completed = True
+    
+    def uncomplete(self) -> None:
+        self._completed = False
 
 class Command(ABC):
     @abstractmethod
     def execute(self) -> None:
         pass
-
+    
     @abstractmethod
     def undo(self) -> None:
         pass
 
-class Receiver:
-    def action(self, data: str) -> None:
-        print(f"ביצוע פעולה עם הנתונים: {data}")
-
-    def reverse_action(self, data: str) -> None:
-        print(f"ביטול פעולה עם הנתונים: {data}")
-
-class ConcreteCommand(Command):
-    def __init__(self, receiver: Receiver, data: str) -> None:
-        self._receiver = receiver
-        self._data = data
-
+class AddTaskCommand(Command):
+    def __init__(self, tasks: List[Task], task: Task):
+        self._tasks = tasks
+        self._task = task
+    
     def execute(self) -> None:
-        self._receiver.action(self._data)
-
+        self._tasks.append(self._task)
+        print(f"משימה נוספה: {self._task.get_title()}")
+    
     def undo(self) -> None:
-        self._receiver.reverse_action(self._data)
+        self._tasks.remove(self._task)
+        print(f"משימה הוסרה: {self._task.get_title()}")
 
-class Invoker:
-    def __init__(self) -> None:
-        self._commands: list[Command] = []
-        self._current = -1
+class CompleteTaskCommand(Command):
+    def __init__(self, task: Task):
+        self._task = task
+        self._was_completed = False
+    
+    def execute(self) -> None:
+        self._was_completed = self._task.is_completed()
+        self._task.complete()
+        print(f"משימה הושלמה: {self._task.get_title()}")
+    
+    def undo(self) -> None:
+        if not self._was_completed:
+            self._task.uncomplete()
+            print(f"משימה בוטלה: {self._task.get_title()}")
 
-    def execute_command(self, command: Command) -> None:
+class TaskManager:
+    def __init__(self):
+        self._tasks: List[Task] = []
+        self._history: List[Command] = []
+    
+    def add_task(self, task: Task) -> None:
+        command = AddTaskCommand(self._tasks, task)
         command.execute()
-        self._commands = self._commands[:self._current + 1]
-        self._commands.append(command)
-        self._current = len(self._commands) - 1
-
-    def undo(self) -> None:
-        if self._current >= 0:
-            self._commands[self._current].undo()
-            self._current -= 1
-
-    def redo(self) -> None:
-        if self._current < len(self._commands) - 1:
-            self._current += 1
-            self._commands[self._current].execute()
+        self._history.append(command)
+    
+    def complete_task(self, task: Task) -> None:
+        command = CompleteTaskCommand(task)
+        command.execute()
+        self._history.append(command)
+    
+    def undo_last(self) -> None:
+        if self._history:
+            command = self._history.pop()
+            command.undo()
 
 # שימוש
-def client_code() -> None:
-    receiver = Receiver()
-    invoker = Invoker()
-
-    command1 = ConcreteCommand(receiver, "נתונים 1")
-    command2 = ConcreteCommand(receiver, "נתונים 2")
-
-    invoker.execute_command(command1)
-    invoker.execute_command(command2)
-
-    print("\nביטול פעולות:")
-    invoker.undo()
-    invoker.undo()
-
-    print("\nחזרה על פעולות:")
-    invoker.redo()
-    invoker.redo()
-
-# דוגמה לשימוש
 if __name__ == "__main__":
-    client_code()</code></pre>
+    # יצירת מנהל משימות
+    manager = TaskManager()
+    
+    # יצירת משימות
+    task1 = Task("קניות", "לקנות חלב וביצים")
+    task2 = Task("ניקיון", "לנקות את הבית")
+    
+    # הוספת משימות
+    manager.add_task(task1)
+    manager.add_task(task2)
+    
+    # השלמת משימה
+    manager.complete_task(task1)
+    
+    # ביטול הפעולה האחרונה
+    manager.undo_last()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת עריכת טקסט
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת עריכת טקסט פשוטה. המערכת מאפשרת להוסיף טקסט, למחוק טקסט ולבטל פעולות.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Command Pattern להפרדה בין הפעולות השונות. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List
+
+class TextEditor:
+    def __init__(self):
+        self._text = ""
+        self._cursor_position = 0
+    
+    def get_text(self) -> str:
+        return self._text
+    
+    def get_cursor_position(self) -> int:
+        return self._cursor_position
+    
+    def set_cursor_position(self, position: int) -> None:
+        self._cursor_position = max(0, min(position, len(self._text)))
+    
+    def insert_text(self, text: str) -> None:
+        self._text = (self._text[:self._cursor_position] + 
+                     text + 
+                     self._text[self._cursor_position:])
+        self._cursor_position += len(text)
+    
+    def delete_text(self, length: int) -> None:
+        start = self._cursor_position
+        end = min(start + length, len(self._text))
+        self._text = self._text[:start] + self._text[end:]
+
+class Command(ABC):
+    @abstractmethod
+    def execute(self) -> None:
+        pass
+    
+    @abstractmethod
+    def undo(self) -> None:
+        pass
+
+class InsertTextCommand(Command):
+    def __init__(self, editor: TextEditor, text: str):
+        self._editor = editor
+        self._text = text
+        self._position = editor.get_cursor_position()
+    
+    def execute(self) -> None:
+        self._editor.insert_text(self._text)
+    
+    def undo(self) -> None:
+        self._editor.set_cursor_position(self._position)
+        self._editor.delete_text(len(self._text))
+
+class DeleteTextCommand(Command):
+    def __init__(self, editor: TextEditor, length: int):
+        self._editor = editor
+        self._length = length
+        self._position = editor.get_cursor_position()
+        self._deleted_text = editor.get_text()[self._position:self._position + length]
+    
+    def execute(self) -> None:
+        self._editor.delete_text(self._length)
+    
+    def undo(self) -> None:
+        self._editor.set_cursor_position(self._position)
+        self._editor.insert_text(self._deleted_text)
+
+class TextEditorApplication:
+    def __init__(self):
+        self._editor = TextEditor()
+        self._history: List[Command] = []
+    
+    def insert_text(self, text: str) -> None:
+        command = InsertTextCommand(self._editor, text)
+        command.execute()
+        self._history.append(command)
+    
+    def delete_text(self, length: int) -> None:
+        command = DeleteTextCommand(self._editor, length)
+        command.execute()
+        self._history.append(command)
+    
+    def undo_last(self) -> None:
+        if self._history:
+            command = self._history.pop()
+            command.undo()
+    
+    def get_text(self) -> str:
+        return self._editor.get_text()
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת אפליקציית עורך טקסט
+    app = TextEditorApplication()
+    
+    # הוספת טקסט
+    app.insert_text("שלום")
+    app.insert_text(" עולם")
+    
+    # מחיקת טקסט
+    app.delete_text(3)
+    
+    # ביטול הפעולה האחרונה
+    app.undo_last()
+    
+    # הדפסת הטקסט הסופי
+    print(app.get_text())</code></pre>
         </section>
 
         <section class="card">
@@ -132,11 +330,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מפרידה בין השולח למקבל</li>
-                <li>מאפשרת ביטול וחזרה על פעולות</li>
-                <li>מאפשרת יצירת תור של בקשות</li>
-                <li>מאפשרת הרחבה קלה של המערכת</li>
+                <li>מאפשרת הפרדה בין השולח למבצע</li>
+                <li>מאפשרת תמיכה בביטול פעולות</li>
+                <li>מאפשרת תמיכה בתור פקודות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הפרדה בין השולח למבצע</li>
+                <li>מאפשרת תמיכה בביטול פעולות</li>
+                <li>מאפשרת תמיכה בתור פקודות</li>
+                <li>מאפשרת שמירה על היסטוריית פעולות</li>
+                <li>מאפשרת תמיכה בפקודות מורכבות</li>
+                <li>מאפשרת תמיכה בפקודות מקרו</li>
+                <li>מאפשרת ניהול טוב יותר של הפעולות</li>
             </ul>
         </section>
 
@@ -145,10 +354,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה ליצור מספר רב של מחלקות</li>
                 <li>עלולה להקשות על הבנת הקוד</li>
-                <li>עלולה להאט את הביצועים</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -157,18 +400,43 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
                     <th>הבדל</th>
                 </tr>
                 <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Command מתמקדת בפעולות</td>
+                </tr>
+                <tr>
                     <td>Chain of Responsibility</td>
-                    <td>מתמקדת בטיפול בבקשות, בעוד Command מתמקדת בהקפצת בקשות</td>
+                    <td>מתמקדת במטפלים, בעוד Command מתמקדת בפעולות</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
                 </tr>
                 <tr>
                     <td>Strategy</td>
                     <td>מתמקדת באלגוריתמים, בעוד Command מתמקדת בפעולות</td>
+                </tr>
+                <tr>
+                    <td>Chain of Responsibility</td>
+                    <td>מתמקדת במטפלים, בעוד Command מתמקדת בפעולות</td>
+                </tr>
+                <tr>
+                    <td>Observer</td>
+                    <td>מתמקדת בהודעות, בעוד Command מתמקדת בפעולות</td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>מתמקדת במצבים, בעוד Command מתמקדת בפעולות</td>
                 </tr>
             </table>
         </section>
@@ -178,12 +446,67 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Command במקרים הבאים:</p>
             <ol>
-                <li>מערכת עריכת טקסט עם ביטול וחזרה</li>
-                <li>מערכת ניהול משימות עם היסטוריה</li>
-                <li>מערכת בקרת מכשירים חכמים</li>
+                <li>מערכת ניהול משימות</li>
+                <li>מערכת עריכת טקסט</li>
+                <li>מערכת ניהול קבצים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Command במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול משימות</li>
+                <li>מערכת עריכת טקסט</li>
+                <li>מערכת ניהול קבצים</li>
+                <li>מערכת ניהול הרשאות</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהפקודות מספקות את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהפקודות מספקות את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול משימות</li>
+                <li>מערכות עריכת טקסט</li>
+                <li>מערכות ניהול קבצים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות ניהול משימות</li>
+                <li>מערכות עריכת טקסט</li>
+                <li>מערכות ניהול קבצים</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול פעולות</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -192,9 +515,10 @@ if __name__ == "__main__":
                 תבניות קשורות
             </h2>
             <ul>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
                 <li><a href="chain-of-responsibility.html" class="flex-center"><i class="fas fa-link icon"></i>Chain of Responsibility</a></li>
-                <li><a href="strategy.html" class="flex-center"><i class="fas fa-chess icon"></i>Strategy</a></li>
-                <li><a href="memento.html" class="flex-center"><i class="fas fa-history icon"></i>Memento</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
+                <li><a href="state.html" class="flex-center"><i class="fas fa-toggle-on icon"></i>State</a></li>
             </ul>
         </div>
     </main>

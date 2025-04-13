@@ -17,7 +17,7 @@
     <main class="main-content">
         <header class="rtl-container">
             <h1 class="flex-center">
-                <i class="fas fa-chess icon"></i>
+                <i class="fas fa-cogs icon"></i>
                 Strategy Pattern
             </h1>
             <a href="../index.html" class="flex-center">
@@ -29,21 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Strategy?
             </h2>
-            <p>תבנית Strategy מאפשרת להגדיר משפחה של אלגוריתמים, להפוך אותם להחלפים, ולהשתמש בהם באופן דינמי.</p>
+            <p>תבנית Strategy היא תבנית עיצוב התנהגותית המאפשרת להגדיר משפחה של אלגוריתמים, להעטיף כל אחד מהם, ולהפוך אותם להחלפים. התבנית מאפשרת לאלגוריתם להשתנות באופן עצמאי מהלקוחות שמשתמשים בו.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם אפליקציית ניווט. לפעמים אתם רוצים לנסוע בדרך המהירה ביותר, לפעמים בדרך הקצרה ביותר, ולפעמים בדרך עם הנוף היפה ביותר. במקום ליצור קוד מורכב שמטפל בכל האפשרויות, אתם יכולים להשתמש בתבנית Strategy כדי להחליף בין אסטרטגיות הניווט השונות בקלות.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Open/Closed Principle על ידי הפרדה בין האלגוריתם לבין הקוד שמשתמש בו. זה מאפשר הוספה של אלגוריתמים חדשים ללא צורך בשינוי הקוד הקיים, ומאפשר החלפה דינמית של אלגוריתמים בזמן ריצה.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר יש מספר אלגוריתמים שונים לביצוע אותה משימה</li>
-                <li>כאשר רוצים לאפשר החלפה דינמית של אלגוריתמים</li>
-                <li>כאשר רוצים להפריד בין האלגוריתם לבין הקוד שמשתמש בו</li>
-                <li>כאשר רוצים להימנע משימוש בתנאים מורכבים</li>
+                <li>כאשר יש צורך להשתמש במספר גרסאות של אלגוריתם</li>
+                <li>כאשר יש צורך להחליף בין אלגוריתמים בזמן ריצה</li>
+                <li>כאשר יש צורך להסתיר את המימוש של האלגוריתם מהלקוח</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להשתמש במספר גרסאות של אלגוריתם</li>
+                <li>כאשר יש צורך להחליף בין אלגוריתמים בזמן ריצה</li>
+                <li>כאשר יש צורך להסתיר את המימוש של האלגוריתם מהלקוח</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Open/Closed Principle</li>
+                <li>כאשר יש צורך להפחית את הצימוד בין הקוד שמשתמש באלגוריתם לבין האלגוריתם עצמו</li>
+                <li>כאשר יש צורך לאפשר הרחבה של המערכת עם אלגוריתמים חדשים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Strategy</strong> - הממשק שמגדיר את הפעולות המשותפות לכל האסטרטגיות</li>
+                <li><strong>ConcreteStrategy</strong> - המימוש של הממשק</li>
+                <li><strong>Context</strong> - האובייקט שמשתמש באסטרטגיה</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Strategy</strong> - הממשק שמגדיר את הפעולות המשותפות לכל האסטרטגיות</li>
+                <li><strong>ConcreteStrategy</strong> - המימוש של הממשק</li>
+                <li><strong>Context</strong> - האובייקט שמשתמש באסטרטגיה</li>
+                <li><strong>Client</strong> - האובייקט שיוצר ומשתמש ב-Context</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Strategy מגדיר את הממשק</li>
+                <li>ConcreteStrategy מיישם את הממשק</li>
+                <li>Context משתמש באסטרטגיה</li>
+                <li>Client יוצר ומשתמש ב-Context</li>
             </ul>
         </section>
 
@@ -52,45 +99,196 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
-            <pre><code>from abc import ABC, abstractmethod
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת תשלומים. יש לנו מספר אסטרטגיות תשלום שונות (כרטיס אשראי, PayPal, ביט), והלקוח יכול לבחור באיזו אסטרטגיה להשתמש.</p>
 
-class Strategy(ABC):
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Strategy Pattern להפרדה בין האלגוריתם לבין הקוד שמשתמש בו. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Dict
+
+class PaymentStrategy(ABC):
     @abstractmethod
-    def execute(self, data) -> None:
+    def pay(self, amount: float) -> bool:
         pass
 
-class ConcreteStrategyA(Strategy):
-    def execute(self, data) -> None:
-        print("ConcreteStrategyA: טיפול בנתונים")
-        # טיפול בנתונים לפי אסטרטגיה A
+class CreditCardStrategy(PaymentStrategy):
+    def __init__(self, card_number: str, cvv: str, expiry_date: str):
+        self._card_number = card_number
+        self._cvv = cvv
+        self._expiry_date = expiry_date
+    
+    def pay(self, amount: float) -> bool:
+        print(f"משלם {amount} ש\"ח באמצעות כרטיס אשראי {self._card_number}")
+        return True
 
-class ConcreteStrategyB(Strategy):
-    def execute(self, data) -> None:
-        print("ConcreteStrategyB: טיפול בנתונים")
-        # טיפול בנתונים לפי אסטרטגיה B
+class PayPalStrategy(PaymentStrategy):
+    def __init__(self, email: str, password: str):
+        self._email = email
+        self._password = password
+    
+    def pay(self, amount: float) -> bool:
+        print(f"משלם {amount} ש\"ח באמצעות PayPal {self._email}")
+        return True
 
-class Context:
-    def __init__(self, strategy: Strategy) -> None:
-        self._strategy = strategy
+class BitStrategy(PaymentStrategy):
+    def __init__(self, wallet_address: str):
+        self._wallet_address = wallet_address
+    
+    def pay(self, amount: float) -> bool:
+        print(f"משלם {amount} ש\"ח באמצעות ביט {self._wallet_address}")
+        return True
 
-    @property
-    def strategy(self) -> Strategy:
-        return self._strategy
-
-    @strategy.setter
-    def strategy(self, strategy: Strategy) -> None:
-        self._strategy = strategy
-
-    def execute_strategy(self, data) -> None:
-        self._strategy.execute(data)
+class ShoppingCart:
+    def __init__(self):
+        self._items: Dict[str, float] = {}
+        self._payment_strategy: PaymentStrategy = None
+    
+    def add_item(self, item: str, price: float) -> None:
+        self._items[item] = price
+    
+    def set_payment_strategy(self, strategy: PaymentStrategy) -> None:
+        self._payment_strategy = strategy
+    
+    def checkout(self) -> bool:
+        if not self._payment_strategy:
+            print("לא נבחרה אסטרטגיית תשלום")
+            return False
+        
+        total = sum(self._items.values())
+        return self._payment_strategy.pay(total)
 
 # שימוש
 if __name__ == "__main__":
-    context = Context(ConcreteStrategyA())
-    context.execute_strategy("נתונים")
+    # יצירת עגלת קניות
+    cart = ShoppingCart()
     
-    context.strategy = ConcreteStrategyB()
-    context.execute_strategy("נתונים")</code></pre>
+    # הוספת פריטים
+    cart.add_item("מחשב נייד", 5000.0)
+    cart.add_item("עכבר", 200.0)
+    
+    # תשלום בכרטיס אשראי
+    cart.set_payment_strategy(CreditCardStrategy("1234-5678-9012-3456", "123", "12/25"))
+    cart.checkout()
+    
+    # תשלום ב-PayPal
+    cart.set_payment_strategy(PayPalStrategy("user@example.com", "password"))
+    cart.checkout()
+    
+    # תשלום בביט
+    cart.set_payment_strategy(BitStrategy("1A2b3C4d5E6f7G8h9I0j"))
+    cart.checkout()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת מיון
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת מיון. יש לנו מספר אסטרטגיות מיון שונות (מיון מהיר, מיון בועות, מיון מיזוג), והלקוח יכול לבחור באיזו אסטרטגיה להשתמש.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Strategy Pattern להפרדה בין האלגוריתם לבין הקוד שמשתמש בו. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List, TypeVar, Generic
+
+T = TypeVar('T')
+
+class SortStrategy(ABC, Generic[T]):
+    @abstractmethod
+    def sort(self, items: List[T]) -> List[T]:
+        pass
+
+class QuickSortStrategy(SortStrategy[T]):
+    def sort(self, items: List[T]) -> List[T]:
+        print("ממיין באמצעות מיון מהיר")
+        if len(items) <= 1:
+            return items
+        
+        pivot = items[len(items) // 2]
+        left = [x for x in items if x < pivot]
+        middle = [x for x in items if x == pivot]
+        right = [x for x in items if x > pivot]
+        
+        return self.sort(left) + middle + self.sort(right)
+
+class BubbleSortStrategy(SortStrategy[T]):
+    def sort(self, items: List[T]) -> List[T]:
+        print("ממיין באמצעות מיון בועות")
+        n = len(items)
+        for i in range(n):
+            for j in range(0, n-i-1):
+                if items[j] > items[j+1]:
+                    items[j], items[j+1] = items[j+1], items[j]
+        return items
+
+class MergeSortStrategy(SortStrategy[T]):
+    def sort(self, items: List[T]) -> List[T]:
+        print("ממיין באמצעות מיון מיזוג")
+        if len(items) <= 1:
+            return items
+        
+        mid = len(items) // 2
+        left = items[:mid]
+        right = items[mid:]
+        
+        left = self.sort(left)
+        right = self.sort(right)
+        
+        return self._merge(left, right)
+    
+    def _merge(self, left: List[T], right: List[T]) -> List[T]:
+        result = []
+        i = j = 0
+        
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        
+        result.extend(left[i:])
+        result.extend(right[j:])
+        return result
+
+class Sorter(Generic[T]):
+    def __init__(self, strategy: SortStrategy[T] = None):
+        self._strategy = strategy
+    
+    def set_strategy(self, strategy: SortStrategy[T]) -> None:
+        self._strategy = strategy
+    
+    def sort(self, items: List[T]) -> List[T]:
+        if not self._strategy:
+            print("לא נבחרה אסטרטגיית מיון")
+            return items
+        
+        return self._strategy.sort(items)
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת מערך למבחן
+    numbers = [64, 34, 25, 12, 22, 11, 90]
+    
+    # יצירת ממיין
+    sorter = Sorter[int]()
+    
+    # מיון באמצעות מיון מהיר
+    sorter.set_strategy(QuickSortStrategy[int]())
+    print(sorter.sort(numbers))
+    
+    # מיון באמצעות מיון בועות
+    sorter.set_strategy(BubbleSortStrategy[int]())
+    print(sorter.sort(numbers))
+    
+    # מיון באמצעות מיון מיזוג
+    sorter.set_strategy(MergeSortStrategy[int]())
+    print(sorter.sort(numbers))</code></pre>
         </section>
 
         <section class="card">
@@ -98,11 +296,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשרת החלפה דינמית של אלגוריתמים</li>
-                <li>מפחיתה את הצורך בתנאים מורכבים</li>
-                <li>מאפשרת הוספה קלה של אלגוריתמים חדשים</li>
+                <li>מאפשרת החלפה קלה בין אלגוריתמים</li>
                 <li>מאפשרת הפרדה בין האלגוריתם לבין הקוד שמשתמש בו</li>
+                <li>מאפשרת הוספה של אלגוריתמים חדשים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת החלפה קלה בין אלגוריתמים</li>
+                <li>מאפשרת הפרדה בין האלגוריתם לבין הקוד שמשתמש בו</li>
+                <li>מאפשרת הוספה של אלגוריתמים חדשים</li>
+                <li>מאפשרת שמירה על עקרון ה-Open/Closed Principle</li>
+                <li>מאפשרת הפחתת הצימוד בין הקוד שמשתמש באלגוריתם לבין האלגוריתם עצמו</li>
+                <li>מאפשרת הרחבה של המערכת עם אלגוריתמים חדשים</li>
+                <li>מאפשרת החלפה דינמית של אלגוריתמים בזמן ריצה</li>
             </ul>
         </section>
 
@@ -111,11 +320,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה ליצור מספר רב של מחלקות</li>
                 <li>עלולה להקשות על הבנת הקוד</li>
-                <li>עלולה לגרום לביצועים נמוכים</li>
-                <li>עלולה ליצור קוד קשה לתחזוקה</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון באובייקטים</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון באובייקטים</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -124,6 +366,7 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -134,8 +377,32 @@ if __name__ == "__main__":
                     <td>מתמקדת במצבים, בעוד Strategy מתמקדת באלגוריתמים</td>
                 </tr>
                 <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Strategy מתמקדת באלגוריתמים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>מתמקדת במצבים, בעוד Strategy מתמקדת באלגוריתמים</td>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Strategy מתמקדת באלגוריתמים</td>
+                </tr>
+                <tr>
                     <td>Template Method</td>
-                    <td>משתמשת בירושה, בעוד Strategy משתמשת בהרכבה</td>
+                    <td>מתמקדת במבנה, בעוד Strategy מתמקדת באלגוריתמים</td>
+                </tr>
+                <tr>
+                    <td>Bridge</td>
+                    <td>מתמקדת בממשק, בעוד Strategy מתמקדת באלגוריתמים</td>
                 </tr>
             </table>
         </section>
@@ -145,12 +412,67 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Strategy במקרים הבאים:</p>
             <ol>
-                <li>מערכת מיון נתונים</li>
-                <li>מערכת חישוב מחירים</li>
-                <li>מערכת עיבוד תמונות</li>
+                <li>מערכת תשלומים</li>
+                <li>מערכת מיון</li>
+                <li>מערכת ניתוב</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Strategy במקרים הבאים:</p>
+            <ol>
+                <li>מערכת תשלומים</li>
+                <li>מערכת מיון</li>
+                <li>מערכת ניתוב</li>
+                <li>מערכת דחיסה</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאובייקטים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאובייקטים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות תשלומים</li>
+                <li>מערכות מיון</li>
+                <li>מערכות ניתוב</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות תשלומים</li>
+                <li>מערכות מיון</li>
+                <li>מערכות ניתוב</li>
+                <li>מערכות דחיסה</li>
+                <li>מערכות הצפנה</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -160,8 +482,9 @@ if __name__ == "__main__":
             </h2>
             <ul>
                 <li><a href="state.html" class="flex-center"><i class="fas fa-toggle-on icon"></i>State</a></li>
-                <li><a href="template-method.html" class="flex-center"><i class="fas fa-file-alt icon"></i>Template Method</a></li>
                 <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+                <li><a href="template-method.html" class="flex-center"><i class="fas fa-code-branch icon"></i>Template Method</a></li>
+                <li><a href="bridge.html" class="flex-center"><i class="fas fa-link icon"></i>Bridge</a></li>
             </ul>
         </div>
     </main>

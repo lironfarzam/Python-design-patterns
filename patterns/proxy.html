@@ -29,21 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Proxy?
             </h2>
-            <p>תבנית Proxy מספקת נציג או תחליף לאובייקט אחר, ומאפשרת שליטה בגישה אליו.</p>
+            <p>תבנית Proxy היא תבנית עיצוב מבנית המספקת אובייקט חלופי או מקום מחזיק (placeholder) לאובייקט אחר. התבנית משמשת כאשר יש צורך לשלוט בגישה לאובייקט, להוסיף פונקציונליות נוספת, או לדחות את יצירת האובייקט.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שאתם רוצים לגשת לחשבון הבנק שלכם. במקום לגשת ישירות לחשבון, אתם משתמשים בכרטיס אשראי. הכרטיס משמש כ-Proxy - הוא מאפשר גישה לחשבון, אבל גם מוסיף שכבות של אבטחה ופונקציונליות נוספת.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Single Responsibility Principle על ידי הפרדת השליטה בגישה מהפונקציונליות הבסיסית. זה מאפשר הוספת פונקציונליות נוספת מבלי לשנות את האובייקט המקורי.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים לשלוט בגישה לאובייקט</li>
-                <li>כאשר רוצים להוסיף פונקציונליות לאובייקט</li>
-                <li>כאשר רוצים להפחית את העומס על האובייקט</li>
-                <li>כאשר רוצים להסתיר את המימוש של האובייקט</li>
+                <li>כאשר אתם צריכים לשלוט בגישה לאובייקט</li>
+                <li>כאשר אתם צריכים להוסיף פונקציונליות נוספת</li>
+                <li>כאשר אתם צריכים לדחות את יצירת האובייקט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך לשלוט בגישה לאובייקט</li>
+                <li>כאשר יש צורך להוסיף פונקציונליות נוספת</li>
+                <li>כאשר יש צורך לדחות את יצירת האובייקט</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Single Responsibility Principle</li>
+                <li>כאשר יש צורך לאפשר שימוש חוזר בקוד קיים</li>
+                <li>כאשר יש צורך לאפשר שינוי המימוש מבלי להשפיע על הממשק</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Subject</strong> - הממשק שמגדיר את הפעולות המשותפות ל-Proxy ול-RealSubject</li>
+                <li><strong>RealSubject</strong> - האובייקט האמיתי שמספק את הפונקציונליות</li>
+                <li><strong>Proxy</strong> - האובייקט שמספק גישה ל-RealSubject</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Subject</strong> - הממשק שמגדיר את הפעולות המשותפות ל-Proxy ול-RealSubject</li>
+                <li><strong>RealSubject</strong> - האובייקט האמיתי שמספק את הפונקציונליות</li>
+                <li><strong>Proxy</strong> - האובייקט שמספק גישה ל-RealSubject</li>
+                <li><strong>Client</strong> - המשתמש שמשתמש ב-Proxy</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Subject מגדיר את הממשק</li>
+                <li>RealSubject מיישם את הממשק</li>
+                <li>Proxy מיישם את הממשק ומספק גישה ל-RealSubject</li>
+                <li>Client משתמש ב-Proxy</li>
             </ul>
         </section>
 
@@ -52,43 +99,166 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול חשבון בנק. יש לנו חשבון אמיתי, ויש לנו Proxy שמספק גישה לחשבון ומוסיף שכבות של אבטחה.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Proxy Pattern לשליטה בגישה לאובייקט. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
             <pre><code>from abc import ABC, abstractmethod
 
-class Subject(ABC):
+class BankAccount(ABC):
     @abstractmethod
-    def request(self) -> None:
+    def deposit(self, amount: float) -> None:
+        pass
+    
+    @abstractmethod
+    def withdraw(self, amount: float) -> None:
+        pass
+    
+    @abstractmethod
+    def get_balance(self) -> float:
         pass
 
-class RealSubject(Subject):
-    def request(self) -> None:
-        print("RealSubject: טיפול בבקשה")
+class RealBankAccount(BankAccount):
+    def __init__(self):
+        self._balance = 0.0
+    
+    def deposit(self, amount: float) -> None:
+        self._balance += amount
+        print(f"הפקדת {amount} ש\"ח. יתרה: {self._balance} ש\"ח")
+    
+    def withdraw(self, amount: float) -> None:
+        if self._balance >= amount:
+            self._balance -= amount
+            print(f"משיכת {amount} ש\"ח. יתרה: {self._balance} ש\"ח")
+        else:
+            print("אין מספיק כסף בחשבון")
+    
+    def get_balance(self) -> float:
+        return self._balance
 
-class Proxy(Subject):
-    def __init__(self, real_subject: RealSubject):
-        self._real_subject = real_subject
-
-    def request(self) -> None:
-        if self.check_access():
-            self._real_subject.request()
-            self.log_access()
-
-    def check_access(self) -> bool:
-        print("Proxy: בדיקת הרשאות")
-        return True
-
-    def log_access(self) -> None:
-        print("Proxy: רישום גישה")
+class BankAccountProxy(BankAccount):
+    def __init__(self, password: str):
+        self._password = password
+        self._real_account = None
+    
+    def _authenticate(self, password: str) -> bool:
+        return password == self._password
+    
+    def deposit(self, amount: float) -> None:
+        if self._authenticate(input("הזן סיסמה: ")):
+            if self._real_account is None:
+                self._real_account = RealBankAccount()
+            self._real_account.deposit(amount)
+        else:
+            print("סיסמה שגויה")
+    
+    def withdraw(self, amount: float) -> None:
+        if self._authenticate(input("הזן סיסמה: ")):
+            if self._real_account is None:
+                self._real_account = RealBankAccount()
+            self._real_account.withdraw(amount)
+        else:
+            print("סיסמה שגויה")
+    
+    def get_balance(self) -> float:
+        if self._authenticate(input("הזן סיסמה: ")):
+            if self._real_account is None:
+                self._real_account = RealBankAccount()
+            return self._real_account.get_balance()
+        else:
+            print("סיסמה שגויה")
+            return 0.0
 
 # שימוש
-def client_code(subject: Subject) -> None:
-    subject.request()
-
 if __name__ == "__main__":
-    real_subject = RealSubject()
-    client_code(real_subject)
+    account = BankAccountProxy("1234")
+    
+    # הפקדת כסף
+    account.deposit(1000)
+    
+    # משיכת כסף
+    account.withdraw(500)
+    
+    # בדיקת יתרה
+    print(f"יתרה: {account.get_balance()} ש\"ח")</code></pre>
+        </section>
 
-    proxy = Proxy(real_subject)
-    client_code(proxy)</code></pre>
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול קבצים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת לניהול קבצים. יש לנו קובץ אמיתי, ויש לנו Proxy שמספק גישה לקובץ ומוסיף שכבות של אבטחה וקישוריות.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Proxy Pattern לשליטה בגישה לאובייקט. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+
+class File(ABC):
+    @abstractmethod
+    def read(self) -> str:
+        pass
+    
+    @abstractmethod
+    def write(self, content: str) -> None:
+        pass
+
+class RealFile(File):
+    def __init__(self, filename: str):
+        self._filename = filename
+    
+    def read(self) -> str:
+        try:
+            with open(self._filename, 'r') as file:
+                return file.read()
+        except FileNotFoundError:
+            return "הקובץ לא נמצא"
+    
+    def write(self, content: str) -> None:
+        with open(self._filename, 'w') as file:
+            file.write(content)
+
+class FileProxy(File):
+    def __init__(self, filename: str, user: str):
+        self._filename = filename
+        self._user = user
+        self._real_file = None
+    
+    def _check_permissions(self) -> bool:
+        # בדיקת הרשאות משתמש
+        return self._user == "admin"
+    
+    def read(self) -> str:
+        if self._check_permissions():
+            if self._real_file is None:
+                self._real_file = RealFile(self._filename)
+            return self._real_file.read()
+        else:
+            return "אין הרשאות לקריאת הקובץ"
+    
+    def write(self, content: str) -> None:
+        if self._check_permissions():
+            if self._real_file is None:
+                self._real_file = RealFile(self._filename)
+            self._real_file.write(content)
+        else:
+            print("אין הרשאות לכתיבת הקובץ")
+
+# שימוש
+if __name__ == "__main__":
+    # משתמש רגיל
+    file1 = FileProxy("test.txt", "user")
+    print(file1.read())  # אין הרשאות לקריאת הקובץ
+    file1.write("Hello")  # אין הרשאות לכתיבת הקובץ
+    
+    # מנהל מערכת
+    file2 = FileProxy("test.txt", "admin")
+    file2.write("Hello World")
+    print(file2.read())  # Hello World</code></pre>
         </section>
 
         <section class="card">
@@ -96,11 +266,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
                 <li>מאפשרת שליטה בגישה לאובייקט</li>
-                <li>מאפשרת הוספת פונקציונליות לאובייקט</li>
-                <li>מאפשרת הפחתת עומס על האובייקט</li>
-                <li>מאפשרת הסתרת מימוש של האובייקט</li>
+                <li>מאפשרת הוספת פונקציונליות נוספת</li>
+                <li>מאפשרת דחיית יצירת האובייקט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת שליטה בגישה לאובייקט</li>
+                <li>מאפשרת הוספת פונקציונליות נוספת</li>
+                <li>מאפשרת דחיית יצירת האובייקט</li>
+                <li>מאפשרת שמירה על עקרון ה-Single Responsibility Principle</li>
+                <li>מאפשרת שימוש חוזר בקוד קיים</li>
+                <li>מאפשרת שינוי המימוש מבלי להשפיע על הממשק</li>
+                <li>מאפשרת הפחתת תלויות בין המרכיבים</li>
             </ul>
         </section>
 
@@ -109,11 +290,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה ליצור קוד מורכב</li>
-                <li>עלולה ליצור קוד קשה לתחזוקה</li>
-                <li>עלולה ליצור קוד קשה להבנה</li>
-                <li>עלולה ליצור קוד קשה לבדיקה</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון ב-Proxy</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון ב-Proxy</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -122,6 +336,7 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -129,11 +344,35 @@ if __name__ == "__main__":
                 </tr>
                 <tr>
                     <td>Decorator</td>
-                    <td>מוסיפה תפקוד לאובייקט, בעוד Proxy מתמקדת בשליטה בגישה</td>
+                    <td>מתמקדת בהוספת תכונות, בעוד Proxy מתמקדת בשליטה בגישה</td>
                 </tr>
                 <tr>
                     <td>Adapter</td>
-                    <td>מתאימה ממשקים, בעוד Proxy מתמקדת בשליטה בגישה</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Proxy מתמקדת בשליטה בגישה</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Decorator</td>
+                    <td>מתמקדת בהוספת תכונות, בעוד Proxy מתמקדת בשליטה בגישה</td>
+                </tr>
+                <tr>
+                    <td>Adapter</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Proxy מתמקדת בשליטה בגישה</td>
+                </tr>
+                <tr>
+                    <td>Facade</td>
+                    <td>מתמקדת בהסתרת מורכבות, בעוד Proxy מתמקדת בשליטה בגישה</td>
+                </tr>
+                <tr>
+                    <td>Bridge</td>
+                    <td>מתמקדת בהפרדת ממשק ממימוש, בעוד Proxy מתמקדת בשליטה בגישה</td>
                 </tr>
             </table>
         </section>
@@ -143,12 +382,67 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Proxy במקרים הבאים:</p>
             <ol>
-                <li>מערכת ניהול קבצים עם הרשאות</li>
-                <li>מערכת תקשורת עם אבטחה</li>
-                <li>מערכת ניהול בסיסי נתונים עם זיכרון מטמון</li>
+                <li>מערכת ניהול חשבון בנק</li>
+                <li>מערכת ניהול קבצים</li>
+                <li>מערכת ניהול הרשאות</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Proxy במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול חשבון בנק</li>
+                <li>מערכת ניהול קבצים</li>
+                <li>מערכת ניהול הרשאות</li>
+                <li>מערכת ניהול תצוגה</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שה-Proxy מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שה-Proxy מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול חשבון בנק</li>
+                <li>מערכות ניהול קבצים</li>
+                <li>מערכות ניהול הרשאות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות ניהול חשבון בנק</li>
+                <li>מערכות ניהול קבצים</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול תצוגה</li>
+                <li>מערכות ניהול זיכרון מטמון</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -157,9 +451,10 @@ if __name__ == "__main__":
                 תבניות קשורות
             </h2>
             <ul>
-                <li><a href="decorator.html" class="flex-center"><i class="fas fa-gift icon"></i>Decorator</a></li>
+                <li><a href="decorator.html" class="flex-center"><i class="fas fa-paint-brush icon"></i>Decorator</a></li>
                 <li><a href="adapter.html" class="flex-center"><i class="fas fa-plug icon"></i>Adapter</a></li>
                 <li><a href="facade.html" class="flex-center"><i class="fas fa-building icon"></i>Facade</a></li>
+                <li><a href="bridge.html" class="flex-center"><i class="fas fa-bridge icon"></i>Bridge</a></li>
             </ul>
         </div>
     </main>

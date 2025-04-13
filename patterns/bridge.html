@@ -17,7 +17,7 @@
     <main class="main-content">
         <header class="rtl-container">
             <h1 class="flex-center">
-                <i class="fas fa-link icon"></i>
+                <i class="fas fa-bridge icon"></i>
                 Bridge Pattern
             </h1>
             <a href="../index.html" class="flex-center">
@@ -29,21 +29,67 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Bridge?
             </h2>
-            <p>תבנית Bridge מפרידה בין ממשק למימוש, ומאפשרת לשניהם להתפתח באופן עצמאי.</p>
+            <p>תבנית Bridge היא תבנית עיצוב מבנית המפרידה בין ממשק למימוש. התבנית משמשת כאשר יש צורך להפריד בין הממשק של מחלקה למימוש שלה, כדי לאפשר שינוי עצמאי של שניהם.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם רמקול עם אפשרות לחיבור ל-Bluetooth או USB. במקום ליצור רמקול נפרד לכל סוג חיבור, אפשר להשתמש בתבנית Bridge כדי להפריד בין הרמקול עצמו לבין סוג החיבור. כך אפשר להוסיף סוגי חיבור חדשים בלי לשנות את הרמקול.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Bridge Pattern על ידי שימוש בממשק מופשט (Abstraction) ובמימוש מופשט (Implementor). זה מאפשר שינוי עצמאי של הממשק והמימוש, ומאפשר הוספת מימושים חדשים בלי לשנות את הממשק.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים למנוע קשר קבוע בין ממשק למימוש</li>
-                <li>כאשר רוצים לאפשר לממשק ולמימוש להתפתח באופן עצמאי</li>
-                <li>כאשר רוצים להסתיר את המימוש מהלקוח</li>
-                <li>כאשר רוצים לשתף מימוש בין מספר ממשקים</li>
+                <li>כאשר אתם צריכים להפריד בין ממשק למימוש</li>
+                <li>כאשר אתם צריכים לאפשר שינוי עצמאי של הממשק והמימוש</li>
+                <li>כאשר אתם צריכים להוסיף מימושים חדשים בלי לשנות את הממשק</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להפריד בין ממשק למימוש</li>
+                <li>כאשר יש צורך לאפשר שינוי עצמאי של הממשק והמימוש</li>
+                <li>כאשר יש צורך להוסיף מימושים חדשים בלי לשנות את הממשק</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Open/Closed Principle</li>
+                <li>כאשר יש צורך לאפשר שימוש חוזר בקוד קיים</li>
+                <li>כאשר יש צורך לאפשר שינוי ממשקים ללא שינוי הקוד הקיים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משני חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Abstraction</strong> - הממשק המופשט</li>
+                <li><strong>Implementor</strong> - המימוש המופשט</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Abstraction</strong> - הממשק המופשט</li>
+                <li><strong>RefinedAbstraction</strong> - הרחבה של הממשק המופשט</li>
+                <li><strong>Implementor</strong> - המימוש המופשט</li>
+                <li><strong>ConcreteImplementor</strong> - מימוש ספציפי</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Abstraction משתמש ב-Implementor</li>
+                <li>RefinedAbstraction מיישם את Abstraction</li>
+                <li>ConcreteImplementor מיישם את Implementor</li>
+                <li>Implementor מספק את הפונקציונליות הבסיסית</li>
             </ul>
         </section>
 
@@ -52,41 +98,124 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
-            <pre><code>class Implementation:
-    def operation_implementation(self) -> str:
-        return "מימוש בסיסי"
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול צורות גיאומטריות. יש לנו צורות שונות (עיגול, ריבוע) וצבעים שונים (אדום, כחול). במקום ליצור מחלקה לכל שילוב, אנחנו משתמשים בתבנית Bridge כדי להפריד בין הצורה לצבע.</p>
 
-class ConcreteImplementationA(Implementation):
-    def operation_implementation(self) -> str:
-        return "מימוש A"
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Bridge Pattern ליצירת הפרדה בין צורה לצבע. הממשק המופשט מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
 
-class ConcreteImplementationB(Implementation):
-    def operation_implementation(self) -> str:
-        return "מימוש B"
+            <pre><code>from abc import ABC, abstractmethod
 
-class Abstraction:
-    def __init__(self, implementation: Implementation):
-        self.implementation = implementation
+class Color(ABC):
+    @abstractmethod
+    def fill(self) -> str:
+        pass
 
-    def operation(self) -> str:
-        return f"Abstraction: {self.implementation.operation_implementation()}"
+class RedColor(Color):
+    def fill(self) -> str:
+        return "אדום"
 
-class ExtendedAbstraction(Abstraction):
-    def operation(self) -> str:
-        return f"ExtendedAbstraction: {self.implementation.operation_implementation()}"
+class BlueColor(Color):
+    def fill(self) -> str:
+        return "כחול"
+
+class Shape(ABC):
+    def __init__(self, color: Color):
+        self.color = color
+    
+    @abstractmethod
+    def draw(self) -> str:
+        pass
+
+class Circle(Shape):
+    def draw(self) -> str:
+        return f"ציירתי עיגול בצבע {self.color.fill()}"
+
+class Square(Shape):
+    def draw(self) -> str:
+        return f"ציירתי ריבוע בצבע {self.color.fill()}"
 
 # שימוש
-def client_code(abstraction: Abstraction) -> None:
-    print(abstraction.operation())
-
 if __name__ == "__main__":
-    implementation = ConcreteImplementationA()
-    abstraction = Abstraction(implementation)
-    client_code(abstraction)
+    # יצירת צבעים
+    red = RedColor()
+    blue = BlueColor()
+    
+    # יצירת צורות
+    red_circle = Circle(red)
+    blue_square = Square(blue)
+    
+    # שימוש בצורות
+    print(red_circle.draw())
+    print(blue_square.draw())</code></pre>
+        </section>
 
-    implementation = ConcreteImplementationB()
-    abstraction = ExtendedAbstraction(implementation)
-    client_code(abstraction)</code></pre>
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת הודעות
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת הודעות שתומכת בסוגי הודעות שונים (טקסט, תמונה) ובפלטפורמות שונות (אימייל, SMS). במקום ליצור מחלקה לכל שילוב, אנחנו משתמשים בתבנית Bridge כדי להפריד בין סוג ההודעה לפלטפורמה.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Bridge Pattern ליצירת הפרדה בין סוג הודעה לפלטפורמה. הממשק המופשט מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Dict, Any
+
+class Platform(ABC):
+    @abstractmethod
+    def send(self, content: str, recipient: str) -> bool:
+        pass
+
+class EmailPlatform(Platform):
+    def send(self, content: str, recipient: str) -> bool:
+        print(f"שולח אימייל ל-{recipient}: {content}")
+        return True
+
+class SMSPlatform(Platform):
+    def send(self, content: str, recipient: str) -> bool:
+        print(f"שולח SMS ל-{recipient}: {content}")
+        return True
+
+class Message(ABC):
+    def __init__(self, platform: Platform):
+        self.platform = platform
+    
+    @abstractmethod
+    def send(self, recipient: str) -> bool:
+        pass
+
+class TextMessage(Message):
+    def __init__(self, platform: Platform, text: str):
+        super().__init__(platform)
+        self.text = text
+    
+    def send(self, recipient: str) -> bool:
+        return self.platform.send(self.text, recipient)
+
+class ImageMessage(Message):
+    def __init__(self, platform: Platform, image_url: str):
+        super().__init__(platform)
+        self.image_url = image_url
+    
+    def send(self, recipient: str) -> bool:
+        return self.platform.send(f"תמונה: {self.image_url}", recipient)
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת פלטפורמות
+    email = EmailPlatform()
+    sms = SMSPlatform()
+    
+    # יצירת הודעות
+    text_email = TextMessage(email, "שלום, זו הודעת טקסט")
+    image_sms = ImageMessage(sms, "https://example.com/image.jpg")
+    
+    # שליחת הודעות
+    text_email.send("user@example.com")
+    image_sms.send("+1234567890")</code></pre>
         </section>
 
         <section class="card">
@@ -94,11 +223,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מפרידה בין ממשק למימוש</li>
-                <li>מאפשרת לממשק ולמימוש להתפתח באופן עצמאי</li>
-                <li>מאפשרת שיתוף מימוש בין מספר ממשקים</li>
-                <li>מאפשרת החלפה קלה של מימוש</li>
+                <li>מאפשרת הפרדה בין ממשק למימוש</li>
+                <li>מאפשרת שינוי עצמאי של הממשק והמימוש</li>
+                <li>מאפשרת הוספת מימושים חדשים בלי לשנות את הממשק</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הפרדה בין ממשק למימוש</li>
+                <li>מאפשרת שינוי עצמאי של הממשק והמימוש</li>
+                <li>מאפשרת הוספת מימושים חדשים בלי לשנות את הממשק</li>
+                <li>מאפשרת שמירה על עקרון ה-Open/Closed Principle</li>
+                <li>מאפשרת שימוש חוזר בקוד קיים</li>
+                <li>מאפשרת שינוי ממשקים ללא שינוי הקוד הקיים</li>
+                <li>מאפשרת הפרדה בין הממשק למימוש</li>
             </ul>
         </section>
 
@@ -107,11 +247,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה ליצור קוד מורכב</li>
-                <li>עלולה ליצור קוד קשה לתחזוקה</li>
-                <li>עלולה ליצור קוד קשה להבנה</li>
-                <li>עלולה ליצור קוד קשה לבדיקה</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על הפרדה בין ממשק למימוש</li>
+                <li>אי-הקפדה על שימוש נכון בממשק המופשט</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על הפרדה בין ממשק למימוש</li>
+                <li>אי-הקפדה על שימוש נכון בממשק המופשט</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -120,6 +293,7 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -127,11 +301,35 @@ if __name__ == "__main__":
                 </tr>
                 <tr>
                     <td>Adapter</td>
-                    <td>מתמקדת בהתאמת ממשקים, בעוד Bridge מפרידה בין ממשק למימוש</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Bridge מתמקדת בהפרדה בין ממשק למימוש</td>
                 </tr>
                 <tr>
-                    <td>Strategy</td>
-                    <td>מתמקדת בהחלפת אלגוריתמים, בעוד Bridge מתמקדת בהפרדת ממשק ומימוש</td>
+                    <td>Decorator</td>
+                    <td>מתמקדת בהוספת תכונות לאובייקט, בעוד Bridge מתמקדת בהפרדה בין ממשק למימוש</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Adapter</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Bridge מתמקדת בהפרדה בין ממשק למימוש</td>
+                </tr>
+                <tr>
+                    <td>Decorator</td>
+                    <td>מתמקדת בהוספת תכונות לאובייקט, בעוד Bridge מתמקדת בהפרדה בין ממשק למימוש</td>
+                </tr>
+                <tr>
+                    <td>Facade</td>
+                    <td>מתמקדת בספק ממשק פשוט למערכת מורכבת, בעוד Bridge מתמקדת בהפרדה בין ממשק למימוש</td>
+                </tr>
+                <tr>
+                    <td>Proxy</td>
+                    <td>מתמקדת בשליטה בגישה לאובייקט, בעוד Bridge מתמקדת בהפרדה בין ממשק למימוש</td>
                 </tr>
             </table>
         </section>
@@ -141,12 +339,67 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Bridge במקרים הבאים:</p>
             <ol>
-                <li>מערכת UI עם תמיכה בפלטפורמות שונות</li>
-                <li>מערכת ניהול בסיסי נתונים עם תמיכה במנועים שונים</li>
-                <li>מערכת עיבוד מסמכים עם פורמטים שונים</li>
+                <li>מערכת צורות גיאומטריות עם צבעים שונים</li>
+                <li>מערכת הודעות עם פלטפורמות שונות</li>
+                <li>מערכת תצוגה עם מכשירים שונים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Bridge במקרים הבאים:</p>
+            <ol>
+                <li>מערכת אחסון קבצים עם שירותי אחסון שונים</li>
+                <li>מערכת דיווח עם פורמטים שונים</li>
+                <li>מערכת תקשורת עם פרוטוקולים שונים</li>
+                <li>מערכת עיבוד תמונות עם פורמטים שונים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק מופשט ל-Abstraction</li>
+                <li>ודא שה-Implementor מיישם את הממשק הנכון</li>
+                <li>הוסף בדיקות תקינות ל-Abstraction ו-Implementor</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק מופשט ל-Abstraction</li>
+                <li>ודא שה-Implementor מיישם את הממשק הנכון</li>
+                <li>הוסף בדיקות תקינות ל-Abstraction ו-Implementor</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות צורות גיאומטריות</li>
+                <li>מערכות הודעות</li>
+                <li>מערכות תצוגה</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות אחסון קבצים</li>
+                <li>מערכות דיווח</li>
+                <li>מערכות תקשורת</li>
+                <li>מערכות עיבוד תמונות</li>
+                <li>מערכות אחסון נתונים</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -156,8 +409,9 @@ if __name__ == "__main__":
             </h2>
             <ul>
                 <li><a href="adapter.html" class="flex-center"><i class="fas fa-plug icon"></i>Adapter</a></li>
-                <li><a href="strategy.html" class="flex-center"><i class="fas fa-chess icon"></i>Strategy</a></li>
-                <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
+                <li><a href="decorator.html" class="flex-center"><i class="fas fa-paint-brush icon"></i>Decorator</a></li>
+                <li><a href="facade.html" class="flex-center"><i class="fas fa-building icon"></i>Facade</a></li>
+                <li><a href="proxy.html" class="flex-center"><i class="fas fa-shield-alt icon"></i>Proxy</a></li>
             </ul>
         </div>
     </main>

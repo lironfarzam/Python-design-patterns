@@ -20,7 +20,7 @@
                 <i class="fas fa-sitemap icon"></i>
                 Composite Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -29,21 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Composite?
             </h2>
-            <p>תבנית Composite מאפשרת לטפל באובייקטים בודדים ובקבוצות של אובייקטים באופן אחיד. היא מאפשרת ליצור מבנים היררכיים של אובייקטים.</p>
+            <p>תבנית Composite היא תבנית עיצוב מבנית המאפשרת לטפל באובייקטים בודדים וקבוצות של אובייקטים באופן אחיד. התבנית משמשת כאשר יש צורך לייצג מבנה היררכי של אובייקטים.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם עץ של תיקיות וקבצים. כל תיקיה יכולה להכיל קבצים או תיקיות אחרות. תבנית Composite מאפשרת לכם לטפל בכל התיקיות והקבצים באותו אופן, כאילו היו אובייקטים מאותו סוג.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Composite Pattern על ידי שימוש בממשק משותף לאובייקטים בודדים וקבוצות. זה מאפשר טיפול אחיד במבנה היררכי של אובייקטים, ומאפשר הוספת אובייקטים חדשים למבנה ללא שינוי הקוד הקיים.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים לייצג מבנים היררכיים של אובייקטים</li>
-                <li>כאשר רוצים לטפל באובייקטים בודדים ובקבוצות באופן אחיד</li>
-                <li>כאשר רוצים להוסיף או להסיר רכיבים באופן דינמי</li>
-                <li>כאשר רוצים לבצע פעולות על כל הרכיבים במבנה</li>
+                <li>כאשר אתם צריכים לייצג מבנה היררכי של אובייקטים</li>
+                <li>כאשר אתם צריכים לטפל באובייקטים בודדים וקבוצות באופן אחיד</li>
+                <li>כאשר אתם צריכים להוסיף אובייקטים חדשים למבנה</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך לייצג מבנה היררכי של אובייקטים</li>
+                <li>כאשר יש צורך לטפל באובייקטים בודדים וקבוצות באופן אחיד</li>
+                <li>כאשר יש צורך להוסיף אובייקטים חדשים למבנה</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Open/Closed Principle</li>
+                <li>כאשר יש צורך לאפשר שימוש חוזר בקוד קיים</li>
+                <li>כאשר יש צורך לאפשר שינוי מבנה ללא שינוי הקוד הקיים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Component</strong> - הממשק המשותף לכל האובייקטים</li>
+                <li><strong>Leaf</strong> - אובייקט בודד</li>
+                <li><strong>Composite</strong> - קבוצה של אובייקטים</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Component</strong> - הממשק המשותף לכל האובייקטים</li>
+                <li><strong>Leaf</strong> - אובייקט בודד</li>
+                <li><strong>Composite</strong> - קבוצה של אובייקטים</li>
+                <li><strong>Client</strong> - המשתמש ב-Component</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Client משתמש ב-Component</li>
+                <li>Leaf מיישם את Component</li>
+                <li>Composite מיישם את Component</li>
+                <li>Composite מכיל אובייקטים מסוג Component</li>
             </ul>
         </section>
 
@@ -52,67 +99,158 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול תיקיות וקבצים. יש לנו תיקיות שיכולות להכיל קבצים או תיקיות אחרות, וקבצים שהם אובייקטים בודדים.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Composite Pattern ליצירת מבנה היררכי של תיקיות וקבצים. הממשק המשותף מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
             <pre><code>from abc import ABC, abstractmethod
 from typing import List
 
-# ממשק משותף
-class Component(ABC):
+class FileSystemComponent(ABC):
     @abstractmethod
-    def operation(self) -> str:
+    def get_size(self) -> int:
+        pass
+    
+    @abstractmethod
+    def get_name(self) -> str:
         pass
 
-# רכיב פשוט
-class Leaf(Component):
+class File(FileSystemComponent):
+    def __init__(self, name: str, size: int):
+        self._name = name
+        self._size = size
+    
+    def get_size(self) -> int:
+        return self._size
+    
+    def get_name(self) -> str:
+        return self._name
+
+class Directory(FileSystemComponent):
     def __init__(self, name: str):
-        self.name = name
-
-    def operation(self) -> str:
-        return f"Leaf {self.name}"
-
-# רכיב מורכב
-class Composite(Component):
-    def __init__(self, name: str):
-        self.name = name
-        self.children: List[Component] = []
-
-    def add(self, component: Component) -> None:
-        self.children.append(component)
-
-    def remove(self, component: Component) -> None:
-        self.children.remove(component)
-
-    def operation(self) -> str:
-        results = [f"Composite {self.name}"]
-        for child in self.children:
-            results.append(child.operation())
-        return "\n".join(results)
+        self._name = name
+        self._children: List[FileSystemComponent] = []
+    
+    def add(self, component: FileSystemComponent):
+        self._children.append(component)
+    
+    def remove(self, component: FileSystemComponent):
+        self._children.remove(component)
+    
+    def get_size(self) -> int:
+        return sum(child.get_size() for child in self._children)
+    
+    def get_name(self) -> str:
+        return self._name
 
 # שימוש
-def client_code(component: Component):
-    print(component.operation())
+if __name__ == "__main__":
+    # יצירת קבצים
+    file1 = File("file1.txt", 100)
+    file2 = File("file2.txt", 200)
+    
+    # יצירת תיקיות
+    dir1 = Directory("dir1")
+    dir2 = Directory("dir2")
+    
+    # הוספת קבצים לתיקיות
+    dir1.add(file1)
+    dir2.add(file2)
+    
+    # הוספת תיקיה לתיקיה
+    dir1.add(dir2)
+    
+    # הדפסת גודל התיקיה
+    print(f"Size of {dir1.get_name()}: {dir1.get_size()} bytes")</code></pre>
+        </section>
 
-# יצירת אובייקטים
-leaf1 = Leaf("1")
-leaf2 = Leaf("2")
-leaf3 = Leaf("3")
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת תפריטים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת תפריטים שתומכת בתפריטים ותת-תפריטים. כל תפריט יכול להכיל פריטים או תפריטים אחרים, וכל פריט הוא אובייקט בודד.</p>
 
-composite1 = Composite("A")
-composite2 = Composite("B")
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Composite Pattern ליצירת מבנה היררכי של תפריטים. הממשק המשותף מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
 
-# בניית המבנה
-composite1.add(leaf1)
-composite1.add(leaf2)
-composite2.add(leaf3)
-composite1.add(composite2)
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List
+
+class MenuComponent(ABC):
+    @abstractmethod
+    def get_name(self) -> str:
+        pass
+    
+    @abstractmethod
+    def get_price(self) -> float:
+        pass
+    
+    @abstractmethod
+    def print(self, indent: int = 0):
+        pass
+
+class MenuItem(MenuComponent):
+    def __init__(self, name: str, price: float):
+        self._name = name
+        self._price = price
+    
+    def get_name(self) -> str:
+        return self._name
+    
+    def get_price(self) -> float:
+        return self._price
+    
+    def print(self, indent: int = 0):
+        print(" " * indent + f"{self._name} - ${self._price}")
+
+class Menu(MenuComponent):
+    def __init__(self, name: str):
+        self._name = name
+        self._children: List[MenuComponent] = []
+    
+    def add(self, component: MenuComponent):
+        self._children.append(component)
+    
+    def remove(self, component: MenuComponent):
+        self._children.remove(component)
+    
+    def get_name(self) -> str:
+        return self._name
+    
+    def get_price(self) -> float:
+        return sum(child.get_price() for child in self._children)
+    
+    def print(self, indent: int = 0):
+        print(" " * indent + f"{self._name}:")
+        for child in self._children:
+            child.print(indent + 2)
 
 # שימוש
-client_code(composite1)
-# פלט:
-# Composite A
-# Leaf 1
-# Leaf 2
-# Composite B
-# Leaf 3</code></pre>
+if __name__ == "__main__":
+    # יצירת תפריט ראשי
+    main_menu = Menu("תפריט ראשי")
+    
+    # יצירת תת-תפריטים
+    breakfast_menu = Menu("ארוחת בוקר")
+    lunch_menu = Menu("ארוחת צהריים")
+    
+    # הוספת פריטים לתת-תפריטים
+    breakfast_menu.add(MenuItem("ביצים", 15.0))
+    breakfast_menu.add(MenuItem("טוסט", 10.0))
+    
+    lunch_menu.add(MenuItem("המבורגר", 30.0))
+    lunch_menu.add(MenuItem("סלט", 25.0))
+    
+    # הוספת תת-תפריטים לתפריט הראשי
+    main_menu.add(breakfast_menu)
+    main_menu.add(lunch_menu)
+    
+    # הדפסת התפריט
+    main_menu.print()</code></pre>
         </section>
 
         <section class="card">
@@ -120,11 +258,22 @@ client_code(composite1)
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשר טיפול אחיד באובייקטים בודדים ובקבוצות</li>
-                <li>מאפשר הוספה והסרה דינמית של רכיבים</li>
-                <li>מאפשר ביצוע פעולות על כל הרכיבים במבנה</li>
-                <li>מפשט את הקוד על ידי הסתרת המורכבות של המבנה</li>
+                <li>מאפשרת טיפול אחיד באובייקטים בודדים וקבוצות</li>
+                <li>מאפשרת יצירת מבנה היררכי של אובייקטים</li>
+                <li>מאפשרת הוספת אובייקטים חדשים למבנה</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת טיפול אחיד באובייקטים בודדים וקבוצות</li>
+                <li>מאפשרת יצירת מבנה היררכי של אובייקטים</li>
+                <li>מאפשרת הוספת אובייקטים חדשים למבנה</li>
+                <li>מאפשרת שמירה על עקרון ה-Open/Closed Principle</li>
+                <li>מאפשרת שימוש חוזר בקוד קיים</li>
+                <li>מאפשרת שינוי מבנה ללא שינוי הקוד הקיים</li>
+                <li>מאפשרת הפרדה בין הממשק למימוש</li>
             </ul>
         </section>
 
@@ -133,10 +282,44 @@ client_code(composite1)
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלול להקשות על הגבלת סוגי הרכיבים שניתן להוסיף</li>
-                <li>עלול ליצור מבנה מורכב מדי</li>
-                <li>עלול להקשות על הבנת הקוד</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק משותף</li>
+                <li>אי-הקפדה על שימוש נכון ב-Leaf ו-Composite</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק משותף</li>
+                <li>אי-הקפדה על שימוש נכון ב-Leaf ו-Composite</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -145,6 +328,7 @@ client_code(composite1)
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -152,11 +336,35 @@ client_code(composite1)
                 </tr>
                 <tr>
                     <td>Decorator</td>
-                    <td>מוסיף תכונות לאובייקט, בעוד Composite משלב אובייקטים למבנה היררכי</td>
+                    <td>מתמקדת בהוספת תכונות לאובייקט, בעוד Composite מתמקדת במבנה היררכי</td>
                 </tr>
                 <tr>
                     <td>Iterator</td>
-                    <td>מאפשר מעבר על אוסף, בעוד Composite מגדיר את המבנה של האוסף</td>
+                    <td>מתמקדת בגישה לאובייקטים, בעוד Composite מתמקדת במבנה היררכי</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Decorator</td>
+                    <td>מתמקדת בהוספת תכונות לאובייקט, בעוד Composite מתמקדת במבנה היררכי</td>
+                </tr>
+                <tr>
+                    <td>Iterator</td>
+                    <td>מתמקדת בגישה לאובייקטים, בעוד Composite מתמקדת במבנה היררכי</td>
+                </tr>
+                <tr>
+                    <td>Visitor</td>
+                    <td>מתמקדת בפעולות על אובייקטים, בעוד Composite מתמקדת במבנה היררכי</td>
+                </tr>
+                <tr>
+                    <td>Chain of Responsibility</td>
+                    <td>מתמקדת בשרשרת של מטפלים, בעוד Composite מתמקדת במבנה היררכי</td>
                 </tr>
             </table>
         </section>
@@ -166,12 +374,67 @@ client_code(composite1)
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Composite במקרים הבאים:</p>
             <ol>
-                <li>מערכת קבצים ותיקיות</li>
-                <li>מבנה ארגוני של חברה</li>
+                <li>מערכת ניהול תיקיות וקבצים</li>
                 <li>מערכת תפריטים</li>
+                <li>מערכת ניהול מוצרים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Composite במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול הרשאות</li>
+                <li>מערכת ניהול תפריטים</li>
+                <li>מערכת ניהול מוצרים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק משותף לכל האובייקטים</li>
+                <li>ודא שה-Leaf ו-Composite מיישמים את הממשק הנכון</li>
+                <li>הוסף בדיקות תקינות לממשק המשותף</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק משותף לכל האובייקטים</li>
+                <li>ודא שה-Leaf ו-Composite מיישמים את הממשק הנכון</li>
+                <li>הוסף בדיקות תקינות לממשק המשותף</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול תיקיות וקבצים</li>
+                <li>מערכות תפריטים</li>
+                <li>מערכות ניהול מוצרים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול תפריטים</li>
+                <li>מערכות ניהול מוצרים</li>
+                <li>מערכות ניהול תצוגה</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -180,9 +443,10 @@ client_code(composite1)
                 תבניות קשורות
             </h2>
             <ul>
-                <li><a href="decorator.html" class="flex-center"><i class="fas fa-gift icon"></i>Decorator</a></li>
-                <li><a href="iterator.html" class="flex-center"><i class="fas fa-sync icon"></i>Iterator</a></li>
-                <li><a href="visitor.html" class="flex-center"><i class="fas fa-user-check icon"></i>Visitor</a></li>
+                <li><a href="decorator.html" class="flex-center"><i class="fas fa-paint-brush icon"></i>Decorator</a></li>
+                <li><a href="iterator.html" class="flex-center"><i class="fas fa-list icon"></i>Iterator</a></li>
+                <li><a href="visitor.html" class="flex-center"><i class="fas fa-user icon"></i>Visitor</a></li>
+                <li><a href="chain-of-responsibility.html" class="flex-center"><i class="fas fa-link icon"></i>Chain of Responsibility</a></li>
             </ul>
         </div>
     </main>

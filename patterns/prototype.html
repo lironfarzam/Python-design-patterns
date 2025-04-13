@@ -29,21 +29,66 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Prototype?
             </h2>
-            <p>תבנית Prototype מאפשרת יצירת אובייקטים חדשים על ידי העתקת אובייקט קיים, במקום ליצור אותם מאפס.</p>
+            <p>תבנית Prototype היא תבנית עיצוב יצירתית המאפשרת יצירת אובייקטים חדשים על ידי שיבוט של אובייקטים קיימים, במקום ליצור אותם מאפס. התבנית מאפשרת יצירת אובייקטים חדשים בצורה יעילה ומהירה.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם תבנית של מסמך. במקום ליצור מסמך חדש מאפס, אתם פשוט מעתיקים את התבנית ומשנים את הפרטים הנדרשים. תבנית Prototype עובדת באותו אופן - היא מאפשרת ליצור אובייקטים חדשים על ידי העתקה של אובייקטים קיימים.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Prototype Pattern על ידי שימוש במנגנון שיבוט (Cloning) ליצירת אובייקטים חדשים. זה מאפשר יצירת אובייקטים מורכבים בצורה יעילה, תוך שמירה על ביצועים טובים וקוד נקי.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים להימנע מיצירת אובייקטים חדשים מאפס</li>
-                <li>כאשר רוצים ליצור אובייקטים דומים לאובייקטים קיימים</li>
+                <li>כאשר אתם צריכים ליצור אובייקטים דומים לאובייקטים קיימים</li>
+                <li>כאשר יצירת אובייקט חדש היא פעולה יקרה</li>
+                <li>כאשר אתם רוצים לשמור על ביצועים טובים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יצירת אובייקט חדש היא פעולה יקרה</li>
+                <li>כאשר יש צורך ליצור אובייקטים דומים לאובייקטים קיימים</li>
+                <li>כאשר רוצים לשמור על ביצועים טובים</li>
                 <li>כאשר רוצים להפחית את מספר המחלקות במערכת</li>
-                <li>כאשר רוצים להימנע משימוש ב-inheritance</li>
+                <li>כאשר רוצים לאפשר יצירת אובייקטים דינמיים</li>
+                <li>כאשר רוצים לאפשר שינוי תכונות של אובייקטים קיימים</li>
+                <li>כאשר רוצים לאפשר יצירת אובייקטים מורכבים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משני חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Prototype</strong> - הממשק או המחלקה המופשטת שמגדירה את השיבוט</li>
+                <li><strong>ConcretePrototype</strong> - המימוש הקונקרטי של ה-Prototype</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Prototype</strong> - ממשק מופשט המגדיר את הפעולה clone</li>
+                <li><strong>ConcretePrototype</strong> - מימוש של Prototype, מיישם את הפעולה clone</li>
+                <li><strong>Client</strong> - משתמש ב-Prototype ליצירת אובייקטים חדשים</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Client משתמש ב-Prototype ליצירת אובייקטים חדשים</li>
+                <li>ConcretePrototype מיישם את Prototype ויוצר את האובייקט</li>
+                <li>Prototype מגדיר את הממשק לשיבוט</li>
             </ul>
         </section>
 
@@ -52,40 +97,168 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול מסמכים. המחלקה הבסיסית מגדירה איך לשבט מסמך, והמחלקות היורשות מיישמות את השיבוט עבור כל סוג מסמך.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Prototype Pattern ליצירת אובייקטים חדשים. הממשק המופשט מגדיר את הפעולה clone, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
             <pre><code>from abc import ABC, abstractmethod
 from copy import deepcopy
 
-class Prototype(ABC):
+class Document(ABC):
+    def __init__(self, title: str, content: str):
+        self.title = title
+        self.content = content
+    
     @abstractmethod
     def clone(self):
         pass
+    
+    def __str__(self):
+        return f"Document: {self.title}\nContent: {self.content}"
 
-class ConcretePrototype1(Prototype):
-    def __init__(self, value: str):
-        self.value = value
-
+class PDFDocument(Document):
+    def __init__(self, title: str, content: str, metadata: dict = None):
+        super().__init__(title, content)
+        self.metadata = metadata or {}
+    
     def clone(self):
         return deepcopy(self)
+    
+    def __str__(self):
+        return f"PDF Document: {self.title}\nContent: {self.content}\nMetadata: {self.metadata}"
 
-class ConcretePrototype2(Prototype):
-    def __init__(self, value: str):
-        self.value = value
-
+class HTMLDocument(Document):
+    def __init__(self, title: str, content: str, styles: dict = None):
+        super().__init__(title, content)
+        self.styles = styles or {}
+    
     def clone(self):
         return deepcopy(self)
+    
+    def __str__(self):
+        return f"HTML Document: {self.title}\nContent: {self.content}\nStyles: {self.styles}"
 
 # שימוש
-def client_code(prototype: Prototype) -> None:
-    clone = prototype.clone()
-    print(f"Original: {prototype.value}")
-    print(f"Clone: {clone.value}")
-
 if __name__ == "__main__":
-    prototype1 = ConcretePrototype1("ערך 1")
-    client_code(prototype1)
+    # יצירת מסמך PDF מקורי
+    original_pdf = PDFDocument(
+        "Original PDF",
+        "This is the original PDF content",
+        {"author": "John Doe", "version": "1.0"}
+    )
+    print("Original PDF:")
+    print(original_pdf)
+    
+    # שיבוט המסמך
+    cloned_pdf = original_pdf.clone()
+    cloned_pdf.title = "Cloned PDF"
+    cloned_pdf.metadata["version"] = "2.0"
+    print("\nCloned PDF:")
+    print(cloned_pdf)
+    
+    # יצירת מסמך HTML מקורי
+    original_html = HTMLDocument(
+        "Original HTML",
+        "<p>This is the original HTML content</p>",
+        {"color": "blue", "font": "Arial"}
+    )
+    print("\nOriginal HTML:")
+    print(original_html)
+    
+    # שיבוט המסמך
+    cloned_html = original_html.clone()
+    cloned_html.title = "Cloned HTML"
+    cloned_html.styles["color"] = "red"
+    print("\nCloned HTML:")
+    print(cloned_html)</code></pre>
+        </section>
 
-    prototype2 = ConcretePrototype2("ערך 2")
-    client_code(prototype2)</code></pre>
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול משתמשים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת לניהול משתמשים. המחלקה הבסיסית מגדירה איך לשבט משתמש, והמחלקות היורשות מיישמות את השיבוט עבור כל סוג משתמש.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Prototype Pattern ליצירת אובייקטים חדשים. הממשק המופשט מגדיר את הפעולה clone, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from copy import deepcopy
+from datetime import datetime
+
+class User(ABC):
+    def __init__(self, username: str, email: str, created_at: datetime = None):
+        self.username = username
+        self.email = email
+        self.created_at = created_at or datetime.now()
+        self.permissions = set()
+    
+    @abstractmethod
+    def clone(self):
+        pass
+    
+    def add_permission(self, permission: str):
+        self.permissions.add(permission)
+    
+    def __str__(self):
+        return f"User: {self.username}\nEmail: {self.email}\nCreated: {self.created_at}\nPermissions: {self.permissions}"
+
+class RegularUser(User):
+    def __init__(self, username: str, email: str, created_at: datetime = None):
+        super().__init__(username, email, created_at)
+        self.add_permission("read")
+    
+    def clone(self):
+        return deepcopy(self)
+
+class AdminUser(User):
+    def __init__(self, username: str, email: str, created_at: datetime = None):
+        super().__init__(username, email, created_at)
+        self.add_permission("read")
+        self.add_permission("write")
+        self.add_permission("delete")
+        self.add_permission("admin")
+    
+    def clone(self):
+        return deepcopy(self)
+
+class UserRegistry:
+    def __init__(self):
+        self._prototypes = {}
+    
+    def register_prototype(self, name: str, prototype: User):
+        self._prototypes[name] = prototype
+    
+    def create_user(self, name: str, username: str, email: str):
+        if name not in self._prototypes:
+            raise ValueError(f"Prototype {name} not found")
+        user = self._prototypes[name].clone()
+        user.username = username
+        user.email = email
+        return user
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת רישום משתמשים
+    registry = UserRegistry()
+    
+    # רישום אבות טיפוס
+    registry.register_prototype("regular", RegularUser("template", "template@example.com"))
+    registry.register_prototype("admin", AdminUser("admin_template", "admin@example.com"))
+    
+    # יצירת משתמש רגיל
+    regular_user = registry.create_user("regular", "john", "john@example.com")
+    print("Regular User:")
+    print(regular_user)
+    
+    # יצירת משתמש מנהל
+    admin_user = registry.create_user("admin", "admin", "admin@example.com")
+    print("\nAdmin User:")
+    print(admin_user)</code></pre>
         </section>
 
         <section class="card">
@@ -93,11 +266,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשרת יצירת אובייקטים חדשים ללא תלות במחלקות</li>
-                <li>מאפשרת יצירת אובייקטים חדשים ללא תלות בקונסטרוקטור</li>
-                <li>מאפשרת יצירת אובייקטים חדשים ללא תלות בממשק</li>
-                <li>מאפשרת יצירת אובייקטים חדשים ללא תלות במימוש</li>
+                <li>מאפשרת יצירת אובייקטים חדשים בצורה יעילה</li>
+                <li>מקלה על יצירת אובייקטים דומים לאובייקטים קיימים</li>
+                <li>משפרת את הביצועים של המערכת</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת יצירת אובייקטים חדשים בצורה יעילה</li>
+                <li>מקלה על יצירת אובייקטים דומים לאובייקטים קיימים</li>
+                <li>משפרת את הביצועים של המערכת</li>
+                <li>מאפשרת יצירת אובייקטים דינמיים</li>
+                <li>מאפשרת שינוי תכונות של אובייקטים קיימים</li>
+                <li>מאפשרת יצירת אובייקטים מורכבים</li>
+                <li>מאפשרת שימוש ב-Registry או Configuration</li>
             </ul>
         </section>
 
@@ -106,11 +290,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה ליצור קוד מורכב</li>
-                <li>עלולה ליצור קוד קשה לתחזוקה</li>
-                <li>עלולה ליצור קוד קשה להבנה</li>
-                <li>עלולה ליצור קוד קשה לבדיקה</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין האובייקטים</li>
+                <li>עלולה להקשות על ניהול הזיכרון</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין האובייקטים</li>
+                <li>עלולה להקשות על ניהול הזיכרון</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-שימוש ב-deepcopy כאשר נדרש</li>
+                <li>אי-הקפדה על שיבוט נכון של אובייקטים מורכבים</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-שימוש ב-deepcopy כאשר נדרש</li>
+                <li>אי-הקפדה על שיבוט נכון של אובייקטים מורכבים</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
             </ul>
         </section>
 
@@ -119,6 +336,7 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -126,11 +344,35 @@ if __name__ == "__main__":
                 </tr>
                 <tr>
                     <td>Factory Method</td>
-                    <td>מתמקדת ביצירת אובייקטים חדשים, בעוד Prototype מתמקדת בהעתקת אובייקטים קיימים</td>
+                    <td>מתמקדת ביצירת אובייקט בודד</td>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקדת ביצירת משפחות של מוצרים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת אובייקט בודד, בעוד Prototype מתמקדת בשיבוט אובייקטים קיימים</td>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקדת ביצירת משפחות של מוצרים, בעוד Prototype מתמקדת בשיבוט אובייקטים קיימים</td>
+                </tr>
+                <tr>
+                    <td>Builder</td>
+                    <td>מתמקדת בבניית אובייקטים מורכבים, בעוד Prototype מתמקדת בשיבוט אובייקטים קיימים</td>
                 </tr>
                 <tr>
                     <td>Singleton</td>
-                    <td>מתמקדת במופע יחיד, בעוד Prototype מתמקדת בהעתקת אובייקטים</td>
+                    <td>מתמקדת ביצירת מופע יחיד של מחלקה, בעוד Prototype מתמקדת בשיבוט אובייקטים קיימים</td>
                 </tr>
             </table>
         </section>
@@ -140,12 +382,66 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Prototype במקרים הבאים:</p>
             <ol>
-                <li>מערכת ניהול מסמכים עם תבניות</li>
-                <li>מערכת ניהול משתמשים עם פרופילים</li>
-                <li>מערכת ניהול מוצרים עם קטגוריות</li>
+                <li>מערכת ניהול מסמכים עם תמיכה בפורמטים שונים</li>
+                <li>מערכת ניהול משתמשים עם תמיכה בסוגי משתמשים שונים</li>
+                <li>מערכת ניהול קבצים עם תמיכה בסוגי קבצים שונים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Prototype במקרים הבאים:</p>
+            <ol>
+                <li>מערכת משחק עם דמויות שונות</li>
+                <li>מערכת דיווח עם פורמטים שונים</li>
+                <li>מערכת תקשורת עם פרוטוקולים שונים</li>
+                <li>מערכת עיבוד תמונות עם פורמטים שונים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש ב-deepcopy כאשר נדרש</li>
+                <li>ודא שכל מחלקה יורשת מיישמת את הממשק המוגדר</li>
+                <li>הוסף בדיקות תקינות לאובייקטים שיוצרו</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש ב-deepcopy כאשר נדרש</li>
+                <li>שקול שימוש ב-Registry או Configuration</li>
+                <li>השתמש ב-Dependency Injection</li>
+                <li>שקול שימוש ב-Abstract Factory</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול משתמשים</li>
+                <li>מערכות ניהול קבצים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות משחק</li>
+                <li>מערכות דיווח</li>
+                <li>מערכות תקשורת</li>
+                <li>מערכות עיבוד תמונות</li>
+                <li>מערכות אחסון קבצים</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -154,9 +450,10 @@ if __name__ == "__main__":
                 תבניות קשורות
             </h2>
             <ul>
-                <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
-                <li><a href="singleton.html" class="flex-center"><i class="fas fa-cube icon"></i>Singleton</a></li>
                 <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
+                <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
+                <li><a href="builder.html" class="flex-center"><i class="fas fa-hammer icon"></i>Builder</a></li>
+                <li><a href="singleton.html" class="flex-center"><i class="fas fa-cube icon"></i>Singleton</a></li>
             </ul>
         </div>
     </main>

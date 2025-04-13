@@ -29,21 +29,73 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Abstract Factory?
             </h2>
-            <p>תבנית Abstract Factory מאפשרת יצירת משפחות של אובייקטים קשורים מבלי לציין את המחלקות הקונקרטיות שלהם, ומספקת ממשק ליצירת אובייקטים מכל משפחה.</p>
+            <p>תבנית Abstract Factory היא תבנית עיצוב יצירתית המאפשרת יצירת משפחות של אובייקטים קשורים מבלי לציין את המחלקות הקונקרטיות שלהם. התבנית מספקת ממשק ליצירת אובייקטים מכל משפחה, ומבטיחה שהאובייקטים שיוצרו יהיו תואמים זה לזה.</p>
+            <p>התבנית פותרת את הבעיה של יצירת משפחות של אובייקטים קשורים, ומבטיחה שהאובייקטים שיוצרו יהיו תואמים זה לזה. לדוגמה, במערכת UI, אם משתמשים במערכת Windows, כל הרכיבים צריכים להיות בסגנון Windows, ואם משתמשים במערכת Mac, כל הרכיבים צריכים להיות בסגנון Mac.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שאתם רוצים ליצור מערכת UI שתומכת במספר מערכות הפעלה. במקום לכתוב קוד נפרד לכל מערכת הפעלה, אתם יכולים להשתמש בתבנית Abstract Factory כדי ליצור משפחות של רכיבי UI שתואמים למערכת ההפעלה הספציפית.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Dependency Inversion Principle (DIP) על ידי יצירת ממשק מופשט ליצירת משפחות של אובייקטים קשורים. זה מאפשר הפרדה בין יצירת האובייקטים לשימוש בהם, ומאפשר החלפה קלה של משפחות מוצרים.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>כאשר אתם צריכים ליצור אובייקטים שתואמים זה לזה</li>
+                <li>כאשר אתם רוצים לתמוך במספר פלטפורמות או סביבות</li>
+                <li>כאשר אתם רוצים להחליף בקלות בין משפחות של מוצרים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
             <ul>
                 <li>כאשר המערכת צריכה להיות עצמאית מאופן יצירת האובייקטים</li>
                 <li>כאשר יש מספר משפחות של מוצרים קשורים</li>
                 <li>כאשר רוצים להבטיח שרק מוצרים מאותה משפחה ייצרו יחד</li>
                 <li>כאשר רוצים להסתיר את המימוש של המוצרים מהלקוח</li>
+                <li>כאשר יש צורך בתמיכה בפלטפורמות או סביבות שונות</li>
+                <li>כאשר רוצים לאכוף קונסיסטנטיות בין מוצרים קשורים</li>
+                <li>כאשר יש צורך ליצור אובייקטים תואמים מבחינת נראות או התנהגות</li>
+                <li>כאשר רוצים להחליף בקלות בין משפחות מוצרים בזמן ריצה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת מארבעה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>מפעל מופשט (AbstractFactory)</strong> - מגדיר איך ליצור את המוצרים</li>
+                <li><strong>מפעל קונקרטי (ConcreteFactory)</strong> - יוצר את המוצרים בפועל</li>
+                <li><strong>מוצר מופשט (AbstractProduct)</strong> - מגדיר את הממשק של המוצרים</li>
+                <li><strong>מוצר קונקרטי (ConcreteProduct)</strong> - המימוש הספציפי של המוצר</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>AbstractFactory</strong> - ממשק המגדיר את הפעולות ליצירת מוצרים מופשטים</li>
+                <li><strong>ConcreteFactory</strong> - מימוש של הממשק המופשט, יוצר מוצרים קונקרטיים</li>
+                <li><strong>AbstractProduct</strong> - ממשק המגדיר את הפעולות של המוצר</li>
+                <li><strong>ConcreteProduct</strong> - מימוש של הממשק המופשט, אובייקט ספציפי</li>
+                <li><strong>Client</strong> - משתמש בממשק המופשט ליצירת משפחות של מוצרים</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Client משתמש ב-AbstractFactory ליצירת משפחות של מוצרים</li>
+                <li>ConcreteFactory מיישם את AbstractFactory ויוצר מוצרים קונקרטיים</li>
+                <li>AbstractProduct מגדיר את הממשק של המוצרים</li>
+                <li>ConcreteProduct מיישם את AbstractProduct</li>
             </ul>
         </section>
 
@@ -52,6 +104,12 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים משפחה של מוצרים (A ו-B) בשתי גרסאות שונות (1 ו-2). המפעל המופשט מגדיר איך ליצור את המוצרים, והמפעלים הקונקרטיים מיישמים את היצירה.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Abstract Factory Pattern ליצירת משפחות של מוצרים קשורים. הממשק המופשט מגדיר את הפעולות ליצירת המוצרים, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
             <pre><code>from abc import ABC, abstractmethod
 from typing import Type
 
@@ -123,14 +181,198 @@ if __name__ == "__main__":
 
         <section class="card">
             <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת UI
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת UI שתומכת במספר מערכות הפעלה. המפעל המופשט מגדיר איך ליצור רכיבי UI, והמפעלים הקונקרטיים מיישמים את היצירה עבור כל מערכת הפעלה.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Abstract Factory Pattern ליצירת משפחות של רכיבי UI שתואמים למערכת ההפעלה הספציפית. הממשק המופשט מגדיר את הפעולות ליצירת הרכיבים, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+
+class UIFactory(ABC):
+    @abstractmethod
+    def create_button(self) -> 'Button':
+        pass
+    
+    @abstractmethod
+    def create_textbox(self) -> 'Textbox':
+        pass
+
+class Button(ABC):
+    @abstractmethod
+    def render(self) -> str:
+        pass
+
+class Textbox(ABC):
+    @abstractmethod
+    def render(self) -> str:
+        pass
+
+class WindowsFactory(UIFactory):
+    def create_button(self) -> 'WindowsButton':
+        return WindowsButton()
+    
+    def create_textbox(self) -> 'WindowsTextbox':
+        return WindowsTextbox()
+
+class MacFactory(UIFactory):
+    def create_button(self) -> 'MacButton':
+        return MacButton()
+    
+    def create_textbox(self) -> 'MacTextbox':
+        return MacTextbox()
+
+class WindowsButton(Button):
+    def render(self) -> str:
+        return "Windows Button"
+
+class WindowsTextbox(Textbox):
+    def render(self) -> str:
+        return "Windows Textbox"
+
+class MacButton(Button):
+    def render(self) -> str:
+        return "Mac Button"
+
+class MacTextbox(Textbox):
+    def render(self) -> str:
+        return "Mac Textbox"
+
+def create_ui(factory: UIFactory) -> None:
+    button = factory.create_button()
+    textbox = factory.create_textbox()
+    
+    print(button.render())
+    print(textbox.render())
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת UI עבור Windows
+    windows_factory = WindowsFactory()
+    create_ui(windows_factory)
+    
+    # יצירת UI עבור Mac
+    mac_factory = MacFactory()
+    create_ui(mac_factory)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-database icon"></i>
+                דוגמה מעשית - מערכת ניהול בסיסי נתונים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת ניהול בסיסי נתונים שתומכת במספר מנועי בסיסי נתונים. המפעל המופשט מגדיר איך ליצור חיבורים ושאילתות, והמפעלים הקונקרטיים מיישמים את היצירה עבור כל מנוע.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Abstract Factory Pattern ליצירת משפחות של חיבורים ושאילתות שתואמים למנוע בסיס הנתונים הספציפי. הממשק המופשט מגדיר את הפעולות ליצירת החיבורים והשאילתות, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List
+
+class DatabaseFactory(ABC):
+    @abstractmethod
+    def create_connection(self) -> 'Connection':
+        pass
+    
+    @abstractmethod
+    def create_query(self) -> 'Query':
+        pass
+
+class Connection(ABC):
+    @abstractmethod
+    def connect(self) -> None:
+        pass
+    
+    @abstractmethod
+    def disconnect(self) -> None:
+        pass
+
+class Query(ABC):
+    @abstractmethod
+    def execute(self, sql: str) -> List[dict]:
+        pass
+
+class MySQLFactory(DatabaseFactory):
+    def create_connection(self) -> 'MySQLConnection':
+        return MySQLConnection()
+    
+    def create_query(self) -> 'MySQLQuery':
+        return MySQLQuery()
+
+class PostgreSQLFactory(DatabaseFactory):
+    def create_connection(self) -> 'PostgreSQLConnection':
+        return PostgreSQLConnection()
+    
+    def create_query(self) -> 'PostgreSQLQuery':
+        return PostgreSQLQuery()
+
+class MySQLConnection(Connection):
+    def connect(self) -> None:
+        print("Connecting to MySQL database...")
+    
+    def disconnect(self) -> None:
+        print("Disconnecting from MySQL database...")
+
+class MySQLQuery(Query):
+    def execute(self, sql: str) -> List[dict]:
+        print(f"Executing MySQL query: {sql}")
+        return [{"id": 1, "name": "John"}]
+
+class PostgreSQLConnection(Connection):
+    def connect(self) -> None:
+        print("Connecting to PostgreSQL database...")
+    
+    def disconnect(self) -> None:
+        print("Disconnecting from PostgreSQL database...")
+
+class PostgreSQLQuery(Query):
+    def execute(self, sql: str) -> List[dict]:
+        print(f"Executing PostgreSQL query: {sql}")
+        return [{"id": 1, "name": "John"}]
+
+def use_database(factory: DatabaseFactory) -> None:
+    connection = factory.create_connection()
+    query = factory.create_query()
+    
+    connection.connect()
+    results = query.execute("SELECT * FROM users")
+    print(results)
+    connection.disconnect()
+
+# שימוש
+if __name__ == "__main__":
+    # שימוש ב-MySQL
+    mysql_factory = MySQLFactory()
+    use_database(mysql_factory)
+    
+    # שימוש ב-PostgreSQL
+    postgres_factory = PostgreSQLFactory()
+    use_database(postgres_factory)</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
                 <li>מאפשרת החלפה קלה של משפחות מוצרים</li>
-                <li>מבטיחה התאמה בין מוצרים מאותה משפחה</li>
-                <li>מפרידה בין יצירת המוצרים לשימוש בהם</li>
+                <li>מבטיחה שהמוצרים תואמים זה לזה</li>
                 <li>מקלה על הוספת משפחות מוצרים חדשות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מפרידה בין יצירת המוצרים לשימוש בהם</li>
+                <li>מספקת ממשק אחיד ליצירת אובייקטים</li>
+                <li>מאפשרת החלפה דינמית של משפחות מוצרים בזמן ריצה</li>
+                <li>מקלה על בדיקות (Testing) של המערכת</li>
+                <li>מאפשרת שימוש ב-Mock Objects לצורכי בדיקות</li>
             </ul>
         </section>
 
@@ -139,10 +381,39 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה להקשות על הרחבת הממשק</li>
                 <li>עלולה ליצור מספר רב של מחלקות</li>
                 <li>עלולה להיות מורכבת מדי עבור מקרים פשוטים</li>
+                <li>מקשה על הוספת מוצרים חדשים למשפחה קיימת</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הרחבת הממשק</li>
+                <li>עלולה ליצור תלות בין המוצרים השונים</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור קוד מיותר במקרים פשוטים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>יצירת יותר מדי מחלקות קונקרטיות</li>
+                <li>שימוש בתבנית כאשר לא נדרשת</li>
+                <li>אי-הקפדה על התאמה בין המוצרים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-שימוש בממשקים מופשטים</li>
+                <li>אי-הפרדה בין יצירת המוצרים לשימוש בהם</li>
+                <li>אי-שימוש ב-Singleton עבור המפעלים הקונקרטיים</li>
             </ul>
         </section>
 
@@ -151,6 +422,23 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת מוצר בודד</td>
+                </tr>
+                <tr>
+                    <td>Builder</td>
+                    <td>מתמקדת בבניית אובייקט מורכב</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -164,6 +452,14 @@ if __name__ == "__main__":
                     <td>Builder</td>
                     <td>מתמקדת בבניית אובייקט מורכב, בעוד Abstract Factory מתמקדת ביצירת משפחות של אובייקטים</td>
                 </tr>
+                <tr>
+                    <td>Prototype</td>
+                    <td>מתמקדת ביצירת אובייקטים על ידי שיבוט, בעוד Abstract Factory מתמקדת ביצירת אובייקטים חדשים</td>
+                </tr>
+                <tr>
+                    <td>Singleton</td>
+                    <td>מתמקדת ביצירת מופע יחיד של מחלקה, בעוד Abstract Factory מתמקדת ביצירת משפחות של אובייקטים</td>
+                </tr>
             </table>
         </section>
 
@@ -172,12 +468,66 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Abstract Factory במקרים הבאים:</p>
             <ol>
-                <li>מערכת UI עם סקינים שונים (כהה, בהיר, מותאם)</li>
-                <li>מערכת ניהול בסיסי נתונים עם תמיכה במנועים שונים (MySQL, PostgreSQL, SQLite)</li>
-                <li>מערכת עיבוד מסמכים עם פורמטים שונים (PDF, DOCX, TXT)</li>
+                <li>מערכת UI עם סקינים שונים (כהה, בהיר)</li>
+                <li>מערכת ניהול בסיסי נתונים עם תמיכה במנועים שונים</li>
+                <li>מערכת עיבוד מסמכים עם פורמטים שונים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Abstract Factory במקרים הבאים:</p>
+            <ol>
+                <li>מערכת משחק עם דמויות וסביבות שונות</li>
+                <li>מערכת דיווח עם פורמטים שונים (HTML, PDF, Excel)</li>
+                <li>מערכת תקשורת עם פרוטוקולים שונים (HTTP, FTP, SMTP)</li>
+                <li>מערכת עיבוד תמונות עם פורמטים שונים (JPEG, PNG, GIF)</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשקים מופשטים להגדרת המפעלים והמוצרים</li>
+                <li>ודא שכל משפחת מוצרים תואמת את הממשק המוגדר</li>
+                <li>הוסף בדיקות תקינות למוצרים שיוצרו</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש ב-Singleton עבור המפעלים הקונקרטיים אם נדרש</li>
+                <li>שקול שימוש ב-Registry או Configuration עבור בחירת המפעל המתאים</li>
+                <li>השתמש ב-Dependency Injection עבור הזרקת המפעל</li>
+                <li>שקול שימוש ב-Factory Method בתוך Abstract Factory</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות UI עם סקינים שונים</li>
+                <li>מערכות ניהול בסיסי נתונים</li>
+                <li>מערכות עיבוד מסמכים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות משחק</li>
+                <li>מערכות דיווח</li>
+                <li>מערכות תקשורת</li>
+                <li>מערכות עיבוד תמונות</li>
+                <li>מערכות אחסון קבצים</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -189,6 +539,7 @@ if __name__ == "__main__":
                 <li><a href="factory-method.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
                 <li><a href="builder.html" class="flex-center"><i class="fas fa-hammer icon"></i>Builder</a></li>
                 <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+                <li><a href="singleton.html" class="flex-center"><i class="fas fa-cube icon"></i>Singleton</a></li>
             </ul>
         </div>
     </main>

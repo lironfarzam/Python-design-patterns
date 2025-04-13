@@ -20,7 +20,7 @@
                 <i class="fas fa-comments icon"></i>
                 Mediator Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -29,21 +29,67 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Mediator?
             </h2>
-            <p>תבנית Mediator מאפשרת להפחית את התלות ההדדית בין אובייקטים על ידי יצירת אובייקט מתווך שמנהל את התקשורת ביניהם.</p>
+            <p>תבנית Mediator היא תבנית עיצוב התנהגותית המגדירה אובייקט שמאפשר תקשורת בין אובייקטים אחרים מבלי שאלה יצטרכו להכיר אחד את השני.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם קבוצה של אנשים שרוצים לתקשר ביניהם. במקום שכל אחד ידבר ישירות עם כל האחרים, יש מתווך אחד שמעביר את ההודעות. זה מקל על התקשורת ומפחית את הבלבול.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Loose Coupling על ידי הפרדת האובייקטים זה מזה והעברת כל התקשורת דרך מתווך אחד. זה מאפשר שינויים באובייקטים מבלי להשפיע על אחרים, ומפחית את התלויות בין האובייקטים.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר יש מספר רב של אובייקטים שמתקשרים ביניהם</li>
-                <li>כאשר רוצים להפחית את התלות ההדדית בין אובייקטים</li>
-                <li>כאשר רוצים לפשט את התקשורת בין אובייקטים</li>
-                <li>כאשר רוצים לשנות את התנהגות המערכת בקלות</li>
+                <li>כאשר יש מספר רב של אובייקטים שצריכים לתקשר</li>
+                <li>כאשר התקשורת בין האובייקטים מורכבת</li>
+                <li>כאשר רוצים להפחית את התלויות בין האובייקטים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש מספר רב של אובייקטים שצריכים לתקשר</li>
+                <li>כאשר התקשורת בין האובייקטים מורכבת</li>
+                <li>כאשר רוצים להפחית את התלויות בין האובייקטים</li>
+                <li>כאשר רוצים להקל על שינויים במערכת</li>
+                <li>כאשר רוצים להפחית את המורכבות של הקוד</li>
+                <li>כאשר רוצים לשפר את ה-testability של הקוד</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משני חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Mediator</strong> - המתווך שמנהל את התקשורת</li>
+                <li><strong>Colleague</strong> - האובייקטים שמתקשרים דרך המתווך</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Mediator</strong> - המתווך שמנהל את התקשורת</li>
+                <li><strong>ConcreteMediator</strong> - המימוש הספציפי של המתווך</li>
+                <li><strong>Colleague</strong> - האובייקטים שמתקשרים דרך המתווך</li>
+                <li><strong>ConcreteColleague</strong> - המימושים הספציפיים של האובייקטים</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Mediator מגדיר את הממשק</li>
+                <li>ConcreteMediator מיישם את הממשק</li>
+                <li>Colleague מתקשר עם המתווך</li>
+                <li>ConcreteColleague מיישם את התקשורת</li>
             </ul>
         </section>
 
@@ -52,68 +98,164 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת צ'אט פשוטה. המשתמשים יכולים לשלוח הודעות אחד לשני דרך המתווך, מבלי שהם צריכים להכיר אחד את השני.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Mediator Pattern להפרדה בין המשתמשים. המתווך מנהל את התקשורת בין המשתמשים, ומאפשר להם לשלוח הודעות אחד לשני מבלי להכיר אחד את השני.</p>
+
             <pre><code>from abc import ABC, abstractmethod
 from typing import List
 
-# ממשק משותף למתווך
 class Mediator(ABC):
     @abstractmethod
-    def notify(self, sender: 'Colleague', event: str) -> None:
+    def send_message(self, message: str, sender: 'Colleague') -> None:
         pass
 
-# ממשק משותף לעמיתים
 class Colleague(ABC):
-    def __init__(self, mediator: Mediator):
+    def __init__(self, mediator: Mediator, name: str):
         self._mediator = mediator
+        self._name = name
 
-    @abstractmethod
-    def send(self, event: str) -> None:
-        pass
+    def send(self, message: str) -> None:
+        self._mediator.send_message(message, self)
 
-    @abstractmethod
-    def receive(self, event: str) -> None:
-        pass
+    def receive(self, message: str, sender: 'Colleague') -> None:
+        print(f"{self._name} received from {sender._name}: {message}")
 
-# מימוש קונקרטי של מתווך
-class ConcreteMediator(Mediator):
+class ChatMediator(Mediator):
     def __init__(self):
         self._colleagues: List[Colleague] = []
 
     def add_colleague(self, colleague: Colleague) -> None:
         self._colleagues.append(colleague)
 
-    def notify(self, sender: Colleague, event: str) -> None:
+    def send_message(self, message: str, sender: Colleague) -> None:
         for colleague in self._colleagues:
             if colleague != sender:
-                colleague.receive(event)
+                colleague.receive(message, sender)
 
-# מימוש קונקרטי של עמית
-class ConcreteColleague(Colleague):
+class User(Colleague):
     def __init__(self, mediator: Mediator, name: str):
-        super().__init__(mediator)
-        self._name = name
-
-    def send(self, event: str) -> None:
-        print(f"{self._name} שולח: {event}")
-        self._mediator.notify(self, event)
-
-    def receive(self, event: str) -> None:
-        print(f"{self._name} מקבל: {event}")
+        super().__init__(mediator, name)
 
 # שימוש
-def client_code() -> None:
-    mediator = ConcreteMediator()
+if __name__ == "__main__":
+    mediator = ChatMediator()
     
-    colleague1 = ConcreteColleague(mediator, "עמית 1")
-    colleague2 = ConcreteColleague(mediator, "עמית 2")
-    colleague3 = ConcreteColleague(mediator, "עמית 3")
+    user1 = User(mediator, "Alice")
+    user2 = User(mediator, "Bob")
+    user3 = User(mediator, "Charlie")
     
-    mediator.add_colleague(colleague1)
-    mediator.add_colleague(colleague2)
-    mediator.add_colleague(colleague3)
+    mediator.add_colleague(user1)
+    mediator.add_colleague(user2)
+    mediator.add_colleague(user3)
     
-    colleague1.send("הודעה ראשונה")
-    colleague2.send("הודעה שנייה")</code></pre>
+    user1.send("Hello everyone!")
+    user2.send("Hi Alice!")
+    user3.send("Hey guys!")</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת הזמנות
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת הזמנות פשוטה. המערכת מאפשרת למשתמשים להזמין מוצרים, והמתווך מנהל את התקשורת בין המשתמשים, המלאי, והתשלומים.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Mediator Pattern להפרדה בין המרכיבים השונים של המערכת. המתווך מנהל את התקשורת בין המשתמשים, המלאי, והתשלומים, ומאפשר להם לתקשר מבלי להכיר אחד את השני.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from typing import Dict, List
+
+class OrderMediator(ABC):
+    @abstractmethod
+    def place_order(self, user: 'User', product_id: str, quantity: int) -> bool:
+        pass
+
+    @abstractmethod
+    def process_payment(self, user: 'User', amount: float) -> bool:
+        pass
+
+class User:
+    def __init__(self, mediator: OrderMediator, name: str):
+        self._mediator = mediator
+        self._name = name
+
+    def place_order(self, product_id: str, quantity: int) -> bool:
+        return self._mediator.place_order(self, product_id, quantity)
+
+    def process_payment(self, amount: float) -> bool:
+        return self._mediator.process_payment(self, amount)
+
+class Inventory:
+    def __init__(self):
+        self._stock: Dict[str, int] = {
+            "product1": 10,
+            "product2": 5,
+            "product3": 3
+        }
+
+    def check_stock(self, product_id: str, quantity: int) -> bool:
+        return self._stock.get(product_id, 0) >= quantity
+
+    def update_stock(self, product_id: str, quantity: int) -> None:
+        self._stock[product_id] = self._stock.get(product_id, 0) - quantity
+
+class PaymentSystem:
+    def __init__(self):
+        self._balances: Dict[str, float] = {
+            "user1": 100.0,
+            "user2": 50.0,
+            "user3": 200.0
+        }
+
+    def check_balance(self, user_id: str, amount: float) -> bool:
+        return self._balances.get(user_id, 0) >= amount
+
+    def process_payment(self, user_id: str, amount: float) -> None:
+        self._balances[user_id] = self._balances.get(user_id, 0) - amount
+
+class OrderSystem(OrderMediator):
+    def __init__(self):
+        self._inventory = Inventory()
+        self._payment_system = PaymentSystem()
+
+    def place_order(self, user: User, product_id: str, quantity: int) -> bool:
+        if not self._inventory.check_stock(product_id, quantity):
+            print(f"Not enough stock for {product_id}")
+            return False
+
+        price = quantity * 10.0  # מחיר קבוע לדוגמה
+        if not self._payment_system.check_balance(user._name, price):
+            print(f"Not enough balance for {user._name}")
+            return False
+
+        self._inventory.update_stock(product_id, quantity)
+        self._payment_system.process_payment(user._name, price)
+        print(f"Order placed successfully for {user._name}")
+        return True
+
+    def process_payment(self, user: User, amount: float) -> bool:
+        if not self._payment_system.check_balance(user._name, amount):
+            print(f"Not enough balance for {user._name}")
+            return False
+
+        self._payment_system.process_payment(user._name, amount)
+        print(f"Payment processed successfully for {user._name}")
+        return True
+
+# שימוש
+if __name__ == "__main__":
+    order_system = OrderSystem()
+    
+    user1 = User(order_system, "user1")
+    user2 = User(order_system, "user2")
+    
+    user1.place_order("product1", 2)
+    user2.place_order("product2", 3)</code></pre>
         </section>
 
         <section class="card">
@@ -121,11 +263,21 @@ def client_code() -> None:
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מפחית את התלות ההדדית בין אובייקטים</li>
-                <li>מפשט את התקשורת בין אובייקטים</li>
-                <li>מאפשר שינוי התנהגות המערכת בקלות</li>
-                <li>מאפשר הוספת אובייקטים חדשים בקלות</li>
+                <li>מפחית את התלויות בין האובייקטים</li>
+                <li>מקל על שינויים במערכת</li>
+                <li>מפחית את המורכבות של הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מפחית את התלויות בין האובייקטים</li>
+                <li>מקל על שינויים במערכת</li>
+                <li>מפחית את המורכבות של הקוד</li>
+                <li>משפר את ה-testability של הקוד</li>
+                <li>מאפשר ניהול טוב יותר של התקשורת</li>
+                <li>מאפשר הרחבה קלה של המערכת</li>
             </ul>
         </section>
 
@@ -134,10 +286,44 @@ def client_code() -> None:
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלול ליצור מתווך מורכב מדי</li>
-                <li>עלול להפוך לצוואר בקבוק</li>
                 <li>עלול להקשות על הבנת הקוד</li>
+                <li>עלול ליצור מתווך מורכב מדי</li>
+                <li>עלול להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלול להקשות על הבנת הקוד</li>
+                <li>עלול ליצור מתווך מורכב מדי</li>
+                <li>עלול להקשות על ניהול הקוד</li>
+                <li>עלול להקשות על בדיקות (Testing)</li>
+                <li>עלול להקשות על ניהול גרסאות</li>
+                <li>עלול להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת מתווך פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתווך</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת מתווך פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתווך</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -146,6 +332,7 @@ def client_code() -> None:
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -153,11 +340,35 @@ def client_code() -> None:
                 </tr>
                 <tr>
                     <td>Observer</td>
-                    <td>מתמקד בתקשורת חד-כיוונית, בעוד Mediator מתמקד בתקשורת דו-כיוונית</td>
+                    <td>מתמקדת בתקשורת חד-כיוונית, בעוד Mediator מתמקדת בתקשורת דו-כיוונית</td>
                 </tr>
                 <tr>
                     <td>Facade</td>
-                    <td>מתמקד בממשק פשוט, בעוד Mediator מתמקד בתקשורת</td>
+                    <td>מתמקדת בממשק פשוט, בעוד Mediator מתמקדת בתקשורת</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Observer</td>
+                    <td>מתמקדת בתקשורת חד-כיוונית, בעוד Mediator מתמקדת בתקשורת דו-כיוונית</td>
+                </tr>
+                <tr>
+                    <td>Facade</td>
+                    <td>מתמקדת בממשק פשוט, בעוד Mediator מתמקדת בתקשורת</td>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Mediator מתמקדת בתקשורת</td>
+                </tr>
+                <tr>
+                    <td>Chain of Responsibility</td>
+                    <td>מתמקדת בשרשרת אחריות, בעוד Mediator מתמקדת בתקשורת</td>
                 </tr>
             </table>
         </section>
@@ -167,12 +378,67 @@ def client_code() -> None:
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Mediator במקרים הבאים:</p>
             <ol>
                 <li>מערכת צ'אט</li>
+                <li>מערכת הזמנות</li>
                 <li>מערכת התראות</li>
-                <li>מערכת ניהול הזמנות</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Mediator במקרים הבאים:</p>
+            <ol>
+                <li>מערכת צ'אט</li>
+                <li>מערכת הזמנות</li>
+                <li>מערכת התראות</li>
+                <li>מערכת ניהול משימות</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש במתווך פשוט ונוח לשימוש</li>
+                <li>ודא שהמתווך מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות למתווך</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש במתווך פשוט ונוח לשימוש</li>
+                <li>ודא שהמתווך מספק את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות למתווך</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט למתווך והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות צ'אט</li>
+                <li>מערכות הזמנות</li>
+                <li>מערכות התראות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות צ'אט</li>
+                <li>מערכות הזמנות</li>
+                <li>מערכות התראות</li>
+                <li>מערכות ניהול משימות</li>
+                <li>מערכות תקשורת</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -181,9 +447,10 @@ def client_code() -> None:
                 תבניות קשורות
             </h2>
             <ul>
-                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
-                <li><a href="facade.html" class="flex-center"><i class="fas fa-building icon"></i>Facade</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-bell icon"></i>Observer</a></li>
+                <li><a href="facade.html" class="flex-center"><i class="fas fa-home icon"></i>Facade</a></li>
                 <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+                <li><a href="chain-of-responsibility.html" class="flex-center"><i class="fas fa-link icon"></i>Chain of Responsibility</a></li>
             </ul>
         </div>
     </main>

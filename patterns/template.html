@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Method Pattern - תבניות עיצוב בפייתון</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="side-nav-container">
+        <nav class="side-nav">
+            <!-- הסיידבר יוטען כאן באופן דינמי -->
+        </nav>
+    </div>
+
+    <main class="main-content">
+        <header class="rtl-container">
+            <h1 class="flex-center">
+                <i class="fas fa-file-alt icon"></i>
+                Template Method Pattern
+            </h1>
+            <a href="../index.html" class="flex-center">
+                <i class="fas fa-arrow-right icon"></i>
+                חזרה לדף הבית
+            </a>
+        </header>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-info-circle icon"></i>
+                מהי תבנית Template Method?
+            </h2>
+            <p>תבנית Template Method היא תבנית עיצוב התנהגותית המגדירה את השלד של אלגוריתם במחלקה בסיסית, ומאפשרת למחלקות יורשות לשנות חלקים מהאלגוריתם מבלי לשנות את המבנה הכללי שלו.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם מתכון להכנת עוגה. המתכון מגדיר את השלבים הבסיסיים: ערבוב החומרים, הכנסה לתנור, ובדיקת מוכנות. כל שלב יכול להיות מותאם לפי סוג העוגה. תבנית Template Method עובדת באותו אופן - היא מגדירה את השלבים הבסיסיים ומאפשרת התאמה של כל שלב.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Hollywood Principle ("אל תתקשר אלינו, אנחנו נתקשר אליך") על ידי הפרדה בין האלגוריתם הבסיסי לבין המימושים הספציפיים. המחלקה הבסיסית מגדירה את השלבים, והמחלקות היורשות מספקות את המימושים הספציפיים.</p>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-question-circle icon"></i>
+                מתי להשתמש בתבנית?
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>כאשר יש צורך להגדיר את השלד של אלגוריתם</li>
+                <li>כאשר יש צורך לאפשר התאמה של חלקים מהאלגוריתם</li>
+                <li>כאשר יש צורך למנוע כפילות בקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להגדיר את השלד של אלגוריתם</li>
+                <li>כאשר יש צורך לאפשר התאמה של חלקים מהאלגוריתם</li>
+                <li>כאשר יש צורך למנוע כפילות בקוד</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Open/Closed Principle</li>
+                <li>כאשר יש צורך להפחית את הצימוד בין המחלקות</li>
+                <li>כאשר יש צורך לאפשר הרחבה של המערכת עם אלגוריתמים חדשים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משני חלקים עיקריים:</p>
+            <ul>
+                <li><strong>AbstractClass</strong> - המחלקה הבסיסית שמגדירה את השלד של האלגוריתם</li>
+                <li><strong>ConcreteClass</strong> - המחלקה היורשת שמספקת את המימושים הספציפיים</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>AbstractClass</strong> - המחלקה הבסיסית שמגדירה את השלד של האלגוריתם</li>
+                <li><strong>ConcreteClass</strong> - המחלקה היורשת שמספקת את המימושים הספציפיים</li>
+                <li><strong>Template Method</strong> - המתודה שמגדירה את השלד של האלגוריתם</li>
+                <li><strong>Hook Methods</strong> - המתודות שמאפשרות התאמה של חלקים מהאלגוריתם</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>AbstractClass מגדיר את השלד של האלגוריתם</li>
+                <li>ConcreteClass מיישם את המתודות הספציפיות</li>
+                <li>Template Method מגדיר את השלבים</li>
+                <li>Hook Methods מאפשרים התאמה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-code icon"></i>
+                דוגמה בסיסית
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת להכנת משקאות. המערכת מגדירה את השלבים הבסיסיים להכנת משקאות, ומאפשרת התאמה של כל שלב לפי סוג המשקה.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Template Method Pattern להפרדה בין האלגוריתם הבסיסי לבין המימושים הספציפיים. המחלקה הבסיסית מגדירה את השלבים, והמחלקות היורשות מספקות את המימושים הספציפיים.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+
+class Beverage(ABC):
+    def prepare(self) -> None:
+        self.boil_water()
+        self.brew()
+        self.pour_in_cup()
+        if self.customer_wants_condiments():
+            self.add_condiments()
+    
+    def boil_water(self) -> None:
+        print("מרתיחים מים")
+    
+    def pour_in_cup(self) -> None:
+        print("יוצקים לכוס")
+    
+    def customer_wants_condiments(self) -> bool:
+        return True
+    
+    @abstractmethod
+    def brew(self) -> None:
+        pass
+    
+    @abstractmethod
+    def add_condiments(self) -> None:
+        pass
+
+class Tea(Beverage):
+    def brew(self) -> None:
+        print("מכינים תה")
+    
+    def add_condiments(self) -> None:
+        print("מוסיפים לימון")
+
+class Coffee(Beverage):
+    def brew(self) -> None:
+        print("מכינים קפה")
+    
+    def add_condiments(self) -> None:
+        print("מוסיפים סוכר וחלב")
+    
+    def customer_wants_condiments(self) -> bool:
+        answer = input("האם תרצה סוכר וחלב? (כן/לא): ")
+        return answer.lower() == "כן"
+
+# שימוש
+if __name__ == "__main__":
+    # הכנת תה
+    tea = Tea()
+    tea.prepare()
+    
+    # הכנת קפה
+    coffee = Coffee()
+    coffee.prepare()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול משימות
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת ניהול משימות. המערכת מגדירה את השלבים הבסיסיים לניהול משימה, ומאפשרת התאמה של כל שלב לפי סוג המשימה.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Template Method Pattern להפרדה בין האלגוריתם הבסיסי לבין המימושים הספציפיים. המחלקה הבסיסית מגדירה את השלבים, והמחלקות היורשות מספקות את המימושים הספציפיים.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from datetime import datetime
+from typing import List, Optional
+
+class Task(ABC):
+    def __init__(self, title: str):
+        self._title = title
+        self._created_at = datetime.now()
+        self._completed_at: Optional[datetime] = None
+        self._subtasks: List[Task] = []
+    
+    def execute(self) -> None:
+        self._validate()
+        self._prepare()
+        self._process()
+        self._cleanup()
+        self._complete()
+    
+    def _validate(self) -> None:
+        print(f"בודקים את המשימה: {self._title}")
+    
+    def _prepare(self) -> None:
+        print(f"מכינים את המשימה: {self._title}")
+    
+    def _process(self) -> None:
+        print(f"מבצעים את המשימה: {self._title}")
+        self._execute_subtasks()
+    
+    def _cleanup(self) -> None:
+        print(f"מנקים אחרי המשימה: {self._title}")
+    
+    def _complete(self) -> None:
+        self._completed_at = datetime.now()
+        print(f"המשימה הושלמה: {self._title}")
+    
+    def _execute_subtasks(self) -> None:
+        for subtask in self._subtasks:
+            subtask.execute()
+    
+    def add_subtask(self, subtask: 'Task') -> None:
+        self._subtasks.append(subtask)
+    
+    @abstractmethod
+    def _validate(self) -> None:
+        pass
+    
+    @abstractmethod
+    def _prepare(self) -> None:
+        pass
+    
+    @abstractmethod
+    def _process(self) -> None:
+        pass
+    
+    @abstractmethod
+    def _cleanup(self) -> None:
+        pass
+
+class DevelopmentTask(Task):
+    def _validate(self) -> None:
+        print(f"בודקים את הדרישות של המשימה: {self._title}")
+    
+    def _prepare(self) -> None:
+        print(f"מכינים את הסביבה לפיתוח: {self._title}")
+    
+    def _process(self) -> None:
+        print(f"מפתחים את הקוד: {self._title}")
+        self._execute_subtasks()
+    
+    def _cleanup(self) -> None:
+        print(f"מנקים את הקוד: {self._title}")
+
+class TestingTask(Task):
+    def _validate(self) -> None:
+        print(f"בודקים את הדרישות של הבדיקות: {self._title}")
+    
+    def _prepare(self) -> None:
+        print(f"מכינים את הסביבה לבדיקות: {self._title}")
+    
+    def _process(self) -> None:
+        print(f"מבצעים את הבדיקות: {self._title}")
+        self._execute_subtasks()
+    
+    def _cleanup(self) -> None:
+        print(f"מנקים את תוצאות הבדיקות: {self._title}")
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת משימת פיתוח
+    dev_task = DevelopmentTask("פיתוח מודול חדש")
+    
+    # יצירת משימת בדיקות
+    test_task = TestingTask("בדיקת המודול")
+    
+    # הוספת משימת בדיקות כתת-משימה
+    dev_task.add_subtask(test_task)
+    
+    # ביצוע המשימה
+    dev_task.execute()</code></pre>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-plus-circle icon"></i>
+                יתרונות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מאפשרת הגדרת שלד של אלגוריתם</li>
+                <li>מאפשרת התאמה של חלקים מהאלגוריתם</li>
+                <li>מונעת כפילות בקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הגדרת שלד של אלגוריתם</li>
+                <li>מאפשרת התאמה של חלקים מהאלגוריתם</li>
+                <li>מונעת כפילות בקוד</li>
+                <li>מאפשרת שמירה על עקרון ה-Open/Closed Principle</li>
+                <li>מאפשרת הפחתת הצימוד בין המחלקות</li>
+                <li>מאפשרת הרחבה של המערכת עם אלגוריתמים חדשים</li>
+                <li>מאפשרת ניהול טוב יותר של האלגוריתמים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-minus-circle icon"></i>
+                חסרונות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-balance-scale icon"></i>
+                השוואה לתבניות אחרות
+            </h2>
+            <h3>למתחילים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Template Method מתמקדת בשלבים</td>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת אובייקטים, בעוד Template Method מתמקדת באלגוריתמים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Template Method מתמקדת בשלבים</td>
+                </tr>
+                <tr>
+                    <td>Factory Method</td>
+                    <td>מתמקדת ביצירת אובייקטים, בעוד Template Method מתמקדת באלגוריתמים</td>
+                </tr>
+                <tr>
+                    <td>Observer</td>
+                    <td>מתמקדת בהודעות, בעוד Template Method מתמקדת באלגוריתמים</td>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Template Method מתמקדת באלגוריתמים</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-pencil-alt icon"></i>
+                תרגול
+            </h2>
+            <h3>למתחילים:</h3>
+            <p>נסה ליישם את תבנית Template Method במקרים הבאים:</p>
+            <ol>
+                <li>מערכת להכנת משקאות</li>
+                <li>מערכת ניהול משימות</li>
+                <li>מערכת ניהול מסמכים</li>
+            </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Template Method במקרים הבאים:</p>
+            <ol>
+                <li>מערכת להכנת משקאות</li>
+                <li>מערכת ניהול משימות</li>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול תהליכים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאובייקטים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאובייקטים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות להכנת משקאות</li>
+                <li>מערכות ניהול משימות</li>
+                <li>מערכות ניהול מסמכים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות להכנת משקאות</li>
+                <li>מערכות ניהול משימות</li>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול תהליכים</li>
+                <li>מערכות ניהול אלגוריתמים</li>
+            </ul>
+        </section>
+
+        <div class="related-patterns card">
+            <h2 class="flex-center">
+                <i class="fas fa-link icon"></i>
+                תבניות קשורות
+            </h2>
+            <ul>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
+                <li><a href="factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Factory Method</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
+                <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="../js/load-sidebar.js"></script>
+</body>
+</html> 

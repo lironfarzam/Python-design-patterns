@@ -20,7 +20,7 @@
                 <i class="fas fa-industry icon"></i>
                 Factory Method Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -29,20 +29,70 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Factory Method?
             </h2>
-            <p>תבנית Factory Method מגדירה ממשק ליצירת אובייקט, אך מאפשרת למחלקות היורשות להחליט איזה מחלקה ליצור.</p>
+            <p>תבנית Factory Method היא תבנית עיצוב יצירתית המגדירה ממשק ליצירת אובייקט, אך מאפשרת למחלקות היורשות להחליט איזה מחלקה ליצור. התבנית מאפשרת דחיית יצירת האובייקט למחלקות היורשות.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שאתם רוצים ליצור מערכת שמטפלת בסוגים שונים של מסמכים (PDF, DOCX, TXT). במקום ליצור את האובייקטים ישירות, אתם משתמשים במחלקה בסיסית שמגדירה איך ליצור מסמך, ומחלקות יורשות שמחליטות איזה סוג מסמך ליצור.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Open/Closed Principle (OCP) על ידי הפרדה בין יצירת האובייקט לשימוש בו. זה מאפשר הרחבה של המערכת מבלי לשנות את הקוד הקיים, ומאפשר החלפה דינמית של האובייקטים שיוצרו.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר המחלקה לא יודעת מראש איזה סוג של אובייקטים היא צריכה ליצור</li>
-                <li>כאשר המחלקה רוצה שתחלקות היורשות שלה יקבעו איזה אובייקט ליצור</li>
-                <li>כאשר רוצים להפריד בין יצירת האובייקט לשימוש בו</li>
+                <li>כאשר אתם לא יודעים מראש איזה סוג של אובייקט צריך ליצור</li>
+                <li>כאשר אתם רוצים לאפשר למחלקות יורשות להחליט איזה אובייקט ליצור</li>
+                <li>כאשר אתם רוצים להפריד בין יצירת האובייקט לשימוש בו</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר המערכת צריכה להיות עצמאית מאופן יצירת האובייקטים</li>
+                <li>כאשר יש מספר מחלקות שיכולות ליצור אובייקטים</li>
+                <li>כאשר רוצים לאפשר הרחבה של המערכת מבלי לשנות את הקוד הקיים</li>
+                <li>כאשר רוצים להסתיר את המימוש של האובייקט מהלקוח</li>
+                <li>כאשר יש צורך בתמיכה בסוגים שונים של אובייקטים</li>
+                <li>כאשר רוצים לאכוף קונסיסטנטיות ביצירת האובייקטים</li>
+                <li>כאשר יש צורך ליצור אובייקטים תואמים מבחינת נראות או התנהגות</li>
+                <li>כאשר רוצים להחליף בקלות בין סוגי אובייקטים בזמן ריצה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>מחלקה בסיסית (Creator)</strong> - מגדירה את הממשק ליצירת האובייקט</li>
+                <li><strong>מחלקות יורשות (ConcreteCreator)</strong> - מיישמות את יצירת האובייקט</li>
+                <li><strong>אובייקטים (Product)</strong> - האובייקטים שיוצרים</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Creator</strong> - מחלקה מופשטת המגדירה את הממשק ליצירת אובייקט</li>
+                <li><strong>ConcreteCreator</strong> - מחלקה קונקרטית המיישמת את יצירת האובייקט</li>
+                <li><strong>Product</strong> - ממשק המגדיר את הפעולות של האובייקט</li>
+                <li><strong>ConcreteProduct</strong> - מימוש של הממשק המופשט, אובייקט ספציפי</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Creator משתמש ב-Factory Method ליצירת האובייקט</li>
+                <li>ConcreteCreator מיישם את Factory Method ויוצר אובייקט קונקרטי</li>
+                <li>Product מגדיר את הממשק של האובייקט</li>
+                <li>ConcreteProduct מיישם את Product</li>
             </ul>
         </section>
 
@@ -51,52 +101,135 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת שמטפלת בסוגים שונים של מסמכים. המחלקה הבסיסית מגדירה איך ליצור מסמך, והמחלקות היורשות מיישמות את היצירה עבור כל סוג מסמך.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Factory Method Pattern ליצירת אובייקטים שונים. הממשק המופשט מגדיר את הפעולות ליצירת האובייקט, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
             <pre><code>from abc import ABC, abstractmethod
 
-# ממשק המוצר
 class Document(ABC):
     @abstractmethod
-    def create_page(self):
+    def open(self) -> str:
         pass
 
-# מימושים קונקרטיים
-class Resume(Document):
-    def create_page(self):
-        return "יצירת דף קורות חיים"
+class PDFDocument(Document):
+    def open(self) -> str:
+        return "Opening PDF document"
 
-class Report(Document):
-    def create_page(self):
-        return "יצירת דף דוח"
+class DOCXDocument(Document):
+    def open(self) -> str:
+        return "Opening DOCX document"
 
-# ממשק היוצר
+class TXTDocument(Document):
+    def open(self) -> str:
+        return "Opening TXT document"
+
 class DocumentCreator(ABC):
     @abstractmethod
     def create_document(self) -> Document:
         pass
-
-    def render_document(self):
+    
+    def open_document(self) -> str:
         document = self.create_document()
-        return document.create_page()
+        return document.open()
 
-# יוצרים קונקרטיים
-class ResumeCreator(DocumentCreator):
+class PDFCreator(DocumentCreator):
     def create_document(self) -> Document:
-        return Resume()
+        return PDFDocument()
 
-class ReportCreator(DocumentCreator):
+class DOCXCreator(DocumentCreator):
     def create_document(self) -> Document:
-        return Report()
+        return DOCXDocument()
+
+class TXTCreator(DocumentCreator):
+    def create_document(self) -> Document:
+        return TXTDocument()
 
 # שימוש
-def create_document(creator: DocumentCreator):
-    return creator.render_document()
+if __name__ == "__main__":
+    # יצירת מסמך PDF
+    pdf_creator = PDFCreator()
+    print(pdf_creator.open_document())
+    
+    # יצירת מסמך DOCX
+    docx_creator = DOCXCreator()
+    print(docx_creator.open_document())
+    
+    # יצירת מסמך TXT
+    txt_creator = TXTCreator()
+    print(txt_creator.open_document())</code></pre>
+        </section>
 
-# יצירת מסמך לפי סוג
-resume = create_document(ResumeCreator())
-report = create_document(ReportCreator())
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול קבצים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת ניהול קבצים שתומכת בסוגים שונים של קבצים. המחלקה הבסיסית מגדירה איך ליצור קובץ, והמחלקות היורשות מיישמות את היצירה עבור כל סוג קובץ.</p>
 
-print(resume)  # יצירת דף קורות חיים
-print(report)  # יצירת דף דוח</code></pre>
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Factory Method Pattern ליצירת אובייקטים שונים. הממשק המופשט מגדיר את הפעולות ליצירת האובייקט, והמימושים הקונקרטיים מספקים את המימוש הספציפי.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+from datetime import datetime
+
+class File(ABC):
+    def __init__(self, name: str):
+        self.name = name
+        self.created_at = datetime.now()
+    
+    @abstractmethod
+    def read(self) -> str:
+        pass
+    
+    @abstractmethod
+    def write(self, content: str) -> None:
+        pass
+
+class TextFile(File):
+    def read(self) -> str:
+        return f"Reading text file: {self.name}"
+    
+    def write(self, content: str) -> None:
+        print(f"Writing to text file: {self.name}")
+
+class BinaryFile(File):
+    def read(self) -> str:
+        return f"Reading binary file: {self.name}"
+    
+    def write(self, content: str) -> None:
+        print(f"Writing to binary file: {self.name}")
+
+class FileCreator(ABC):
+    @abstractmethod
+    def create_file(self, name: str) -> File:
+        pass
+    
+    def process_file(self, name: str, content: str) -> None:
+        file = self.create_file(name)
+        file.write(content)
+        print(file.read())
+
+class TextFileCreator(FileCreator):
+    def create_file(self, name: str) -> File:
+        return TextFile(name)
+
+class BinaryFileCreator(FileCreator):
+    def create_file(self, name: str) -> File:
+        return BinaryFile(name)
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת קובץ טקסט
+    text_creator = TextFileCreator()
+    text_creator.process_file("example.txt", "Hello, World!")
+    
+    # יצירת קובץ בינארי
+    binary_creator = BinaryFileCreator()
+    binary_creator.process_file("example.bin", "01010101")</code></pre>
         </section>
 
         <section class="card">
@@ -104,11 +237,20 @@ print(report)  # יצירת דף דוח</code></pre>
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשר הרחבה קלה של סוגי המוצרים</li>
-                <li>מפריד בין יצירת האובייקט לשימוש בו</li>
-                <li>מאפשר למחלקות היורשות להחליט איזה אובייקט ליצור</li>
-                <li>מקדם עקרון היחידות (Single Responsibility)</li>
+                <li>מאפשרת החלפה קלה של סוגי אובייקטים</li>
+                <li>מקלה על הוספת סוגי אובייקטים חדשים</li>
+                <li>מפרידה בין יצירת האובייקט לשימוש בו</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הרחבה של המערכת מבלי לשנות את הקוד הקיים</li>
+                <li>מספקת ממשק אחיד ליצירת אובייקטים</li>
+                <li>מאפשרת החלפה דינמית של סוגי אובייקטים בזמן ריצה</li>
+                <li>מקלה על בדיקות (Testing) של המערכת</li>
+                <li>מאפשרת שימוש ב-Mock Objects לצורכי בדיקות</li>
             </ul>
         </section>
 
@@ -117,10 +259,39 @@ print(report)  # יצירת דף דוח</code></pre>
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מגדיל את מספר המחלקות בקוד</li>
-                <li>עלול להיות מורכב מדי עבור מקרים פשוטים</li>
-                <li>דורש יצירת מחלקה נפרדת לכל סוג מוצר</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להיות מורכבת מדי עבור מקרים פשוטים</li>
+                <li>מקשה על הוספת סוגי אובייקטים חדשים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הרחבת הממשק</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור קוד מיותר במקרים פשוטים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>יצירת יותר מדי מחלקות קונקרטיות</li>
+                <li>שימוש בתבנית כאשר לא נדרשת</li>
+                <li>אי-הקפדה על התאמה בין האובייקטים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-שימוש בממשקים מופשטים</li>
+                <li>אי-הפרדה בין יצירת האובייקט לשימוש בו</li>
+                <li>אי-שימוש ב-Singleton עבור המחלקות הקונקרטיות</li>
             </ul>
         </section>
 
@@ -129,6 +300,7 @@ print(report)  # יצירת דף דוח</code></pre>
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -136,11 +308,35 @@ print(report)  # יצירת דף דוח</code></pre>
                 </tr>
                 <tr>
                     <td>Abstract Factory</td>
-                    <td>מתמקד ביצירת משפחות של אובייקטים, בעוד Factory Method מתמקד ביצירת אובייקט בודד</td>
+                    <td>מתמקדת ביצירת משפחות של מוצרים</td>
                 </tr>
                 <tr>
                     <td>Builder</td>
-                    <td>מתמקד בבניית אובייקט מורכב צעד אחר צעד, בעוד Factory Method מתמקד ביצירת אובייקט בודד</td>
+                    <td>מתמקדת בבניית אובייקט מורכב</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Abstract Factory</td>
+                    <td>מתמקדת ביצירת משפחות של מוצרים, בעוד Factory Method מתמקדת ביצירת מוצר בודד</td>
+                </tr>
+                <tr>
+                    <td>Builder</td>
+                    <td>מתמקדת בבניית אובייקט מורכב, בעוד Factory Method מתמקדת ביצירת אובייקט בודד</td>
+                </tr>
+                <tr>
+                    <td>Prototype</td>
+                    <td>מתמקדת ביצירת אובייקטים על ידי שיבוט, בעוד Factory Method מתמקדת ביצירת אובייקטים חדשים</td>
+                </tr>
+                <tr>
+                    <td>Singleton</td>
+                    <td>מתמקדת ביצירת מופע יחיד של מחלקה, בעוד Factory Method מתמקדת ביצירת אובייקטים חדשים</td>
                 </tr>
             </table>
         </section>
@@ -150,12 +346,66 @@ print(report)  # יצירת דף דוח</code></pre>
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Factory Method במקרים הבאים:</p>
             <ol>
-                <li>יצירת סוגים שונים של כלי רכב (מכונית, אופנוע, משאית)</li>
-                <li>יצירת סוגים שונים של מסמכים (PDF, Word, Excel)</li>
-                <li>יצירת סוגים שונים של משתמשים (מנהל, עובד, לקוח)</li>
+                <li>מערכת ניהול מסמכים עם תמיכה בפורמטים שונים</li>
+                <li>מערכת ניהול קבצים עם תמיכה בסוגי קבצים שונים</li>
+                <li>מערכת עיבוד תמונות עם תמיכה בפורמטים שונים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Factory Method במקרים הבאים:</p>
+            <ol>
+                <li>מערכת משחק עם דמויות שונות</li>
+                <li>מערכת דיווח עם פורמטים שונים</li>
+                <li>מערכת תקשורת עם פרוטוקולים שונים</li>
+                <li>מערכת עיבוד תמונות עם פורמטים שונים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשקים מופשטים להגדרת המחלקות והאובייקטים</li>
+                <li>ודא שכל מחלקה יורשת מיישמת את הממשק המוגדר</li>
+                <li>הוסף בדיקות תקינות לאובייקטים שיוצרו</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש ב-Singleton עבור המחלקות הקונקרטיות אם נדרש</li>
+                <li>שקול שימוש ב-Registry או Configuration עבור בחירת המחלקה המתאימה</li>
+                <li>השתמש ב-Dependency Injection עבור הזרקת המחלקה</li>
+                <li>שקול שימוש ב-Abstract Factory בתוך Factory Method</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול קבצים</li>
+                <li>מערכות עיבוד תמונות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות משחק</li>
+                <li>מערכות דיווח</li>
+                <li>מערכות תקשורת</li>
+                <li>מערכות עיבוד תמונות</li>
+                <li>מערכות אחסון קבצים</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -167,6 +417,7 @@ print(report)  # יצירת דף דוח</code></pre>
                 <li><a href="abstract-factory.html" class="flex-center"><i class="fas fa-industry icon"></i>Abstract Factory</a></li>
                 <li><a href="builder.html" class="flex-center"><i class="fas fa-hammer icon"></i>Builder</a></li>
                 <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+                <li><a href="singleton.html" class="flex-center"><i class="fas fa-cube icon"></i>Singleton</a></li>
             </ul>
         </div>
     </main>

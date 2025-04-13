@@ -17,10 +17,10 @@
     <main class="main-content">
         <header class="rtl-container">
             <h1 class="flex-center">
-                <i class="fas fa-gift icon"></i>
+                <i class="fas fa-paint-brush icon"></i>
                 Decorator Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -29,21 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Decorator?
             </h2>
-            <p>תבנית Decorator מאפשרת להוסיף אחריות לאובייקט באופן דינמי, מבלי להשפיע על התנהגותם של אובייקטים אחרים מאותה מחלקה.</p>
+            <p>תבנית Decorator היא תבנית עיצוב מבנית המאפשרת להוסיף תכונות לאובייקטים באופן דינמי. התבנית משמשת כאשר יש צורך להוסיף פונקציונליות לאובייקטים קיימים מבלי לשנות את המחלקה המקורית.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם כוס קפה בסיסית. אתם יכולים להוסיף לה חלב, סוכר, או תבלינים שונים. כל תוספת משנה את טעם הקפה, אבל לא משנה את מהות הכוס. תבנית Decorator עובדת באותו אופן - היא מאפשרת להוסיף תכונות לאובייקטים מבלי לשנות את המחלקה המקורית.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Open/Closed Principle על ידי שימוש בהרכבה (Composition) במקום הורשה (Inheritance). זה מאפשר הוספת פונקציונליות לאובייקטים באופן דינמי, ומאפשר שינוי התנהגות האובייקט בזמן ריצה.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים להוסיף אחריות לאובייקט באופן דינמי</li>
-                <li>כאשר רוצים להימנע מיצירת מחלקות רבות</li>
-                <li>כאשר רוצים להוסיף תכונות לאובייקטים קיימים</li>
-                <li>כאשר רוצים לשלב תכונות שונות</li>
+                <li>כאשר אתם צריכים להוסיף תכונות לאובייקטים באופן דינמי</li>
+                <li>כאשר אתם צריכים לשנות את התנהגות האובייקט בזמן ריצה</li>
+                <li>כאשר אתם צריכים להוסיף פונקציונליות מבלי לשנות את המחלקה המקורית</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להוסיף תכונות לאובייקטים באופן דינמי</li>
+                <li>כאשר יש צורך לשנות את התנהגות האובייקט בזמן ריצה</li>
+                <li>כאשר יש צורך להוסיף פונקציונליות מבלי לשנות את המחלקה המקורית</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Open/Closed Principle</li>
+                <li>כאשר יש צורך לאפשר שימוש חוזר בקוד קיים</li>
+                <li>כאשר יש צורך לאפשר שינוי התנהגות ללא שינוי הקוד הקיים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Component</strong> - הממשק המשותף לכל האובייקטים</li>
+                <li><strong>ConcreteComponent</strong> - המימוש הבסיסי של הממשק</li>
+                <li><strong>Decorator</strong> - המחלקה שמספקת את הפונקציונליות הנוספת</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Component</strong> - הממשק המשותף לכל האובייקטים</li>
+                <li><strong>ConcreteComponent</strong> - המימוש הבסיסי של הממשק</li>
+                <li><strong>Decorator</strong> - המחלקה שמספקת את הפונקציונליות הנוספת</li>
+                <li><strong>ConcreteDecorator</strong> - המימושים הספציפיים של ה-Decorator</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Component מגדיר את הממשק המשותף</li>
+                <li>ConcreteComponent מיישם את הממשק</li>
+                <li>Decorator מכיל התייחסות ל-Component</li>
+                <li>ConcreteDecorator מיישם את ה-Decorator</li>
             </ul>
         </section>
 
@@ -52,49 +99,148 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת לניהול קפה. יש לנו קפה בסיסי, ואנחנו יכולים להוסיף לו חלב, סוכר, או תבלינים שונים.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Decorator Pattern להוספת תכונות לאובייקטים באופן דינמי. הממשק המשותף מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
             <pre><code>from abc import ABC, abstractmethod
 
-# ממשק משותף
-class Component(ABC):
+class Coffee(ABC):
     @abstractmethod
-    def operation(self) -> str:
+    def get_cost(self) -> float:
+        pass
+    
+    @abstractmethod
+    def get_description(self) -> str:
         pass
 
-# רכיב בסיסי
-class ConcreteComponent(Component):
-    def operation(self) -> str:
-        return "רכיב בסיסי"
+class SimpleCoffee(Coffee):
+    def get_cost(self) -> float:
+        return 5.0
+    
+    def get_description(self) -> str:
+        return "קפה פשוט"
 
-# מחלקת בסיס למעטרים
-class Decorator(Component):
-    def __init__(self, component: Component):
-        self.component = component
+class CoffeeDecorator(Coffee):
+    def __init__(self, coffee: Coffee):
+        self._coffee = coffee
+    
+    def get_cost(self) -> float:
+        return self._coffee.get_cost()
+    
+    def get_description(self) -> str:
+        return self._coffee.get_description()
 
-    def operation(self) -> str:
-        return self.component.operation()
+class MilkDecorator(CoffeeDecorator):
+    def get_cost(self) -> float:
+        return self._coffee.get_cost() + 2.0
+    
+    def get_description(self) -> str:
+        return self._coffee.get_description() + ", חלב"
 
-# מעטרים קונקרטיים
-class ConcreteDecoratorA(Decorator):
-    def operation(self) -> str:
-        return f"מעטר A: {super().operation()}"
-
-class ConcreteDecoratorB(Decorator):
-    def operation(self) -> str:
-        return f"מעטר B: {super().operation()}"
+class SugarDecorator(CoffeeDecorator):
+    def get_cost(self) -> float:
+        return self._coffee.get_cost() + 1.0
+    
+    def get_description(self) -> str:
+        return self._coffee.get_description() + ", סוכר"
 
 # שימוש
-def client_code(component: Component):
-    print(component.operation())
+if __name__ == "__main__":
+    # יצירת קפה בסיסי
+    coffee = SimpleCoffee()
+    print(f"קפה בסיסי: {coffee.get_description()}, מחיר: {coffee.get_cost()} ש\"ח")
+    
+    # הוספת חלב
+    coffee_with_milk = MilkDecorator(coffee)
+    print(f"קפה עם חלב: {coffee_with_milk.get_description()}, מחיר: {coffee_with_milk.get_cost()} ש\"ח")
+    
+    # הוספת סוכר
+    coffee_with_sugar = SugarDecorator(coffee)
+    print(f"קפה עם סוכר: {coffee_with_sugar.get_description()}, מחיר: {coffee_with_sugar.get_cost()} ש\"ח")
+    
+    # הוספת חלב וסוכר
+    coffee_with_milk_and_sugar = SugarDecorator(MilkDecorator(coffee))
+    print(f"קפה עם חלב וסוכר: {coffee_with_milk_and_sugar.get_description()}, מחיר: {coffee_with_milk_and_sugar.get_cost()} ש\"ח")</code></pre>
+        </section>
 
-# יצירת אובייקטים
-simple = ConcreteComponent()
-decorated1 = ConcreteDecoratorA(simple)
-decorated2 = ConcreteDecoratorB(decorated1)
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול מסמכים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת לניהול מסמכים. יש לנו מסמך בסיסי, ואנחנו יכולים להוסיף לו תכונות כמו הצפנה, דחיסה, או חתימה דיגיטלית.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Decorator Pattern להוספת תכונות למסמכים באופן דינמי. הממשק המשותף מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from abc import ABC, abstractmethod
+
+class Document(ABC):
+    @abstractmethod
+    def get_content(self) -> str:
+        pass
+    
+    @abstractmethod
+    def get_size(self) -> int:
+        pass
+
+class SimpleDocument(Document):
+    def __init__(self, content: str):
+        self._content = content
+    
+    def get_content(self) -> str:
+        return self._content
+    
+    def get_size(self) -> int:
+        return len(self._content)
+
+class DocumentDecorator(Document):
+    def __init__(self, document: Document):
+        self._document = document
+    
+    def get_content(self) -> str:
+        return self._document.get_content()
+    
+    def get_size(self) -> int:
+        return self._document.get_size()
+
+class EncryptedDocument(DocumentDecorator):
+    def get_content(self) -> str:
+        # הצפנה פשוטה - הזזה של כל תו ב-1
+        return ''.join(chr(ord(c) + 1) for c in self._document.get_content())
+    
+    def get_size(self) -> int:
+        return self._document.get_size()
+
+class CompressedDocument(DocumentDecorator):
+    def get_content(self) -> str:
+        # דחיסה פשוטה - הסרת רווחים
+        return self._document.get_content().replace(' ', '')
+    
+    def get_size(self) -> int:
+        return len(self.get_content())
 
 # שימוש
-client_code(simple)      # רכיב בסיסי
-client_code(decorated1)  # מעטר A: רכיב בסיסי
-client_code(decorated2)  # מעטר B: מעטר A: רכיב בסיסי</code></pre>
+if __name__ == "__main__":
+    # יצירת מסמך בסיסי
+    document = SimpleDocument("זהו מסמך חשוב")
+    print(f"מסמך בסיסי: {document.get_content()}, גודל: {document.get_size()}")
+    
+    # הוספת הצפנה
+    encrypted_document = EncryptedDocument(document)
+    print(f"מסמך מוצפן: {encrypted_document.get_content()}, גודל: {encrypted_document.get_size()}")
+    
+    # הוספת דחיסה
+    compressed_document = CompressedDocument(document)
+    print(f"מסמך דחוס: {compressed_document.get_content()}, גודל: {compressed_document.get_size()}")
+    
+    # הוספת הצפנה ודחיסה
+    encrypted_and_compressed = CompressedDocument(EncryptedDocument(document))
+    print(f"מסמך מוצפן ודחוס: {encrypted_and_compressed.get_content()}, גודל: {encrypted_and_compressed.get_size()}")</code></pre>
         </section>
 
         <section class="card">
@@ -102,11 +248,22 @@ client_code(decorated2)  # מעטר B: מעטר A: רכיב בסיסי</code></p
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשר הוספת אחריות באופן דינמי</li>
-                <li>מאפשר שילוב של תכונות שונות</li>
-                <li>מפחית את מספר המחלקות</li>
-                <li>מאפשר הרחבה של פונקציונליות</li>
+                <li>מאפשרת הוספת תכונות לאובייקטים באופן דינמי</li>
+                <li>מאפשרת שינוי התנהגות האובייקט בזמן ריצה</li>
+                <li>מאפשרת הוספת פונקציונליות מבלי לשנות את המחלקה המקורית</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הוספת תכונות לאובייקטים באופן דינמי</li>
+                <li>מאפשרת שינוי התנהגות האובייקט בזמן ריצה</li>
+                <li>מאפשרת הוספת פונקציונליות מבלי לשנות את המחלקה המקורית</li>
+                <li>מאפשרת שמירה על עקרון ה-Open/Closed Principle</li>
+                <li>מאפשרת שימוש חוזר בקוד קיים</li>
+                <li>מאפשרת שינוי התנהגות ללא שינוי הקוד הקיים</li>
+                <li>מאפשרת הפרדה בין הממשק למימוש</li>
             </ul>
         </section>
 
@@ -115,10 +272,44 @@ client_code(decorated2)  # מעטר B: מעטר A: רכיב בסיסי</code></p
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלול ליצור אובייקטים מורכבים</li>
-                <li>עלול להקשות על הבנת הקוד</li>
-                <li>עלול ליצור ביצועים פחות טובים</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור תלות בין המחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק משותף</li>
+                <li>אי-הקפדה על שימוש נכון ב-Decorator</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק משותף</li>
+                <li>אי-הקפדה על שימוש נכון ב-Decorator</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -127,18 +318,43 @@ client_code(decorated2)  # מעטר B: מעטר A: רכיב בסיסי</code></p
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
                     <th>הבדל</th>
                 </tr>
                 <tr>
-                    <td>Adapter</td>
-                    <td>מתאים ממשקים לא תואמים, בעוד Decorator מוסיף אחריות</td>
+                    <td>Composite</td>
+                    <td>מתמקדת במבנה היררכי, בעוד Decorator מתמקדת בהוספת תכונות</td>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת בהחלפת אלגוריתמים, בעוד Decorator מתמקדת בהוספת תכונות</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
                 </tr>
                 <tr>
                     <td>Composite</td>
-                    <td>משלב אובייקטים למבנה היררכי, בעוד Decorator מוסיף אחריות</td>
+                    <td>מתמקדת במבנה היררכי, בעוד Decorator מתמקדת בהוספת תכונות</td>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת בהחלפת אלגוריתמים, בעוד Decorator מתמקדת בהוספת תכונות</td>
+                </tr>
+                <tr>
+                    <td>Adapter</td>
+                    <td>מתמקדת בהתאמת ממשקים, בעוד Decorator מתמקדת בהוספת תכונות</td>
+                </tr>
+                <tr>
+                    <td>Proxy</td>
+                    <td>מתמקדת בשליטה בגישה, בעוד Decorator מתמקדת בהוספת תכונות</td>
                 </tr>
             </table>
         </section>
@@ -148,12 +364,67 @@ client_code(decorated2)  # מעטר B: מעטר A: רכיב בסיסי</code></p
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Decorator במקרים הבאים:</p>
             <ol>
-                <li>הוספת תכונות לממשק משתמש</li>
-                <li>הוספת פונקציונליות לקבצים</li>
-                <li>הוספת תכונות למוצרים</li>
+                <li>מערכת ניהול קפה</li>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול תפריטים</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Decorator במקרים הבאים:</p>
+            <ol>
+                <li>מערכת ניהול קפה</li>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול תפריטים</li>
+                <li>מערכת ניהול הרשאות</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק משותף לכל האובייקטים</li>
+                <li>ודא שה-Decorator מיישם את הממשק הנכון</li>
+                <li>הוסף בדיקות תקינות לממשק המשותף</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק משותף לכל האובייקטים</li>
+                <li>ודא שה-Decorator מיישם את הממשק הנכון</li>
+                <li>הוסף בדיקות תקינות לממשק המשותף</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות ניהול קפה</li>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול תפריטים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות ניהול קפה</li>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול תפריטים</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול תצוגה</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -162,9 +433,10 @@ client_code(decorated2)  # מעטר B: מעטר A: רכיב בסיסי</code></p
                 תבניות קשורות
             </h2>
             <ul>
-                <li><a href="adapter.html" class="flex-center"><i class="fas fa-plug icon"></i>Adapter</a></li>
                 <li><a href="composite.html" class="flex-center"><i class="fas fa-sitemap icon"></i>Composite</a></li>
-                <li><a href="strategy.html" class="flex-center"><i class="fas fa-chess icon"></i>Strategy</a></li>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
+                <li><a href="adapter.html" class="flex-center"><i class="fas fa-plug icon"></i>Adapter</a></li>
+                <li><a href="proxy.html" class="flex-center"><i class="fas fa-shield-alt icon"></i>Proxy</a></li>
             </ul>
         </div>
     </main>

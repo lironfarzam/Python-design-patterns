@@ -20,7 +20,7 @@
                 <i class="fas fa-history icon"></i>
                 Memento Pattern
             </h1>
-            <a href="index.html" class="flex-center">
+            <a href="../index.html" class="flex-center">
                 <i class="fas fa-arrow-right icon"></i>
                 חזרה לדף הבית
             </a>
@@ -29,21 +29,68 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Memento?
             </h2>
-            <p>תבנית Memento מאפשרת לשמור ולשחזר את המצב הפנימי של אובייקט מבלי לחשוף את פרטי המימוש שלו.</p>
+            <p>תבנית Memento היא תבנית עיצוב התנהגותית המאפשרת לשמור ולשחזר את המצב הפנימי של אובייקט מבלי לחשוף את המבנה הפנימי שלו. התבנית מאפשרת לאובייקט לחזור למצב קודם מבלי להפר את עקרון ההסתרה.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם עורך טקסט. אתם יכולים לכתוב טקסט, למחוק טקסט, ולשנות את הטקסט. אם אתם רוצים לחזור למצב קודם, אתם יכולים להשתמש בתבנית Memento כדי לשמור את המצב של העורך ולחזור אליו מאוחר יותר. זה מאפשר לכם לבטל שינויים ולחזור למצב קודם.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Open/Closed Principle על ידי הפרדה בין האובייקט שמשנה את המצב לבין האובייקט שמשמר את המצב. זה מאפשר הוספה של פונקציונליות חדשה ללא צורך בשינוי הקוד הקיים, ומאפשר שמירה ושחזור של מצבים.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר רוצים לשמור מצבים קודמים של אובייקט</li>
-                <li>כאשר רוצים לאפשר ביטול פעולות</li>
-                <li>כאשר רוצים לשמור על קפסולציה של האובייקט</li>
-                <li>כאשר רוצים ליצור מנגנון גיבוי ושחזור</li>
+                <li>כאשר יש צורך לשמור ולשחזר את המצב של אובייקט</li>
+                <li>כאשר יש צורך לבטל שינויים</li>
+                <li>כאשר יש צורך לשמור היסטוריה של מצבים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך לשמור ולשחזר את המצב של אובייקט</li>
+                <li>כאשר יש צורך לבטל שינויים</li>
+                <li>כאשר יש צורך לשמור היסטוריה של מצבים</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Open/Closed Principle</li>
+                <li>כאשר יש צורך להפחית את הצימוד בין המחלקות</li>
+                <li>כאשר יש צורך לאפשר הרחבה של המערכת עם פונקציונליות חדשה</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משלושה חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Originator</strong> - האובייקט שמשנה את המצב</li>
+                <li><strong>Memento</strong> - האובייקט שמשמר את המצב</li>
+                <li><strong>Caretaker</strong> - האובייקט שמנהל את ה-Memento</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Originator</strong> - האובייקט שמשנה את המצב</li>
+                <li><strong>Memento</strong> - האובייקט שמשמר את המצב</li>
+                <li><strong>Caretaker</strong> - האובייקט שמנהל את ה-Memento</li>
+                <li><strong>Client</strong> - האובייקט שיוצר את ה-Originator ומשתמש ב-Caretaker</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Originator יוצר Memento</li>
+                <li>Memento משמר את המצב</li>
+                <li>Caretaker מנהל את ה-Memento</li>
+                <li>Client יוצר את ה-Originator ומשתמש ב-Caretaker</li>
             </ul>
         </section>
 
@@ -52,64 +99,160 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
-            <pre><code>from dataclasses import dataclass
-from typing import Optional
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים עורך טקסט פשוט. העורך יכול לשמור את המצב שלו ולחזור למצב קודם. במקום לכתוב קוד מורכב שמטפל בכל המצבים, אנחנו משתמשים בתבנית Memento כדי לשמור ולשחזר את המצב.</p>
 
-@dataclass
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Memento Pattern להפרדה בין האובייקט שמשנה את המצב לבין האובייקט שמשמר את המצב. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
+            <pre><code>from typing import List
+
 class Memento:
-    state: str
-
-class Originator:
     def __init__(self, state: str):
         self._state = state
-
-    def create_memento(self) -> Memento:
-        return Memento(self._state)
-
-    def restore_from_memento(self, memento: Memento) -> None:
-        self._state = memento.state
-
-    def set_state(self, state: str) -> None:
-        self._state = state
-
+    
     def get_state(self) -> str:
         return self._state
 
+class TextEditor:
+    def __init__(self):
+        self._text = ""
+    
+    def write(self, text: str) -> None:
+        self._text += text
+        print(f"טקסט נוכחי: {self._text}")
+    
+    def save(self) -> Memento:
+        return Memento(self._text)
+    
+    def restore(self, memento: Memento) -> None:
+        self._text = memento.get_state()
+        print(f"טקסט משוחזר: {self._text}")
+
 class Caretaker:
     def __init__(self):
-        self._mementos: list[Memento] = []
-
+        self._mementos: List[Memento] = []
+    
     def add_memento(self, memento: Memento) -> None:
         self._mementos.append(memento)
-
-    def get_memento(self, index: int) -> Optional[Memento]:
-        if 0 <= index < len(self._mementos):
-            return self._mementos[index]
-        return None
+    
+    def get_memento(self, index: int) -> Memento:
+        return self._mementos[index]
 
 # שימוש
-def client_code() -> None:
-    originator = Originator("מצב ראשוני")
+if __name__ == "__main__":
+    # יצירת עורך טקסט
+    editor = TextEditor()
+    
+    # יצירת caretaker
     caretaker = Caretaker()
+    
+    # כתיבת טקסט
+    editor.write("שלום")
+    caretaker.add_memento(editor.save())
+    
+    editor.write(" עולם")
+    caretaker.add_memento(editor.save())
+    
+    editor.write("!")
+    caretaker.add_memento(editor.save())
+    
+    # חזרה למצב קודם
+    editor.restore(caretaker.get_memento(1))  # שלום עולם
+    editor.restore(caretaker.get_memento(0))  # שלום</code></pre>
+        </section>
 
-    # שמירת מצב
-    caretaker.add_memento(originator.create_memento())
-    print(f"מצב נוכחי: {originator.get_state()}")
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול מסמכים
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת ניהול מסמכים. המערכת מאפשרת לשמור את המצב של המסמך ולחזור למצב קודם. במקום לכתוב קוד מורכב שמטפל בכל המצבים, אנחנו משתמשים בתבנית Memento כדי לשמור ולשחזר את המצב.</p>
 
-    # שינוי מצב
-    originator.set_state("מצב שני")
-    caretaker.add_memento(originator.create_memento())
-    print(f"מצב נוכחי: {originator.get_state()}")
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Memento Pattern להפרדה בין האובייקט שמשנה את המצב לבין האובייקט שמשמר את המצב. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
 
-    # שינוי מצב נוסף
-    originator.set_state("מצב שלישי")
-    print(f"מצב נוכחי: {originator.get_state()}")
+            <pre><code>from typing import List, Dict
+from datetime import datetime
 
-    # שחזור למצב קודם
-    memento = caretaker.get_memento(1)
-    if memento:
-        originator.restore_from_memento(memento)
-        print(f"מצב משוחזר: {originator.get_state()}")</code></pre>
+class DocumentMemento:
+    def __init__(self, content: str, metadata: Dict[str, str]):
+        self._content = content
+        self._metadata = metadata
+        self._timestamp = datetime.now()
+    
+    def get_content(self) -> str:
+        return self._content
+    
+    def get_metadata(self) -> Dict[str, str]:
+        return self._metadata
+    
+    def get_timestamp(self) -> datetime:
+        return self._timestamp
+
+class Document:
+    def __init__(self, title: str):
+        self._title = title
+        self._content = ""
+        self._metadata = {
+            "author": "",
+            "created": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "modified": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+    
+    def write(self, content: str) -> None:
+        self._content = content
+        self._metadata["modified"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"מסמך {self._title} עודכן")
+    
+    def set_author(self, author: str) -> None:
+        self._metadata["author"] = author
+        self._metadata["modified"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"מחבר המסמך עודכן ל-{author}")
+    
+    def save(self) -> DocumentMemento:
+        return DocumentMemento(self._content, self._metadata.copy())
+    
+    def restore(self, memento: DocumentMemento) -> None:
+        self._content = memento.get_content()
+        self._metadata = memento.get_metadata()
+        print(f"מסמך {self._title} שוחזר למצב מ-{memento.get_timestamp()}")
+
+class DocumentHistory:
+    def __init__(self):
+        self._mementos: List[DocumentMemento] = []
+    
+    def add_memento(self, memento: DocumentMemento) -> None:
+        self._mementos.append(memento)
+    
+    def get_memento(self, index: int) -> DocumentMemento:
+        return self._mementos[index]
+    
+    def get_history(self) -> List[datetime]:
+        return [m.get_timestamp() for m in self._mementos]
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת מסמך
+    doc = Document("מסמך חשוב")
+    
+    # יצירת היסטוריה
+    history = DocumentHistory()
+    
+    # עריכת המסמך
+    doc.set_author("יוסי")
+    history.add_memento(doc.save())
+    
+    doc.write("זהו מסמך חשוב")
+    history.add_memento(doc.save())
+    
+    doc.write("זהו מסמך חשוב מאוד")
+    history.add_memento(doc.save())
+    
+    # חזרה למצב קודם
+    doc.restore(history.get_memento(1))  # זהו מסמך חשוב
+    doc.restore(history.get_memento(0))  # מסמך ריק</code></pre>
         </section>
 
         <section class="card">
@@ -117,11 +260,22 @@ def client_code() -> None:
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
                 <li>מאפשרת שמירה ושחזור של מצבים</li>
-                <li>שומרת על קפסולציה</li>
-                <li>מאפשרת ביטול פעולות</li>
-                <li>מאפשרת גיבוי ושחזור</li>
+                <li>מאפשרת ביטול שינויים</li>
+                <li>מאפשרת שמירת היסטוריה של מצבים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת שמירה ושחזור של מצבים</li>
+                <li>מאפשרת ביטול שינויים</li>
+                <li>מאפשרת שמירת היסטוריה של מצבים</li>
+                <li>מאפשרת שמירה על עקרון ה-Open/Closed Principle</li>
+                <li>מאפשרת הפחתת הצימוד בין המחלקות</li>
+                <li>מאפשרת הרחבה של המערכת עם פונקציונליות חדשה</li>
+                <li>מאפשרת ניהול טוב יותר של המצבים</li>
             </ul>
         </section>
 
@@ -130,10 +284,44 @@ def client_code() -> None:
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה לצרוך זיכרון רב</li>
-                <li>עלולה להאט את הביצועים</li>
                 <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של אובייקטים</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של אובייקטים</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון באובייקטים</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון באובייקטים</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -142,6 +330,7 @@ def client_code() -> None:
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
@@ -149,11 +338,35 @@ def client_code() -> None:
                 </tr>
                 <tr>
                     <td>Command</td>
-                    <td>מתמקד בביצוע פעולות, בעוד Memento מתמקד בשמירת מצבים</td>
+                    <td>מתמקדת בפעולות, בעוד Memento מתמקדת במצבים</td>
                 </tr>
                 <tr>
                     <td>State</td>
-                    <td>מתמקד בשינוי התנהגות, בעוד Memento מתמקד בשמירת מצבים</td>
+                    <td>מתמקדת במצבים, בעוד Memento מתמקדת בשמירת מצב</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Memento מתמקדת במצבים</td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>מתמקדת במצבים, בעוד Memento מתמקדת בשמירת מצב</td>
+                </tr>
+                <tr>
+                    <td>Observer</td>
+                    <td>מתמקדת בהודעות, בעוד Memento מתמקדת במצבים</td>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Memento מתמקדת במצבים</td>
                 </tr>
             </table>
         </section>
@@ -163,12 +376,67 @@ def client_code() -> None:
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Memento במקרים הבאים:</p>
             <ol>
-                <li>עורך טקסט עם אפשרות ביטול</li>
-                <li>משחק עם אפשרות שמירת מצב</li>
-                <li>מערכת ניהול מסמכים עם גיבוי</li>
+                <li>עורך טקסט</li>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול תמונות</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Memento במקרים הבאים:</p>
+            <ol>
+                <li>עורך טקסט</li>
+                <li>מערכת ניהול מסמכים</li>
+                <li>מערכת ניהול תמונות</li>
+                <li>מערכת ניהול תהליכים</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאובייקטים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהאובייקטים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>עורכי טקסט</li>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול תמונות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עורכי טקסט</li>
+                <li>מערכות ניהול מסמכים</li>
+                <li>מערכות ניהול תמונות</li>
+                <li>מערכות ניהול תהליכים</li>
+                <li>מערכות ניהול מצבים</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -179,7 +447,8 @@ def client_code() -> None:
             <ul>
                 <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
                 <li><a href="state.html" class="flex-center"><i class="fas fa-toggle-on icon"></i>State</a></li>
-                <li><a href="prototype.html" class="flex-center"><i class="fas fa-clone icon"></i>Prototype</a></li>
+                <li><a href="observer.html" class="flex-center"><i class="fas fa-eye icon"></i>Observer</a></li>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
             </ul>
         </div>
     </main>

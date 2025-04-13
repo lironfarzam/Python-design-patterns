@@ -29,21 +29,67 @@
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-info-circle icon"></i>
-                מטרת התבנית
+                מהי תבנית Observer?
             </h2>
-            <p>תבנית Observer מגדירה יחס תלות בין אובייקטים, כך שכאשר אובייקט אחד משנה את מצבו, כל התלויים בו מקבלים הודעה ומתעדכנים.</p>
+            <p>תבנית Observer היא תבנית עיצוב התנהגותית המאפשרת לאובייקטים להירשם לקבלת עדכונים מאובייקט אחר, ובכך מאפשרת הפרדה בין האובייקט שמעדכן לבין האובייקטים שמקבלים את העדכונים.</p>
+            
+            <h3>הסבר למתחילים:</h3>
+            <p>דמיינו שיש לכם עיתון. אנשים יכולים להירשם לעיתון ולקבל אותו בדואר. כשמתפרסם גיליון חדש, כל המנויים מקבלים אותו אוטומטית. העיתון לא צריך לדעת מי המנויים - הוא רק שולח את הגיליון לכל מי שנרשם.</p>
+            
+            <h3>הסבר למתקדמים:</h3>
+            <p>התבנית מיישמת את עקרון ה-Loose Coupling על ידי הפרדה בין האובייקט שמעדכן לבין האובייקטים שמקבלים את העדכונים. זה מאפשר הוספה והסרה של מקבלי עדכונים ללא צורך בשינוי הקוד של האובייקט שמעדכן.</p>
         </section>
 
         <section class="card">
             <h2 class="flex-center">
                 <i class="fas fa-question-circle icon"></i>
-                מתי להשתמש?
+                מתי להשתמש בתבנית?
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>כאשר שינוי באובייקט אחד דורש שינוי באובייקטים אחרים</li>
-                <li>כאשר רוצים להפחית את הצימוד בין אובייקטים</li>
-                <li>כאשר רוצים לאפשר לאובייקטים להירשם ולהסיר את עצמם</li>
-                <li>כאשר רוצים לספק עדכונים בזמן אמת</li>
+                <li>כאשר יש צורך להפריד בין האובייקט שמעדכן לבין האובייקטים שמקבלים את העדכונים</li>
+                <li>כאשר יש צורך לתמוך במספר רב של מקבלי עדכונים</li>
+                <li>כאשר יש צורך לאפשר הוספה והסרה של מקבלי עדכונים בזמן ריצה</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>כאשר יש צורך להפריד בין האובייקט שמעדכן לבין האובייקטים שמקבלים את העדכונים</li>
+                <li>כאשר יש צורך לתמוך במספר רב של מקבלי עדכונים</li>
+                <li>כאשר יש צורך לאפשר הוספה והסרה של מקבלי עדכונים בזמן ריצה</li>
+                <li>כאשר יש צורך לשמור על עקרון ה-Loose Coupling</li>
+                <li>כאשר יש צורך לתמוך במספר רב של סוגי עדכונים</li>
+                <li>כאשר יש צורך לאפשר הרחבה של המערכת עם מקבלי עדכונים חדשים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-sitemap icon"></i>
+                מבנה התבנית
+            </h2>
+            <h3>הסבר בסיסי:</h3>
+            <p>התבנית מורכבת משני חלקים עיקריים:</p>
+            <ul>
+                <li><strong>Subject</strong> - האובייקט שמעדכן את המנויים</li>
+                <li><strong>Observer</strong> - הממשק שמגדיר את הפעולות המשותפות לכל המנויים</li>
+            </ul>
+
+            <h3>הסבר מתקדם:</h3>
+            <p>התבנית מורכבת מהמרכיבים הבאים:</p>
+            <ul>
+                <li><strong>Subject</strong> - האובייקט שמעדכן את המנויים</li>
+                <li><strong>Observer</strong> - הממשק שמגדיר את הפעולות המשותפות לכל המנויים</li>
+                <li><strong>ConcreteSubject</strong> - המימוש הספציפי של האובייקט שמעדכן</li>
+                <li><strong>ConcreteObserver</strong> - המימוש הספציפי של המנוי</li>
+            </ul>
+
+            <h3>היחסים בין המרכיבים:</h3>
+            <ul>
+                <li>Subject מחזיק רשימה של מנויים</li>
+                <li>Observer מגדיר את הממשק</li>
+                <li>ConcreteSubject מיישם את Subject</li>
+                <li>ConcreteObserver מיישם את Observer</li>
             </ul>
         </section>
 
@@ -52,67 +98,169 @@
                 <i class="fas fa-code icon"></i>
                 דוגמה בסיסית
             </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה הבאה, אנחנו יוצרים מערכת התראות פשוטה. המערכת מאפשרת למשתמשים להירשם לקבלת התראות,תפרסמת הודעה חדשה, כל המשתמשים מקבלים אותה.</p>
+
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Observer Pattern להפרדה בין האובייקט שמעדכן לבין האובייקטים שמקבלים את העדכונים. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
+
             <pre><code>from abc import ABC, abstractmethod
 from typing import List
 
-class Subject(ABC):
-    @abstractmethod
-    def attach(self, observer) -> None:
-        pass
-
-    @abstractmethod
-    def detach(self, observer) -> None:
-        pass
-
-    @abstractmethod
-    def notify(self) -> None:
-        pass
-
-class ConcreteSubject(Subject):
-    _state: int = None
-    _observers: List = []
-
-    def attach(self, observer) -> None:
-        self._observers.append(observer)
-
-    def detach(self, observer) -> None:
-        self._observers.remove(observer)
-
-    def notify(self) -> None:
-        for observer in self._observers:
-            observer.update(self)
-
-    def some_business_logic(self) -> None:
-        self._state = 1
-        self.notify()
-
 class Observer(ABC):
     @abstractmethod
-    def update(self, subject: Subject) -> None:
+    def update(self, message: str) -> None:
         pass
 
-class ConcreteObserverA(Observer):
-    def update(self, subject: Subject) -> None:
-        print("ConcreteObserverA: עדכון")
+class User(Observer):
+    def __init__(self, name: str):
+        self._name = name
+    
+    def update(self, message: str) -> None:
+        print(f"{self._name} קיבל הודעה: {message}")
 
-class ConcreteObserverB(Observer):
-    def update(self, subject: Subject) -> None:
-        print("ConcreteObserverB: עדכון")
+class NotificationSystem:
+    def __init__(self):
+        self._observers: List[Observer] = []
+    
+    def attach(self, observer: Observer) -> None:
+        if observer not in self._observers:
+            self._observers.append(observer)
+    
+    def detach(self, observer: Observer) -> None:
+        if observer in self._observers:
+            self._observers.remove(observer)
+    
+    def notify(self, message: str) -> None:
+        for observer in self._observers:
+            observer.update(message)
 
 # שימוש
 if __name__ == "__main__":
-    subject = ConcreteSubject()
+    # יצירת מערכת התראות
+    system = NotificationSystem()
+    
+    # יצירת משתמשים
+    user1 = User("דני")
+    user2 = User("שרה")
+    user3 = User("משה")
+    
+    # הרשמת משתמשים
+    system.attach(user1)
+    system.attach(user2)
+    system.attach(user3)
+    
+    # שליחת הודעה
+    system.notify("שלום לכולם!")
+    
+    # ביטול הרשמה של משתמש
+    system.detach(user2)
+    
+    # שליחת הודעה נוספת
+    system.notify("הודעה נוספת")</code></pre>
+        </section>
 
-    observer_a = ConcreteObserverA()
-    subject.attach(observer_a)
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-laptop-code icon"></i>
+                דוגמה מעשית - מערכת ניהול מלאי
+            </h2>
+            <h3>הסבר למתחילים:</h3>
+            <p>בדוגמה זו, אנחנו יוצרים מערכת ניהול מלאי. המערכת מאפשרת להירשם לקבלת עדכונים על שינויים במלאי,מתבצע שינוי, כל המנויים מקבלים התראה.</p>
 
-    observer_b = ConcreteObserverB()
-    subject.attach(observer_b)
+            <h3>הסבר למתקדמים:</h3>
+            <p>הדוגמה מדגימה את השימוש ב-Observer Pattern להפרדה בין האובייקט שמעדכן לבין האובייקטים שמקבלים את העדכונים. הממשק מגדיר את הפעולות הבסיסיות, והמימושים הספציפיים מספקים את הפונקציונליות.</p>
 
-    subject.some_business_logic()
+            <pre><code>from abc import ABC, abstractmethod
+from typing import List, Dict
 
-    subject.detach(observer_a)
-    subject.some_business_logic()</code></pre>
+class Product:
+    def __init__(self, name: str, price: float, quantity: int):
+        self._name = name
+        self._price = price
+        self._quantity = quantity
+    
+    def get_name(self) -> str:
+        return self._name
+    
+    def get_price(self) -> float:
+        return self._price
+    
+    def get_quantity(self) -> int:
+        return self._quantity
+    
+    def set_quantity(self, quantity: int) -> None:
+        self._quantity = quantity
+
+class InventoryObserver(ABC):
+    @abstractmethod
+    def update(self, product: Product, old_quantity: int) -> None:
+        pass
+
+class EmailNotification(InventoryObserver):
+    def update(self, product: Product, old_quantity: int) -> None:
+        print(f"שליחת מייל: כמות המוצר {product.get_name()} השתנתה מ-{old_quantity} ל-{product.get_quantity()}")
+
+class SMSNotification(InventoryObserver):
+    def update(self, product: Product, old_quantity: int) -> None:
+        print(f"שליחת SMS: כמות המוצר {product.get_name()} השתנתה מ-{old_quantity} ל-{product.get_quantity()}")
+
+class InventorySystem:
+    def __init__(self):
+        self._products: Dict[str, Product] = {}
+        self._observers: List[InventoryObserver] = []
+    
+    def attach(self, observer: InventoryObserver) -> None:
+        if observer not in self._observers:
+            self._observers.append(observer)
+    
+    def detach(self, observer: InventoryObserver) -> None:
+        if observer in self._observers:
+            self._observers.remove(observer)
+    
+    def add_product(self, product: Product) -> None:
+        self._products[product.get_name()] = product
+    
+    def update_quantity(self, product_name: str, new_quantity: int) -> None:
+        if product_name in self._products:
+            product = self._products[product_name]
+            old_quantity = product.get_quantity()
+            product.set_quantity(new_quantity)
+            self._notify(product, old_quantity)
+    
+    def _notify(self, product: Product, old_quantity: int) -> None:
+        for observer in self._observers:
+            observer.update(product, old_quantity)
+
+# שימוש
+if __name__ == "__main__":
+    # יצירת מערכת מלאי
+    inventory = InventorySystem()
+    
+    # יצירת מוצרים
+    product1 = Product("מחשב", 5000, 10)
+    product2 = Product("טלפון", 2000, 20)
+    
+    # הוספת מוצרים
+    inventory.add_product(product1)
+    inventory.add_product(product2)
+    
+    # יצירת מערכות התראה
+    email = EmailNotification()
+    sms = SMSNotification()
+    
+    # הרשמת מערכות התראה
+    inventory.attach(email)
+    inventory.attach(sms)
+    
+    # עדכון כמות
+    inventory.update_quantity("מחשב", 5)
+    
+    # ביטול הרשמה של מערכת התראה
+    inventory.detach(sms)
+    
+    # עדכון כמות נוסף
+    inventory.update_quantity("טלפון", 15)</code></pre>
         </section>
 
         <section class="card">
@@ -120,11 +268,22 @@ if __name__ == "__main__":
                 <i class="fas fa-plus-circle icon"></i>
                 יתרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>מאפשרת הפחתת צימוד בין אובייקטים</li>
-                <li>מאפשרת הוספה והסרה של משקיפים</li>
-                <li>מאפשרת עדכונים בזמן אמת</li>
-                <li>מאפשרת הפרדה בין נושא למשקיף</li>
+                <li>מאפשרת הפרדה בין האובייקט שמעדכן לבין האובייקטים שמקבלים את העדכונים</li>
+                <li>מאפשרת תמיכה במספר רב של מקבלי עדכונים</li>
+                <li>מאפשרת הוספה והסרה של מקבלי עדכונים בזמן ריצה</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מאפשרת הפרדה בין האובייקט שמעדכן לבין האובייקטים שמקבלים את העדכונים</li>
+                <li>מאפשרת תמיכה במספר רב של מקבלי עדכונים</li>
+                <li>מאפשרת הוספה והסרה של מקבלי עדכונים בזמן ריצה</li>
+                <li>מאפשרת שמירה על עקרון ה-Loose Coupling</li>
+                <li>מאפשרת תמיכה במספר רב של סוגי עדכונים</li>
+                <li>מאפשרת הרחבה של המערכת עם מקבלי עדכונים חדשים</li>
+                <li>מאפשרת ניהול טוב יותר של העדכונים</li>
             </ul>
         </section>
 
@@ -133,11 +292,44 @@ if __name__ == "__main__":
                 <i class="fas fa-minus-circle icon"></i>
                 חסרונות
             </h2>
+            <h3>למתחילים:</h3>
             <ul>
-                <li>עלולה ליצור קוד מורכב</li>
-                <li>עלולה ליצור קוד קשה לתחזוקה</li>
-                <li>עלולה ליצור קוד קשה להבנה</li>
-                <li>עלולה ליצור קוד קשה לבדיקה</li>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>עלולה להקשות על הבנת הקוד</li>
+                <li>עלולה ליצור מספר רב של מחלקות</li>
+                <li>עלולה להקשות על ניהול הקוד</li>
+                <li>עלולה להקשות על בדיקות (Testing)</li>
+                <li>עלולה להקשות על ניהול גרסאות</li>
+                <li>עלולה להקשות על ניהול תלויות</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-exclamation-triangle icon"></i>
+                מלכודות נפוצות
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>אי-הקפדה על יצירת ממשק פשוט</li>
+                <li>אי-הקפדה על שימוש נכון במתודות</li>
+                <li>אי-הקפדה על ניהול תלויות</li>
+                <li>אי-הקפדה על ניהול גרסאות</li>
+                <li>אי-הקפדה על בדיקות (Testing)</li>
+                <li>אי-הקפדה על ניהול זיכרון</li>
             </ul>
         </section>
 
@@ -146,18 +338,43 @@ if __name__ == "__main__":
                 <i class="fas fa-balance-scale icon"></i>
                 השוואה לתבניות אחרות
             </h2>
+            <h3>למתחילים:</h3>
             <table>
                 <tr>
                     <th>תבנית</th>
                     <th>הבדל</th>
                 </tr>
                 <tr>
-                    <td>Mediator</td>
-                    <td>מתמקדת בתיאום בין אובייקטים, בעוד Observer מתמקדת בעדכון אובייקטים</td>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Observer מתמקדת בעדכונים</td>
                 </tr>
                 <tr>
                     <td>Chain of Responsibility</td>
-                    <td>מתמקדת בטיפול בבקשות, בעוד Observer מתמקדת בעדכון אובייקטים</td>
+                    <td>מתמקדת במטפלים, בעוד Observer מתמקדת בעדכונים</td>
+                </tr>
+            </table>
+
+            <h3>למתקדמים:</h3>
+            <table>
+                <tr>
+                    <th>תבנית</th>
+                    <th>הבדל</th>
+                </tr>
+                <tr>
+                    <td>Command</td>
+                    <td>מתמקדת בפעולות, בעוד Observer מתמקדת בעדכונים</td>
+                </tr>
+                <tr>
+                    <td>Chain of Responsibility</td>
+                    <td>מתמקדת במטפלים, בעוד Observer מתמקדת בעדכונים</td>
+                </tr>
+                <tr>
+                    <td>Strategy</td>
+                    <td>מתמקדת באלגוריתמים, בעוד Observer מתמקדת בעדכונים</td>
+                </tr>
+                <tr>
+                    <td>State</td>
+                    <td>מתמקדת במצבים, בעוד Observer מתמקדת בעדכונים</td>
                 </tr>
             </table>
         </section>
@@ -167,12 +384,67 @@ if __name__ == "__main__":
                 <i class="fas fa-pencil-alt icon"></i>
                 תרגול
             </h2>
+            <h3>למתחילים:</h3>
             <p>נסה ליישם את תבנית Observer במקרים הבאים:</p>
             <ol>
                 <li>מערכת התראות</li>
+                <li>מערכת ניהול מלאי</li>
                 <li>מערכת ניהול אירועים</li>
-                <li>מערכת ניהול מצב</li>
             </ol>
+
+            <h3>למתקדמים:</h3>
+            <p>נסה ליישם את תבנית Observer במקרים הבאים:</p>
+            <ol>
+                <li>מערכת התראות</li>
+                <li>מערכת ניהול מלאי</li>
+                <li>מערכת ניהול אירועים</li>
+                <li>מערכת ניהול הרשאות</li>
+            </ol>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-lightbulb icon"></i>
+                טיפים ליישום
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהמנויים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>השתמש בממשק פשוט ונוח לשימוש</li>
+                <li>ודא שהמנויים מספקים את כל הפונקציונליות הנדרשת</li>
+                <li>הוסף בדיקות תקינות לממשק הפשוט</li>
+                <li>שקול שימוש ב-Dependency Injection</li>
+                <li>השתמש ב-Interface Segregation Principle</li>
+                <li>הוסף תיעוד מפורט לממשקים והמימושים</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2 class="flex-center">
+                <i class="fas fa-book icon"></i>
+                מקרי שימוש נפוצים
+            </h2>
+            <h3>למתחילים:</h3>
+            <ul>
+                <li>מערכות התראות</li>
+                <li>מערכות ניהול מלאי</li>
+                <li>מערכות ניהול אירועים</li>
+            </ul>
+
+            <h3>למתקדמים:</h3>
+            <ul>
+                <li>מערכות התראות</li>
+                <li>מערכות ניהול מלאי</li>
+                <li>מערכות ניהול אירועים</li>
+                <li>מערכות ניהול הרשאות</li>
+                <li>מערכות ניהול עדכונים</li>
+            </ul>
         </section>
 
         <div class="related-patterns card">
@@ -181,9 +453,10 @@ if __name__ == "__main__":
                 תבניות קשורות
             </h2>
             <ul>
-                <li><a href="mediator.html" class="flex-center"><i class="fas fa-comments icon"></i>Mediator</a></li>
-                <li><a href="chain-of-responsibility.html" class="flex-center"><i class="fas fa-link icon"></i>Chain of Responsibility</a></li>
                 <li><a href="command.html" class="flex-center"><i class="fas fa-terminal icon"></i>Command</a></li>
+                <li><a href="chain-of-responsibility.html" class="flex-center"><i class="fas fa-link icon"></i>Chain of Responsibility</a></li>
+                <li><a href="strategy.html" class="flex-center"><i class="fas fa-cogs icon"></i>Strategy</a></li>
+                <li><a href="state.html" class="flex-center"><i class="fas fa-toggle-on icon"></i>State</a></li>
             </ul>
         </div>
     </main>
