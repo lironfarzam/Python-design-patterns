@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Singleton Pattern - תבניות עיצוב בפייתון</title>
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Prism.js CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <!-- Prism.js Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <!-- Prism.js Python Language Support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script></head>
 <body>
     <div class="side-nav-container">
         <nav class="side-nav">
@@ -104,7 +109,7 @@
             <h3>הסבר למתקדמים:</h3>
             <p>הדוגמה מדגימה את השימוש ב-Singleton Pattern ליצירת מופע יחיד. המחלקה משתמשת ב-Lazy Initialization ליצירת המופע, ומספקת גישה בטוחה למופע זה.</p>
 
-            <pre><code>class SystemManager:
+            <pre><code class="language-python">class SystemManager:
     _instance = None
     
     def __new__(cls):
@@ -159,7 +164,7 @@ if __name__ == "__main__":
             <h3>הסבר למתקדמים:</h3>
             <p>הדוגמה מדגימה את השימוש ב-Singleton Pattern ליצירת מופע יחיד של מנהל לוגים. המחלקה משתמשת ב-Lazy Initialization ליצירת המופע, ומספקת גישה בטוחה למופע זה.</p>
 
-            <pre><code>from datetime import datetime
+            <pre><code class="language-python">from datetime import datetime
 from enum import Enum
 from typing import List, Optional
 

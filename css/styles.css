@@ -195,18 +195,31 @@ li {
 
 /* Code Blocks */
 pre {
-    background-color: #f8f9fa;
+    background-color: #2d2d2d;
     padding: 15px;
     border-radius: 4px;
     overflow-x: auto;
     direction: ltr;
     text-align: left;
+    margin: 1em 0;
 }
 
-code {
-    font-family: 'Courier New', Courier, monospace;
+pre[class*="language-"] {
+    margin: 1em 0;
+    padding: 1em;
+    overflow: auto;
+}
+
+code[class*="language-"] {
+    font-family: 'Fira Code', 'Consolas', 'Monaco', 'Andale Mono', 'Ubuntu Mono', monospace;
     direction: ltr;
     text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    line-height: 1.5;
+    tab-size: 4;
+    hyphens: none;
 }
 
 /* Tables */
@@ -281,8 +294,8 @@ th {
         color: var(--dark-text);
     }
     
-    pre {
-        background-color: var(--dark-secondary);
+    pre[class*="language-"] {
+        background-color: #2d2d2d;
     }
     
     th {
@@ -291,6 +304,13 @@ th {
     
     td {
         border-bottom-color: var(--dark-border);
+    }
+}
+
+/* Light Mode Support */
+@media (prefers-color-scheme: light) {
+    pre[class*="language-"] {
+        background-color: #f5f2f0;
     }
 }
 
